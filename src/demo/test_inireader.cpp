@@ -1,0 +1,17 @@
+////////////////////////////////////////////////////////////////////////////////////
+// 
+// @file: test_inireader.cpp
+// @author: by Mr.Chen
+// @date: 2015/4/22/ 23:10
+// @brief: 
+//
+////////////////////////////////////////////////////////////////////////////////////
+#include "socketdef.h"
+#include "test_inireader.h"
+
+void test_inireader()
+{
+	IniReader file("./config/test.ini");
+	int val = file.readInt("HuoDong","time");
+}
+

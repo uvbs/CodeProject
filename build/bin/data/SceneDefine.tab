@@ -1,0 +1,4 @@
+场景ID	场景名字	是否激活(1表示激活，0表示不激活)	所在服务器号	场景类型(0表示普通场景，1表示副本)	最低等级限制	是否可骑马	是否有阴影	玩家	怪物	掉落包	交通工具	事件区域	生长点	定时器	特效	技能特效对象	场景大小X	场景大小Y	场景文件名	地图名	加亮配置参数(1--99)	光标选择亮度参数(1--99)	背景音乐名	背景音效	脚本ID	反隐距离参数	Load背景图	指定pk父模式	指定PK子模式	场景默认PK属性	场景地图图片
+INT	STRING	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	INT	STRING	STRING	INT	INT	STRING	STRING	INT	INT	STRING	INT	STRING_INT	INT	STRING
+1	登录界面	1	6	1	10	1	0	10	500	500	10	10	100	104	100	10	256	256	SC_FI_DLJM3D_YY.scene	SC_FI_DLJM3D_YY	25	20	M_fangxianji.ogg	day.ogg	-1	3000	set:YS_Loading_Dengdai image:YS_Loading_Dengdai_Background	-1	-1	1	set:YS_New_Scene_Name image:YS_New_Scene_Name_Text_Longyuanzheng
+2	鬼神	1	9	0	5	1	0	10	500	500	10	10	100	102	100	10	256	256	SC_FI_GSZ_YY.scene	SC_FI_GSZ_YY	25	20	M_fangxianji.ogg	day.ogg	-1	3000	set:YS_Loading_Dengdai image:YS_Loading_Dengdai_Background	-1	-1	1	set:YS_New_Scene_Name image:YS_New_Scene_Name_Text_Guisheng

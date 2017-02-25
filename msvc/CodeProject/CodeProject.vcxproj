@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{E7FF86D6-31FC-47AE-B61C-31E1A87F3F14}</ProjectGuid>
+    <RootNamespace>CodeProject</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../../build/bin/\</OutDir>
+    <IntDir>../../build/output/$(ProjectName)/$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>../../build/bin/\</OutDir>
+    <IntDir>../../build/output/$(ProjectName)/$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>../build/bin/\</OutDir>
+    <IntDir>../build/output/$(ProjectName)/\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(Platform)\$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../frame/cpp_reflect;../../src/algorithm;../../src/common;../../src/container;../../src/demo;../../src/filereader/ini;../../src/filereader/tab;../../src/filereader/xml;../../src/main;../../src/pattern;../../src/reflect;../../src/simple_reflect;../../src/util;../../dependency/output/boost/include;../../dependency/output/libConhash/include/;../../dependency/output/libcurl/win/include;../../dependency/output/libevent/win/include;../../dependency/output/libJsonc/include;../../dependency/output/libMySql/win/include;../../dependency/output/libNet/include/;../../dependency/output/libz/win/include/;../../dependency/output/log4cplus/win/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;libcurld_imp.lib;libConhashd.lib;libJsoncd.lib;libMySqld_c.lib;libNet.lib;log4cplusUD.lib;libboost_regex-vc120-mt-gd-1_62.lib;ZLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)d.exe</OutputFile>
+      <AdditionalLibraryDirectories>../../dependency/output/boost/lib;../../dependency/output/libConhash/lib;../../dependency/output/libcurl/win/lib;../../dependency/output/libevent/win/lib;../../dependency/output/libJsonc/lib;../../dependency/output/libMySql/win/lib;../../dependency/output/libNet/lib;../../dependency/output/libz/win/lib;../../dependency/output/log4cplus/win/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>../../frame/cpp_reflect;../../frame/io_model;../../frame/simple_reflect;../../src/algorithm;../../src/common;../../src/data_struct;../../src/demo;../../src/filereader/ini;../../src/filereader/tab;../../src/filereader/xml;../../src/main;../../src/network;../../src/pattern;../../src/reflect;../../src/util;../../dependency/lib_self/libConhash/include/;../../dependency/lib_self/libJsonc/include;../../dependency/lib_self/libMySql/win/include;../../dependency/lib_self/libNet/include/;../../dependency/lib_third/libcurl/win/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;libcurl_imp.lib;libConhash.lib;libJsonc.lib;libMysql.lib;libNet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../../dependency/lib_self/lib/;../../dependency/lib_third/libcurl/win/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../frame/cpp_reflect;../frame/io_model;../frame/simple_reflect;../src/algorithm;../src/common;../src/data_struct;../src/demo;../src/filereader/ini;../src/filereader/tab;../src/filereader/xml;../src/main;../src/network;../src/pattern;../src/reflect;../src/util;../dependency/lib_self/libConhash/include/;../dependency/lib_self/libJsonc/include;../dependency/lib_self/libMySql/win/include;../dependency/lib_self/libNet/include/;../dependency/lib_third/libcurl/win/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>8Bytes</StructMemberAlignment>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;libcurld.lib;libConhash.lib;libJsonc.lib;libMysql.lib;libNet.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>../dependency/lib_self/lib/;../dependency/lib_third/libcurl/win/lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>LIBCMT.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\algorithm\compress.cpp" />
+    <ClCompile Include="..\..\src\main\main.cpp" />
+    <ClCompile Include="..\..\src\main\ssample.cpp" />
+    <ClCompile Include="..\..\src\demo\test_algorithm.cpp" />
+    <ClCompile Include="..\..\src\demo\test_allocator.cpp" />
+    <ClCompile Include="..\..\src\demo\test_anyobj.cpp" />
+    <ClCompile Include="..\..\src\demo\test_bitset.cpp" />
+    <ClCompile Include="..\..\src\demo\test_boost.cpp" />
+    <ClCompile Include="..\..\src\demo\test_cbfunc.cpp" />
+    <ClCompile Include="..\..\src\demo\test_conhash.cpp" />
+    <ClCompile Include="..\..\src\demo\test_container.cpp" />
+    <ClCompile Include="..\..\src\demo\test_datastruct.cpp" />
+    <ClCompile Include="..\..\src\demo\test_designpattern.cpp" />
+    <ClCompile Include="..\..\src\demo\test_httpclient.cpp" />
+    <ClCompile Include="..\..\src\demo\test_inireader.cpp" />
+    <ClCompile Include="..\..\src\demo\test_jsonc.cpp" />
+    <ClCompile Include="..\..\src\demo\test_log4cplus.cpp" />
+    <ClCompile Include="..\..\src\demo\test_maths.cpp" />
+    <ClCompile Include="..\..\src\demo\test_mysql.cpp" />
+    <ClCompile Include="..\..\src\demo\test_reflect.cpp" />
+    <ClCompile Include="..\..\src\demo\test_reflectV2.cpp" />
+    <ClCompile Include="..\..\src\demo\test_smartptr.cpp" />
+    <ClCompile Include="..\..\src\demo\test_spider.cpp" />
+    <ClCompile Include="..\..\src\demo\test_strutil.cpp" />
+    <ClCompile Include="..\..\src\demo\test_tabreader.cpp" />
+    <ClCompile Include="..\..\src\demo\test_tabreaderV2.cpp" />
+    <ClCompile Include="..\..\src\demo\test_taskqueue.cpp" />
+    <ClCompile Include="..\..\src\demo\test_thread.cpp" />
+    <ClCompile Include="..\..\src\demo\test_time.cpp" />
+    <ClCompile Include="..\..\src\demo\test_tinyxml.cpp" />
+    <ClCompile Include="..\..\src\demo\test_varsystem.cpp" />
+    <ClCompile Include="..\..\src\util\assert.cpp" />
+    <ClCompile Include="..\..\src\util\condition.cpp" />
+    <ClCompile Include="..\..\src\util\helper.cpp" />
+    <ClCompile Include="..\..\src\util\http_client.cpp" />
+    <ClCompile Include="..\..\src\util\log.cpp" />
+    <ClCompile Include="..\..\src\util\log4cplus.cpp" />
+    <ClCompile Include="..\..\src\util\memory_stat.cpp" />
+    <ClCompile Include="..\..\src\util\msg_queue.cpp" />
+    <ClCompile Include="..\..\src\util\mutex.cpp" />
+    <ClCompile Include="..\..\src\util\p2ptask.cpp" />
+    <ClCompile Include="..\..\src\util\seh_file.cpp" />
+    <ClCompile Include="..\..\src\util\string_util.cpp" />
+    <ClCompile Include="..\..\src\util\thread.cpp" />
+    <ClCompile Include="..\..\src\util\time_system.cpp" />
+    <ClCompile Include="..\..\src\util\timer.cpp" />
+    <ClCompile Include="..\..\src\util\variable_system.cpp" />
+    <ClCompile Include="..\..\src\algorithm\maths.cpp" />
+    <ClCompile Include="..\..\src\algorithm\md5.cpp" />
+    <ClCompile Include="..\..\src\container\linearTable.cpp" />
+    <ClCompile Include="..\..\src\container\4-string.cpp" />
+    <ClCompile Include="..\..\src\container\array.cpp" />
+    <ClCompile Include="..\..\src\container\matrix.cpp" />
+    <ClCompile Include="..\..\src\container\queue.cpp" />
+    <ClCompile Include="..\..\src\container\stack.cpp" />
+    <ClCompile Include="..\..\src\filereader\ini\ini_reader.cpp" />
+    <ClCompile Include="..\..\src\filereader\tab\dbc_file.cpp" />
+    <ClCompile Include="..\..\src\filereader\tab\dbc_system.cpp" />
+    <ClCompile Include="..\..\src\filereader\tab\serializer_table.cpp" />
+    <ClCompile Include="..\..\src\filereader\xml\tinystr.cpp" />
+    <ClCompile Include="..\..\src\filereader\xml\tinyxml.cpp" />
+    <ClCompile Include="..\..\src\filereader\xml\tinyxmlerror.cpp" />
+    <ClCompile Include="..\..\src\filereader\xml\tinyxmlparser.cpp" />
+    <ClCompile Include="..\..\src\pattern\factory.cpp" />
+    <ClCompile Include="..\..\src\pattern\factory_abstract.cpp" />
+    <ClCompile Include="..\..\src\pattern\factory_method.cpp" />
+    <ClCompile Include="..\..\src\pattern\observer.cpp" />
+    <ClCompile Include="..\..\src\pattern\state.cpp" />
+    <ClCompile Include="..\..\src\pattern\strategy.cpp" />
+    <ClCompile Include="..\..\src\pattern\tpl_method.cpp" />
+    <ClCompile Include="..\..\src\pattern\work.cpp" />
+    <ClCompile Include="..\..\src\reflect\tClass.cpp" />
+    <ClCompile Include="..\..\src\reflect\tKernel.cpp" />
+    <ClCompile Include="..\..\src\reflect\tNode.cpp" />
+    <ClCompile Include="..\..\src\simple_reflect\property.cpp" />
+    <ClCompile Include="..\..\src\simple_reflect\property_set.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\algorithm\compress.h" />
+    <ClInclude Include="..\..\src\main\ssample.h" />
+    <ClInclude Include="..\..\src\common\macrodef.h" />
+    <ClInclude Include="..\..\src\common\type.h" />
+    <ClInclude Include="..\..\src\demo\test_algorithm.h" />
+    <ClInclude Include="..\..\src\demo\test_allocator.h" />
+    <ClInclude Include="..\..\src\demo\test_anyobj.h" />
+    <ClInclude Include="..\..\src\demo\test_bitset.h" />
+    <ClInclude Include="..\..\src\demo\test_boost.h" />
+    <ClInclude Include="..\..\src\demo\test_cbfunc.h" />
+    <ClInclude Include="..\..\src\demo\test_conhash.h" />
+    <ClInclude Include="..\..\src\demo\test_container.h" />
+    <ClInclude Include="..\..\src\demo\test_datastruct.h" />
+    <ClInclude Include="..\..\src\demo\test_designpattern.h" />
+    <ClInclude Include="..\..\src\demo\test_httpclient.h" />
+    <ClInclude Include="..\..\src\demo\test_inireader.h" />
+    <ClInclude Include="..\..\src\demo\test_jsonc.h" />
+    <ClInclude Include="..\..\src\demo\test_log4cplus.h" />
+    <ClInclude Include="..\..\src\demo\test_maths.h" />
+    <ClInclude Include="..\..\src\demo\test_mysql.h" />
+    <ClInclude Include="..\..\src\demo\test_reflect.h" />
+    <ClInclude Include="..\..\src\demo\test_reflectV2.h" />
+    <ClInclude Include="..\..\src\demo\test_smartptr.h" />
+    <ClInclude Include="..\..\src\demo\test_spider.h" />
+    <ClInclude Include="..\..\src\demo\test_strutil.h" />
+    <ClInclude Include="..\..\src\demo\test_tabreader.h" />
+    <ClInclude Include="..\..\src\demo\test_tabreaderV2.h" />
+    <ClInclude Include="..\..\src\demo\test_taskqueue.h" />
+    <ClInclude Include="..\..\src\demo\test_thread.h" />
+    <ClInclude Include="..\..\src\demo\test_time.h" />
+    <ClInclude Include="..\..\src\demo\test_tinyxml.h" />
+    <ClInclude Include="..\..\src\demo\test_varsystem.h" />
+    <ClInclude Include="..\..\src\util\any_obj.h" />
+    <ClInclude Include="..\..\src\util\assert.h" />
+    <ClInclude Include="..\..\src\util\baselock.h" />
+    <ClInclude Include="..\..\src\util\bitflags.h" />
+    <ClInclude Include="..\..\src\util\bitset.h" />
+    <ClInclude Include="..\..\src\util\cbfunc.h" />
+    <ClInclude Include="..\..\src\util\condition.h" />
+    <ClInclude Include="..\..\src\util\helper.h" />
+    <ClInclude Include="..\..\src\util\http_client.h" />
+    <ClInclude Include="..\..\src\util\lock.h" />
+    <ClInclude Include="..\..\src\util\log.h" />
+    <ClInclude Include="..\..\src\util\log4cplus.h" />
+    <ClInclude Include="..\..\src\util\memory_stat.h" />
+    <ClInclude Include="..\..\src\util\msg_queue.h" />
+    <ClInclude Include="..\..\src\util\mutex.h" />
+    <ClInclude Include="..\..\src\util\p2pmsg.h" />
+    <ClInclude Include="..\..\src\util\p2ptask.h" />
+    <ClInclude Include="..\..\src\util\safe_ptr.h" />
+    <ClInclude Include="..\..\src\util\seh_file.h" />
+    <ClInclude Include="..\..\src\util\shared_ptr.h" />
+    <ClInclude Include="..\..\src\util\string_util.h" />
+    <ClInclude Include="..\..\src\util\task.h" />
+    <ClInclude Include="..\..\src\util\thread.h" />
+    <ClInclude Include="..\..\src\util\time_system.h" />
+    <ClInclude Include="..\..\src\util\timer.h" />
+    <ClInclude Include="..\..\src\util\uncopyable.h" />
+    <ClInclude Include="..\..\src\util\variable_system.h" />
+    <ClInclude Include="..\..\src\algorithm\allocator.h" />
+    <ClInclude Include="..\..\src\algorithm\find.h" />
+    <ClInclude Include="..\..\src\algorithm\maths.h" />
+    <ClInclude Include="..\..\src\algorithm\mcAlloc.h" />
+    <ClInclude Include="..\..\src\algorithm\mcCRC.h" />
+    <ClInclude Include="..\..\src\algorithm\mcFuncDef.h" />
+    <ClInclude Include="..\..\src\algorithm\mcGBCode.h" />
+    <ClInclude Include="..\..\src\algorithm\mcHilbert.h" />
+    <ClInclude Include="..\..\src\algorithm\mcMath.h" />
+    <ClInclude Include="..\..\src\algorithm\mcMTL.h" />
+    <ClInclude Include="..\..\src\algorithm\mcSort.h" />
+    <ClInclude Include="..\..\src\algorithm\mcStd.h" />
+    <ClInclude Include="..\..\src\algorithm\mcStr.h" />
+    <ClInclude Include="..\..\src\algorithm\md5.h" />
+    <ClInclude Include="..\..\src\algorithm\partition.h" />
+    <ClInclude Include="..\..\src\algorithm\sort.h" />
+    <ClInclude Include="..\..\src\container\linearTable.h" />
+    <ClInclude Include="..\..\src\container\4-string.h" />
+    <ClInclude Include="..\..\src\container\array.h" />
+    <ClInclude Include="..\..\src\container\matrix.h" />
+    <ClInclude Include="..\..\src\container\hash_table.h" />
+    <ClInclude Include="..\..\src\container\list.h" />
+    <ClInclude Include="..\..\src\container\mcBHeap.h" />
+    <ClInclude Include="..\..\src\container\mcHash.h" />
+    <ClInclude Include="..\..\src\container\queue.h" />
+    <ClInclude Include="..\..\src\container\rbtree.h" />
+    <ClInclude Include="..\..\src\container\stack.h" />
+    <ClInclude Include="..\..\src\filereader\ini\ini_reader.h" />
+    <ClInclude Include="..\..\src\filereader\tab\dbc_file.h" />
+    <ClInclude Include="..\..\src\filereader\tab\dbc_system.h" />
+    <ClInclude Include="..\..\src\filereader\tab\serializer.h" />
+    <ClInclude Include="..\..\src\filereader\tab\serializer_clear.h" />
+    <ClInclude Include="..\..\src\filereader\tab\serializer_table.h" />
+    <ClInclude Include="..\..\src\filereader\tab\table.h" />
+    <ClInclude Include="..\..\src\filereader\xml\tinystr.h" />
+    <ClInclude Include="..\..\src\filereader\xml\tinyxml.h" />
+    <ClInclude Include="..\..\src\pattern\factory.h" />
+    <ClInclude Include="..\..\src\pattern\factory_abstract.h" />
+    <ClInclude Include="..\..\src\pattern\factory_method.h" />
+    <ClInclude Include="..\..\src\pattern\observer.h" />
+    <ClInclude Include="..\..\src\pattern\singleton.h" />
+    <ClInclude Include="..\..\src\pattern\state.h" />
+    <ClInclude Include="..\..\src\pattern\strategy.h" />
+    <ClInclude Include="..\..\src\pattern\tpl_method.h" />
+    <ClInclude Include="..\..\src\pattern\work.h" />
+    <ClInclude Include="..\..\src\reflect\tClass.h" />
+    <ClInclude Include="..\..\src\reflect\tKernel.h" />
+    <ClInclude Include="..\..\src\reflect\tNode.h" />
+    <ClInclude Include="..\..\src\simple_reflect\property.h" />
+    <ClInclude Include="..\..\src\simple_reflect\property_set.h" />
+    <ClInclude Include="..\..\src\simple_reflect\simple_reflect.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

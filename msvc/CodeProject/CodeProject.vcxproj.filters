@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="com">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="demo">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="toolkit">
+      <UniqueIdentifier>{6be2c69d-8f5e-4b80-9c1d-9bd5a13c95f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\util">
+      <UniqueIdentifier>{72ea8374-cee2-4b38-b629-3553e0419c71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\algorithm">
+      <UniqueIdentifier>{f147a01e-bc53-4552-8291-e4466fb19f75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\container">
+      <UniqueIdentifier>{f37c66cb-5c1e-482d-9875-080b47c250e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\file_reader">
+      <UniqueIdentifier>{c301a0f4-d20e-4d81-8e09-029dc8d78d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\file_reader\ini">
+      <UniqueIdentifier>{c783ff25-4d8e-4b4e-92d1-191ff68e9387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\file_reader\tab">
+      <UniqueIdentifier>{8b8964e1-6b6f-4d9d-a77f-e7610a624755}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\file_reader\xml">
+      <UniqueIdentifier>{e1705dbc-d4e7-41a3-bfe7-584ac5a1aa11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\pattern">
+      <UniqueIdentifier>{946fc847-3e41-4836-9412-e99493f8b91d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\pattern\reflect">
+      <UniqueIdentifier>{559efc56-6db6-4939-9520-15a55c018cb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toolkit\pattern\simple_reflect">
+      <UniqueIdentifier>{06893950-22eb-4e8b-b9eb-0d7fa447b568}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\main\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main\ssample.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_algorithm.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_allocator.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_anyobj.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_bitset.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_boost.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_cbfunc.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_conhash.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_container.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_datastruct.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_designpattern.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_httpclient.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_inireader.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_jsonc.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_log4cplus.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_maths.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_mysql.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_reflect.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_reflectV2.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_smartptr.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_spider.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_strutil.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_tabreader.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_tabreaderV2.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_taskqueue.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_thread.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_time.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_tinyxml.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\demo\test_varsystem.cpp">
+      <Filter>demo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\assert.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\condition.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\helper.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\http_client.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\log.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\log4cplus.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\memory_stat.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\msg_queue.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\mutex.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\p2ptask.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\seh_file.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\string_util.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\thread.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\time_system.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\timer.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\util\variable_system.cpp">
+      <Filter>toolkit\util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\algorithm\maths.cpp">
+      <Filter>toolkit\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\algorithm\md5.cpp">
+      <Filter>toolkit\algorithm</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\container\4-string.cpp">
+      <Filter>toolkit\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\container\queue.cpp">
+      <Filter>toolkit\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\container\stack.cpp">
+      <Filter>toolkit\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\ini\ini_reader.cpp">
+      <Filter>toolkit\file_reader\ini</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\tab\dbc_file.cpp">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\tab\dbc_system.cpp">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\tab\serializer_table.cpp">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\xml\tinystr.cpp">
+      <Filter>toolkit\file_reader\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\xml\tinyxml.cpp">
+      <Filter>toolkit\file_reader\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\xml\tinyxmlerror.cpp">
+      <Filter>toolkit\file_reader\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\filereader\xml\tinyxmlparser.cpp">
+      <Filter>toolkit\file_reader\xml</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\factory.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\factory_abstract.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\factory_method.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\observer.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\state.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\strategy.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\tpl_method.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\pattern\work.cpp">
+      <Filter>toolkit\pattern</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reflect\tClass.cpp">
+      <Filter>toolkit\pattern\reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reflect\tKernel.cpp">
+      <Filter>toolkit\pattern\reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reflect\tNode.cpp">
+      <Filter>toolkit\pattern\reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\simple_reflect\property.cpp">
+      <Filter>toolkit\pattern\simple_reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\simple_reflect\property_set.cpp">
+      <Filter>toolkit\pattern\simple_reflect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\container\linearTable.cpp">
+      <Filter>toolkit\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\container\matrix.cpp">
+      <Filter>toolkit\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\container\array.cpp">
+      <Filter>toolkit\container</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\algorithm\compress.cpp">
+      <Filter>toolkit\algorithm</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\main\ssample.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\macrodef.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\common\type.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_algorithm.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_allocator.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_anyobj.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_bitset.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_boost.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_cbfunc.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_conhash.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_container.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_datastruct.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_designpattern.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_httpclient.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_inireader.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_jsonc.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_log4cplus.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_maths.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_mysql.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_reflect.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_reflectV2.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_smartptr.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_spider.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_strutil.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_tabreader.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_tabreaderV2.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_taskqueue.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_thread.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_time.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_tinyxml.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\demo\test_varsystem.h">
+      <Filter>demo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\any_obj.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\assert.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\baselock.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\bitflags.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\bitset.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\cbfunc.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\condition.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\helper.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\http_client.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\lock.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\log.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\log4cplus.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\memory_stat.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\msg_queue.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\mutex.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\p2pmsg.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\p2ptask.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\safe_ptr.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\seh_file.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\shared_ptr.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\string_util.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\task.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\thread.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\time_system.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\timer.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\uncopyable.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\util\variable_system.h">
+      <Filter>toolkit\util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\allocator.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\find.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\maths.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcAlloc.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcCRC.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcFuncDef.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcGBCode.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcHilbert.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcMath.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcMTL.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcSort.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcStd.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\mcStr.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\md5.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\partition.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\sort.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\4-string.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\hash_table.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\list.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\mcBHeap.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\mcHash.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\queue.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\rbtree.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\stack.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\ini\ini_reader.h">
+      <Filter>toolkit\file_reader\ini</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\tab\dbc_file.h">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\tab\dbc_system.h">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\tab\serializer.h">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\tab\serializer_clear.h">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\tab\serializer_table.h">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\tab\table.h">
+      <Filter>toolkit\file_reader\tab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\xml\tinystr.h">
+      <Filter>toolkit\file_reader\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\filereader\xml\tinyxml.h">
+      <Filter>toolkit\file_reader\xml</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\factory.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\factory_abstract.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\factory_method.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\observer.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\singleton.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\state.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\strategy.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\tpl_method.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\pattern\work.h">
+      <Filter>toolkit\pattern</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reflect\tClass.h">
+      <Filter>toolkit\pattern\reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reflect\tKernel.h">
+      <Filter>toolkit\pattern\reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\reflect\tNode.h">
+      <Filter>toolkit\pattern\reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\simple_reflect\property.h">
+      <Filter>toolkit\pattern\simple_reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\simple_reflect\property_set.h">
+      <Filter>toolkit\pattern\simple_reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\simple_reflect\simple_reflect.h">
+      <Filter>toolkit\pattern\simple_reflect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\linearTable.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\matrix.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\container\array.h">
+      <Filter>toolkit\container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\algorithm\compress.h">
+      <Filter>toolkit\algorithm</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

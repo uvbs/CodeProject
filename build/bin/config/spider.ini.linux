@@ -1,0 +1,16 @@
+[BK]
+dbname=ns_video
+ip=10.48.47.34
+port=5151
+user=video
+pwd=video
+encoding=gbk
+
+[RANK]
+dbname=ns_video
+ip=10.48.47.34
+port=5151
+user=video
+pwd=video
+encoding=gbk
+file=./data/rank.xml

@@ -1,0 +1,114 @@
+由于网上下载的 libcurl 不支持 gzip，只好自己动手编译，期间走了很多弯路，下面是最终成功的记录。
+
+我所使用的环境 Visual Studio 2010 、 Windows 7 64 bit
+
+1 下载文件
+
+1.1 libcurl
+
+下载页面 http://curl.haxx.se/download.html
+
+下载地址 http://curl.haxx.se/download/curl-7.26.0.zip
+
+1.2 zlib
+
+下载页面 http://sourceforge.net/projects/libpng/files/zlib/
+
+下载地址 http://sourceforge.net/projects/libpng/files/zlib/1.2.5/zlib125.zip/download
+
+（特别提醒，不要使用1.2.7版编译，使用后发现编译的方法和文件名都不同了）
+
+1.3 openssl
+
+下载页面 http://www.openssl.org/source/
+
+下载地址 http://www.openssl.org/source/openssl-1.0.0c.tar.gz
+
+(特别提醒，不建议用1.0.1c，虽可编译成功，但无法绕过SSL证书，不知其原因，浪费了我不少时间)
+
+编译openssl还需下载ActivePerl
+
+官方下载 http://www.activestate.com/activeperl/downloads
+
+下载地址：http://downloads.activestate.com/ActivePerl/releases/5.16.0.1600/ActivePerl-5.16.0.1600-MSWin32-x86-295879.msi
+
+X64下载地址：http://downloads.activestate.com/ActivePerl/releases/5.16.0.1600/ActivePerl-5.16.0.1600-MSWin32-x64-295879.msi
+
+2 解压及安装文件
+
+2.1 ActivePerl安装，双击直接下一步，默认设置到底。
+
+2.2 zlib openssl libcurl分别解压，他们三个在同一级目录。
+
+例如：D:\User\Dewei\TestCurl\curl-7.26.0、D:\User\Dewei\TestCurl\openssl-1.0.0c、D:\User\Dewei\TestCurl\zlib-1.2.5
+
+3 编译过程
+
+3.1 zlib编译
+
+用vs2010打开zlib-1.2.5/old/visualc6/zlib.dsw，选择DLL_Release编译，把编译生成的zlib-1.2.5/old/visualc6/Win32_DLL_Release/zlib1.lib复制到curl-7.26.0/lib目录下，重命名为 zdll.lib （注意必须为此文件名）。
+
+3.2 openssl编译
+
+打开cmd，cd到openssl-1.0.0c目录下；
+
+运行命令 perl Configure VC-WIN32
+
+再运行   ms\do_ms.bat
+
+再运行 "C:\Program Files (x86)\Microsoft Visual Studio 10.0\vcvars32.bat" 
+
+运行命令 nmake -f ms/ntdll.mak
+
+参考资料：openssl-1.0.0c/INSTALL.W32
+
+3.3 编译curl-7.26.0
+
+在curl-7.26.0/lib目录下新建release.bat,输入以下内容
+
+call "C:/Program Files/Microsoft Visual Studio 10.0/VC/bin/vcvars32.bat"
+set CFG=release-dll-ssl-dll-zlib-dll
+set OPENSSL_PATH=../../openssl-1.0.0c
+set ZLIB_PATH=../../zlib-1.2.5
+nmake -f Makefile.vc10
+
+保存，然后运行。
+
+等待一会儿，就可以到 curl-7.26.0\lib\release-dll-ssl-dll-zlib-dll 目录下拷文件 libcurl_imp.lib和libcurl.dll 啦！
+
+
+windows下编译openssl
+分类： 开源库 2012-11-08 16:15 1342人阅读 评论(0) 收藏 举报
+准备工作：
+    安装perl，下载地址，百度；
+    安装vs2010；
+    下载openssl源码，我使用的版本： openssl-1.0.1c
+
+开始编译：
+    启动 vs command prompt，省去设置环境变量的麻烦；
+    1、cd openssl=1.0.1c， 执行 “perl Configure VC-WIN32”，配置编译环境；
+    2、执行“ms\do_ms.bat”， 生成配置文件；
+    3、执行“nmake -f ms\ntdll.mak ”，执行编译、链接；
+编译结果在out32dll目录下，这样执行的是动态链接；
+
+执行：nmake -f ms/nt.mak
+该命令生成静态库，默认使用的是MT，生成的静态库输出到out32目录下。
+
+修改运行库的链接方式，修改ntdll.mak里面的“CFLAG= /MD /Ox ..............” 为/MT,然后重新编译，执行
+
+其它命令：
+nmake -f ms/ntdll.mak clean // 清除编译的中间文件
+nmake -f ms/ntdll.mak install // 安装，主要是linux下面会自动放到程序目录中
+
+编译过程中出现的问题：
+     由于使用的系统是win7-x64，在选择vs command prompt时首先选中的是x64 win64 command prompt，结果编译最后提示：
+NMAKE : fatal error U1077: '"D:\Program Files (x86)\Microsoft Visual Studio 10.0
+\VC\BIN\amd64\link.EXE"' : return code '0x458'
+因为第一步配置时设置的是win32，这里用x64的环境去编译，link不出问题才奇怪了。
+
+64位库编译过程如下：
+    启动：x64 win64 command prompt；
+    > perl Configure VC-WIN64
+    > ms/do_ms.bat
+    > nmake -f ms/nt.mak 或ntdll.mak
+    

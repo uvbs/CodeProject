@@ -1,0 +1,67 @@
+ linux下源码编译安装mysql 5.5.8 2010-12-24 13:11:39
+分类： Mysql/postgreSQL
+约定： 安装到/w/mysqld558 数据库放在/w/mysqld558/date 
+
+1 由于mysql5.5.8是用cmake编译相当于原来的automake,所以先安装cmake
+  wget http://www.cmake.org/files/v2.8/cmake-2.8.3.tar.gz
+  tar -zvxf cmake-2.8.3.tar.gz;cd cmake-2.8.3;./configure;make;make install
+2 编译
+  在mysql站点上下载源码包：
+  cd ..
+  wget http://dev.mysql.com/get/Downloads/MySQL-5.5/mysql-5.5.8.tar.gz/from/http://mysql.mirror.rafal.ca/
+  tar -zvxf ../sou/mysql-5.5.8.tar.gz；cd mysql-5.5.8
+  用cmake -i 进入对话式配置，配置CMAKE_INSTALL_PREFIX和Variable Name: MYSQL_DATADIR即可
+  或者cmake . \
+         -DCMAKE_BUILD_TYPE:STRING=Release \
+         -DCMAKE_INSTALL_PREFIX:PATH=/w/mysqld558/ \
+         -DCOMMUNITY_BUILD:BOOL=ON \
+         -DENABLED_PROFILING:BOOL=ON \
+         -DENABLE_DEBUG_SYNC:BOOL=OFF \
+         -DINSTALL_LAYOUT:STRING=STANDALONE \
+         -DMYSQL_DATADIR:PATH=/w/mysqld558/data \
+         -DMYSQL_MAINTAINER_MODE:BOOL=OFF \
+         -DWITH_EMBEDDED_SERVER:BOOL=ON \
+         -DWITH_EXTRA_CHARSETS:STRING=all \
+         -DWITH_SSL:STRING=bundled \
+         -DWITH_UNIT_TESTS:BOOL=OFF \
+         -DWITH_ZLIB:STRING=bundled \
+         -LH
+ 3 安装：  make ;make install
+   useradd mysql ;cd /w/mysqld558;chown -R mysql:mysql .;
+   scripts/mysql_install_db --user=mysql 
+   chown -R root . ; chown -R mysql data
+   cp ./support-files/my-small.cnf ./my.cnf  
+   cp support-files/mysql.server mysqld558; chmod +x mysqld558 
+   chown -R mysql:root .
+   ./mysqld558 start
+   ./bin/mysqladmin -u root password 
+
+4 错误解决
+  4.1 ./scripts/mysql_install_db 
+      Installing MySQL system tables...
+      101223 14:28:49 [ERROR] ./bin/mysqld: unknown option '--skip-locking'
+      101223 14:28:49 [ERROR] Aborting
+      101223 14:28:49 [Note] ./bin/mysqld: Shutdown complete
+     由于是以前安装过mysql ,所以存在/etc/my.cnf，而且mysql的环境变量和现在的不一样，
+     从而影响 现在的，解决方法是:rm -rf /etc/my.cnf
+
+  4.2 ./scripts/mysql_install_db --basedir=/w/mysqld558/ --datadir=/w/mysqld558/data/mysql  --user=mysql
+ 查看原因：cat data/xcw.err 
+     101223 15:39:18 mysqld_safe Starting mysqld daemon with databases from      /w/mysqld558/data
+  /w/mysqld558/bin/mysqld: Table 'mysql.plugin' doesn't exist
+  101223 15:39:18 [ERROR] Can't open the mysql.plugin table. Please run  mysql_upgrade to create it.
+   InnoDB: The InnoDB memory heap is disabled
+   InnoDB: Mutexes and rw_locks use InnoDB's own implementation
+   InnoDB: Compressed tables use zlib 1.2.3
+   101223 15:39:18  InnoDB: Using Linux native AIO
+   101223 15:39:18  InnoDB: Initializing buffer pool, size = 128.0M
+   101223 15:39:18  InnoDB: Completed initialization of buffer pool
+   101223 15:39:18  InnoDB: highest supported file format is Barracuda.
+   101223 15:39:18  InnoDB: 1.1.4 started; log sequence number 1588771
+   101223 15:39:18 [ERROR] /w/mysqld558/bin/mysqld: unknown option '--skip-locking'
+   101223 15:39:18 [ERROR] Aborting
+   原因同上，处理也同上
+
+  4.3启动mysql服务时出现：
+   Starting MySQL.The server quit without updating PID file (/w/mysqld558/xcw.pid).[FAILED]
+   原因是由于data没有设置好，解决：vi mysqld558 : datadir=/w/mysqld558 fix to datadir=/w/mysqld558/data

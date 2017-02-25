@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{10DEC5BF-BD7C-4762-8929-C8E0A9250DDC}</ProjectGuid>
+    <RootNamespace>TcpSocketServer</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>../../../build/bin/\</OutDir>
+    <IntDir>../../../build/output/$(ProjectName)/$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../frame/network_frame/io_model;../../../frame/network_frame/io_model/frame;../../../frame/network_frame/tcp_socket;../../../frame/network_frame/tcp_socket/common;../../../frame/network_frame/tcp_socket/common/packets;../../../frame/network_frame/tcp_socket/server;../../../frame/network_frame/tcp_socket/server/frame;../../../frame/network_frame/tcp_socket/server/main;../../../src/algorithm;../../../src/common;../../../src/util;../../../src/pattern;../../../dependency/output/libNet/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_WIN32;_SERVER_;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>ws2_32.lib;libNetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName)d.exe</OutputFile>
+      <AdditionalLibraryDirectories>../../../dependency/output/libNet/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\CSPacketHandler.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player_mgr.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\logic.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\player_mgr.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene_player_mgr.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packet_factory_mgr.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\player.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSAuthorizePacket.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSEnterScenePacket.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSHeartBeatPacket.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetAuthorizePacket.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetEnterScenePacket.cpp" />
+    <ClCompile Include="..\..\..\src\util\assert.cpp" />
+    <ClCompile Include="..\..\..\src\util\helper.cpp" />
+    <ClCompile Include="..\..\..\src\util\log.cpp" />
+    <ClCompile Include="..\..\..\src\util\string_util.cpp" />
+    <ClCompile Include="..\..\..\src\util\thread.cpp" />
+    <ClCompile Include="..\..\..\src\util\time_system.cpp" />
+    <ClCompile Include="..\..\..\src\util\timer.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\main\main.cpp" />
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\main\tcp_server.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player_mgr.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\logic.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\object_mgr.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\player_mgr.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene_player_mgr.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\common.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packet.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packet_factory.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packet_factory_mgr.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packetdef.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\player.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\player_pool.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSAuthorizePacket.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSEnterScenePacket.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSHeartBeatPacket.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetAuthorizePacket.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetEnterScenePacket.h" />
+    <ClInclude Include="..\..\..\src\util\assert.h" />
+    <ClInclude Include="..\..\..\src\util\helper.h" />
+    <ClInclude Include="..\..\..\src\util\lock.h" />
+    <ClInclude Include="..\..\..\src\util\log.h" />
+    <ClInclude Include="..\..\..\src\common\macrodef.h" />
+    <ClInclude Include="..\..\..\src\util\string_util.h" />
+    <ClInclude Include="..\..\..\src\util\thread.h" />
+    <ClInclude Include="..\..\..\src\util\time_system.h" />
+    <ClInclude Include="..\..\..\src\util\timer.h" />
+    <ClInclude Include="..\..\..\src\common\type.h" />
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\main\tcp_server.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

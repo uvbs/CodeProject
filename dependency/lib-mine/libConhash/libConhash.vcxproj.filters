@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\conhash.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\conhash_inter.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\conhash_util.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\md5.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util_rbtree.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\configure.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\conhash.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\conhash_inter.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\md5.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="include\util_rbtree.h">
+      <Filter>include</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" ?>
+<!DOCTYPE PLAY SYSTEM 'play.dtd'>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT books (title,authors)>
+<element />

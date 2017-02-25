@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="frame">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="com">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="com\packets">
+      <UniqueIdentifier>{9baef79e-e3f8-4bef-8c6d-5e22972480d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{9a9da80e-1edc-4187-a381-6c8c32287e12}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\CSPacketHandler.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player_mgr.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\logic.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\player_mgr.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene_player_mgr.cpp">
+      <Filter>frame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packet_factory_mgr.cpp">
+      <Filter>com</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\player.cpp">
+      <Filter>com</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSAuthorizePacket.cpp">
+      <Filter>com\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSEnterScenePacket.cpp">
+      <Filter>com\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSHeartBeatPacket.cpp">
+      <Filter>com\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetAuthorizePacket.cpp">
+      <Filter>com\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetEnterScenePacket.cpp">
+      <Filter>com\packets</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\assert.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\helper.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\log.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\string_util.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\thread.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\time_system.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\timer.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\main\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\network_frame\tcp_socket\server\main\tcp_server.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\game_player_mgr.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\logic.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\object_mgr.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\player_mgr.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\frame\scene_player_mgr.h">
+      <Filter>frame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\common.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packet.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packet_factory.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packet_factory_mgr.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packetdef.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\player.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\player_pool.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSAuthorizePacket.h">
+      <Filter>com\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSEnterScenePacket.h">
+      <Filter>com\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\CSHeartBeatPacket.h">
+      <Filter>com\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetAuthorizePacket.h">
+      <Filter>com\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\common\packets\SCRetEnterScenePacket.h">
+      <Filter>com\packets</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\assert.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\helper.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\lock.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\log.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\common\macrodef.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\string_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\thread.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\time_system.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\timer.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\common\type.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\network_frame\tcp_socket\server\main\tcp_server.h">
+      <Filter>main</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

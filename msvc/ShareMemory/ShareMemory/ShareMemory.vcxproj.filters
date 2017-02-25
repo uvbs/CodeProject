@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="SMU">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="com">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{3e2c6eee-7a9b-4772-af5c-30ef8991d6fb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\frame\share_memory\smu\share_memory_api.cpp">
+      <Filter>SMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\smu\share_memory_obj.cpp">
+      <Filter>SMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\smu\shm_util.cpp">
+      <Filter>SMU</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\com\data_struct.cpp">
+      <Filter>com</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\assert.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\helper.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\log.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\seh_file.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\string_util.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\thread.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\time_system.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\src\util\timer.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\share_memory\dbhelper.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\share_memory\logic.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\share_memory\main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\frame\share_memory\share_memory\shm_server.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\frame\share_memory\smu\share_memory_api.h">
+      <Filter>SMU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\smu\share_memory_obj.h">
+      <Filter>SMU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\smu\share_memory_pool.h">
+      <Filter>SMU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\smu\shm_def.h">
+      <Filter>SMU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\smu\shm_struct.h">
+      <Filter>SMU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\smu\shm_util.h">
+      <Filter>SMU</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\com\data_struct.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\com\dbstruct.h">
+      <Filter>com</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\assert.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\bitset.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\helper.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\lock.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\log.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\common\macrodef.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\seh_file.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\string_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\thread.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\time_system.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\util\timer.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\src\common\type.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\share_memory\dbhelper.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\share_memory\logic.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\share_memory\shm_logic_handler.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\frame\share_memory\share_memory\shm_server.h">
+      <Filter>main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\frame\share_memory\smu\share_memory_pool.inl">
+      <Filter>SMU</Filter>
+    </None>
+    <None Include="..\..\..\frame\share_memory\share_memory\shm_logic_handler.inl">
+      <Filter>main</Filter>
+    </None>
+  </ItemGroup>
+</Project>

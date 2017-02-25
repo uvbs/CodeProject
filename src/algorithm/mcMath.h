@@ -1,0 +1,738 @@
+#ifndef __MAPTRIXC_MATH_LIB__
+#define __MAPTRIXC_MATH_LIB__
+// MaptrixC Template Library
+#include "type.h"
+
+namespace MTL
+{
+
+#ifndef MAX_SQRT_VAL
+#define MAX_SQRT_VAL 0x7FFF	// or 0xFFFF. 0x0400.
+#endif
+
+template <class _T> _T SimpSqrt(_T x);
+template <class _T> _T FastSqrt(_T x);
+template <class _T> _T HardSqrt(_T x);
+template <class _T> _T HardCbrt(_T x);
+template <class _T> _T InvsSqrt(_T x);
+template <class _T> _T LastSqrt(_T x);
+
+template <class _T> _T flp2(_T x);		// power of 2 <= x
+template <class _T> _T clp2(_T x);		// power of 2 >= x
+
+template <class _T> int bitsofp2(_T x);	// power of 2 bits
+template <class _T> int bitsofb1(_T x);	// number of bit 1
+template <class _T> int parityb1(_T x);	// parity of bit 1
+
+template <class _T> _T reverse(_T x);	// reversing bits
+template <class _T> _T reversea(_T x);	// reversing bits
+template <class _T> _T reverse6(_T x);	// reversing left 6 bits
+template <class _T> _T reverse8(_T x);	// reversing left 8 bits
+template <class _T> _T reverse9(_T x);	// reversing left 9 bits
+
+template <class _T> _T shuffle(_T x);
+template <class _T> _T unshuffle(_T x);
+template <class _T> _T halfshuffle(_T x);
+template <class _T> _T unhalfshuffle(_T x);
+
+template <class _T> _T compress(_T x, _T m);
+
+template <class _T> _T __minor(_T a, _T b, _T c, _T d);
+template <class _T> _T maxor(_T a, _T b, _T c, _T d);
+template <class _T> _T minand(_T a, _T b, _T c, _T d);
+template <class _T> _T maxand(_T a, _T b, _T c, _T d);
+template <class _T> _T minxor(_T a, _T b, _T c, _T d);
+template <class _T> _T maxxor(_T a, _T b, _T c, _T d);
+
+// 简单角度函数、包括cos、atan，所有函数都基于整数运算
+// 一、角度取值范围
+//     0 - PI / 2.0 ---> 0 - 4096
+//     0 - PI * 2.0 ---> 0 - 4096 * 4
+// 二、函数取值范围，如cos、sin
+//     0 - 1.0 ---> 0 - 4096
+
+template <class _T> int SimpCos(_T x);
+template <class _T> int SimpaTan(_T x, _T y);
+
+#ifdef __SUPPORT_TRIGONOMETRIC_TABLE_EXPORT__
+template <class _T> void MakeCosTab(_T *FileName);
+template <class _T> void MakeaTanTab(_T *FileName);
+#endif
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// math function
+//
+/////////////////////////////////////////////////////////////////////////////
+template <class _T> _T SimpSqrt(_T x)
+{
+	if (x <= 0)
+		return 0;
+
+	_T i = (_T)MAX_SQRT_VAL;
+	while(i * i > x)
+		i = ((i + x / i) >> 1);
+	return i;
+}
+
+template <class _T> _T FastSqrt(_T x)
+{
+	const static uint8 SqrtTab[] = 
+	{
+		0x00, 0x10, 0x16, 0x1B, 0x20, 0x23, 0x27, 0x2A,
+		0x2D, 0x30, 0x32, 0x35, 0x37, 0x39, 0x3B, 0x3D,
+		0x40, 0x41, 0x43, 0x45, 0x47, 0x49, 0x4B, 0x4C,
+		0x4E, 0x50, 0x51, 0x53, 0x54, 0x56, 0x57, 0x59,
+		0x5A, 0x5B, 0x5D, 0x5E, 0x60, 0x61, 0x62, 0x63,
+		0x65, 0x66, 0x67, 0x68, 0x6A, 0x6B, 0x6C, 0x6D,
+		0x6E, 0x70, 0x71, 0x72, 0x73, 0x74, 0x75, 0x76,
+		0x77, 0x78, 0x79, 0x7A, 0x7B, 0x7C, 0x7D, 0x7E,
+		0x80, 0x80, 0x81, 0x82, 0x83, 0x84, 0x85, 0x86,
+		0x87, 0x88, 0x89, 0x8A, 0x8B, 0x8C, 0x8D, 0x8E,
+		0x8F, 0x90, 0x90, 0x91, 0x92, 0x93, 0x94, 0x95,
+		0x96, 0x96, 0x97, 0x98, 0x99, 0x9A, 0x9B, 0x9B,
+		0x9C, 0x9D, 0x9E, 0x9F, 0xA0, 0xA0, 0xA1, 0xA2,
+		0xA3, 0xA3, 0xA4, 0xA5, 0xA6, 0xA7, 0xA7, 0xA8,
+		0xA9, 0xAA, 0xAA, 0xAB, 0xAC, 0xAD, 0xAD, 0xAE,
+		0xAF, 0xB0, 0xB0, 0xB1, 0xB2, 0xB2, 0xB3, 0xB4,
+		0xB5, 0xB5, 0xB6, 0xB7, 0xB7, 0xB8, 0xB9, 0xB9,
+		0xBA, 0xBB, 0xBB, 0xBC, 0xBD, 0xBD, 0xBE, 0xBF,
+		0xC0, 0xC0, 0xC1, 0xC1, 0xC2, 0xC3, 0xC3, 0xC4,
+		0xC5, 0xC5, 0xC6, 0xC7, 0xC7, 0xC8, 0xC9, 0xC9,
+		0xCA, 0xCB, 0xCB, 0xCC, 0xCC, 0xCD, 0xCE, 0xCE,
+		0xCF, 0xD0, 0xD0, 0xD1, 0xD1, 0xD2, 0xD3, 0xD3,
+		0xD4, 0xD4, 0xD5, 0xD6, 0xD6, 0xD7, 0xD7, 0xD8,
+		0xD9, 0xD9, 0xDA, 0xDA, 0xDB, 0xDB, 0xDC, 0xDD,
+		0xDD, 0xDE, 0xDE, 0xDF, 0xE0, 0xE0, 0xE1, 0xE1,
+		0xE2, 0xE2, 0xE3, 0xE3, 0xE4, 0xE5, 0xE5, 0xE6,
+		0xE6, 0xE7, 0xE7, 0xE8, 0xE8, 0xE9, 0xEA, 0xEA,
+		0xEB, 0xEB, 0xEC, 0xEC, 0xED, 0xED, 0xEE, 0xEE,
+		0xEF, 0xF0, 0xF0, 0xF1, 0xF1, 0xF2, 0xF2, 0xF3,
+		0xF3, 0xF4, 0xF4, 0xF5, 0xF5, 0xF6, 0xF6, 0xF7,
+		0xF7, 0xF8, 0xF8, 0xF9, 0xF9, 0xFA, 0xFA, 0xFB,
+		0xFB, 0xFC, 0xFC, 0xFD, 0xFD, 0xFE, 0xFE, 0xFF
+	};
+
+	_T r;
+#if MAX_SQRT_VAL >= 0x100
+	if (x >= 0x10000)
+	{
+		if (x >= 0x1000000)
+		{
+			if (x >= 0x10000000)
+			{
+				if (x >= 0x40000000)
+				{
+					if (x >= (0xFFFFUL * 0xFFFFUL))
+						return 0xFFFF;
+					r = SqrtTab[x >> 24] << 8;
+				}
+				else
+					r = SqrtTab[x >> 22] << 7;
+			}
+			else
+			{
+				if (x >= 0x4000000)
+					r = SqrtTab[x >> 20] << 6;
+				else
+					r = SqrtTab[x >> 18] << 5;
+			}
+			r = (r + 1 + x / r) / 2;
+		}
+		else
+		{
+			if (x >= 0x100000)
+			{
+				if (x >= 0x400000)
+					r = SqrtTab[x >> 16] << 4;
+				else
+					r = SqrtTab[x >> 14] << 3;
+			}
+			else
+			{
+				if (x >= 0x40000)
+					r = SqrtTab[x >> 12] << 2;
+				else
+					r = SqrtTab[x >> 10] << 1;
+			}
+		}
+		r = (r + 1 + x / r) / 2;
+	}
+	else
+#endif
+	{
+		if (x >= 0x100)
+		{
+			if (x >= 0x1000)
+			{
+				if (x >= 0x4000)
+					r = SqrtTab[x >> 8];
+				else
+					r = SqrtTab[x >> 6] >> 1;
+			}
+			else
+			{
+				if (x >= 0x400)
+					r = SqrtTab[x >> 4] >> 2;
+				else
+					r = SqrtTab[x >> 2] >> 3;
+			}
+			r++;
+		}
+		else
+			return SqrtTab[x] >> 4;
+	}
+
+	if (r * r > x)
+		r--;
+	return r;
+}
+
+template <class _T> _T HardSqrt(_T x)	// A Hardware Algorithm
+{
+	_T m, n, i;
+#if MAX_SQRT_VAL >= 0x4000
+	m = 0x40000000;
+#elif MAX_SQRT_VAL >= 0x2000
+	m = 0x10000000;
+#elif MAX_SQRT_VAL >= 0x1000
+	m = 0x04000000;
+#elif MAX_SQRT_VAL >= 0x0800
+	m = 0x01000000;
+#elif MAX_SQRT_VAL >= 0x0400
+	m = 0x00400000;
+#elif MAX_SQRT_VAL >= 0x0200
+	m = 0x00100000;
+#elif MAX_SQRT_VAL >= 0x0100
+	m = 0x00040000;
+#elif MAX_SQRT_VAL >= 0x0080
+	m = 0x00010000;
+#elif MAX_SQRT_VAL >= 0x0040
+	m = 0x00004000;
+#elif MAX_SQRT_VAL >= 0x0020
+	m = 0x00001000;
+#elif MAX_SQRT_VAL >= 0x0010
+	m = 0x00000400;
+#else
+	m = 0x00000100;
+#endif
+//	m = 0x40000000 --> n >= 1024 *16
+//	m = 0x04000000 --> n >= 1024 * 4
+//	m = 0x00400000 --> n >= 1024 * 1
+
+	for(n = 0; m != 0; m >>= 2)
+	{
+		i = n | m;
+		n = n >> 1;
+		if (x >= i)
+		{
+			x -= i;
+			n |= m;
+		}
+	}
+	return n;
+}
+
+template <class _T> _T HardCbrt(_T x)	// A Hardware Algorithm
+{
+	_T m, n, i;
+	for(m = 30, n = 0; m >= 0; m -= 3)
+	{
+		n = n << 1;
+		i = (3 * n * (n + 1) + 1) << m;
+		if (x >= i)
+		{
+			x -= i;
+			n++;
+		}
+	}
+	return n;
+}
+
+template <class _T> _T InvsSqrt(_T x)
+{
+	float h;
+	float c;
+
+	h = x * 0.5f;
+	c = x;
+
+	// 0x5f375a86 may be better.
+	*(long *)&c = 0x5f3759df - (*(long *)&c >> 1);
+	c = c * (1.5f - h * c * c);
+//	c = c * (1.5f - h * c * c);			// remove for speed
+
+	return c;
+}
+
+template <class _T> _T LastSqrt(_T x)
+{
+	float h;
+	float c;
+
+	h = x * 0.5f;
+	c = x;
+
+	// 0x5f375a86 may be better.
+	*(long *)&c = 0x5f3759df - (*(long *)&c >> 1);
+	c = c * (1.5f - h * c * c);
+//	c = c * (1.5f - h * c * c);			// remove for speed
+
+	return c * x;
+}
+
+template <class _T> _T flp2(_T x)		// power of 2 <= x
+{
+	x = x | (x >> 1);
+	x = x | (x >> 2);
+	x = x | (x >> 4);
+	x = x | (x >> 8);
+	x = x | (x >>16);
+	return x - (x >> 1);
+}
+
+template <class _T> _T clp2(_T x)		// power of 2 >= x
+{
+	x--;
+	x = x | (x >> 1);
+	x = x | (x >> 2);
+	x = x | (x >> 4);
+	x = x | (x >> 8);
+	x = x | (x >>16);
+	return ++x;
+}
+
+template <class _T> int bitsofp2(_T n)	// power of 2 bits
+{
+	int i = 0;
+	while((n >> i) > 0) i++;
+	return i;
+}
+
+template <class _T> int bitsofb1(_T x)	// number of bit 1
+{
+	x = x - ((x >> 1) & 0x55555555);
+	x = (x & 0x33333333) + ((x >> 2) & 0x33333333);
+	x = (x + (x >> 4)) & 0x0F0F0F0F;
+	x = x + (x >> 8);
+	x = x + (x >> 16);
+	return (int)(x & 0x0000003F);
+}
+
+template <class _T> int parityb1(_T x)	// parity of bit 1
+{
+	x = (x ^ (x >> 1));
+	x = (x ^ (x >> 2)) & 0x11111111;
+	x = (x * 0x11111111);
+	return (x >> 28) & 1;
+}
+
+template <class _T> _T reverse(unsigned x)
+{
+	x = (x & 0x55555555) <<  1 | (x >>  1) & 0x55555555;
+	x = (x & 0x33333333) <<  2 | (x >>  2) & 0x33333333;
+	x = (x & 0x0F0F0F0F) <<  4 | (x >>  4) & 0x0F0F0F0F;
+	x = (x << 24) | ((x & 0xFF00) << 8) |
+		(x >> 24) | ((x >> 8) & 0xFF00);
+	return x;
+}
+
+template <class _T> _T reversea(_T x)
+{
+	x = (x & 0x55555555) <<  1 | (x & 0xAAAAAAAA) >>  1;
+	x = (x & 0x33333333) <<  2 | (x & 0xCCCCCCCC) >>  2;
+	x = (x & 0x0F0F0F0F) <<  4 | (x & 0xF0F0F0F0) >>  4;
+	x = (x & 0x00FF00FF) <<  8 | (x & 0xFF00FF00) >>  8;
+	x = (x & 0x0000FFFF) << 16 | (x & 0xFFFF0000) >> 16;
+	return x;
+}
+
+template <class _T> _T reverse6(_T x)
+{
+	_T t = x * 0x00082082 & 0x01122408;
+	return (t * 0x01010101) >> 24;
+}
+
+template <class _T> _T reverse8(_T x)
+{
+	_T u = x * 0x00020202;
+	_T s = u & 0x01044010;
+	_T t = (u << 2) & (0x01044010 << 1);
+	return 0x01001001 * (s + t) >> 24;
+}
+
+template <class _T> _T reverse9(_T x)
+{
+	_T s = x * 0x01001001 & 0x84108010;
+	_T t = ((x * 0x01001001) >> 6) & (0x84108010 >> 8);
+	return (s + t) % 1023;
+}
+
+template <class _T> _T shuffle(_T x)
+{
+	x = (x & 0x0000FF00) << 8 | (x >> 8) & 0x0000FF00 | x & 0xFF0000FF;
+	x = (x & 0x00F000F0) << 4 | (x >> 4) & 0x00F000F0 | x & 0xF00FF00F;
+	x = (x & 0x0C0C0C0C) << 2 | (x >> 2) & 0x0C0C0C0C | x & 0xC3C3C3C3;
+	x = (x & 0x22222222) << 1 | (x >> 1) & 0x22222222 | x & 0x99999999;
+	return x;
+}
+
+template <class _T> _T unshuffle(_T x)
+{
+	_T t;
+	t = (x ^ (x >> 1)) & 0x22222222;  x = x ^ t ^ (t << 1);
+	t = (x ^ (x >> 2)) & 0x0C0C0C0C;  x = x ^ t ^ (t << 2);
+	t = (x ^ (x >> 4)) & 0x00F000F0;  x = x ^ t ^ (t << 4);
+	t = (x ^ (x >> 8)) & 0x0000FF00;  x = x ^ t ^ (t << 8);
+	return x;
+}
+
+template <class _T> _T halfshuffle(_T x)
+{
+	x = ((x & 0xFF00) << 8) | (x & 0x00FF);
+	x = ((x << 4) | x) & 0x0F0F0F0F;
+	x = ((x << 2) | x) & 0x33333333;
+	x = ((x << 1) | x) & 0x55555555;
+	return x;
+}
+
+template <class _T> _T unhalfshuffle(_T x)
+{
+	x = x & 0x55555555;
+	x = ((x >> 1) | x) & 0x33333333;
+	x = ((x >> 2) | x) & 0x0F0F0F0F;
+	x = ((x >> 4) | x) & 0x00FF00FF;
+	x = ((x >> 8) | x) & 0x0000FFFF;
+	return x;
+}
+
+template <class _T> _T compress(_T x, _T m)
+{
+	_T r, s, b;
+
+	r = 0;
+	s = 0;
+	do
+	{
+		b = m & 1;
+		r = r | ((x & b) << s);
+		s = s + b;
+		x = x >> 1;
+		m = m >> 1;
+	}while (m != 0);
+	return r;
+
+//	x           m           r
+//	0xFFFFFFFF, 0x80000000, 0x00000001,
+//	0xFFFFFFFF, 0x0010084A, 0x0000001F,
+//	0xFFFFFFFF, 0x55555555, 0x0000FFFF,
+//	0xFFFFFFFF, 0x88E00F55, 0x00001FFF,
+//	0x01234567, 0x0000FFFF, 0x00004567,
+//	0x01234567, 0xFFFF0000, 0x00000123,
+//	0xFFFFFFFF, 0xFFFFFFFF, 0xFFFFFFFF,
+//	0x00000000, 0x00000000, 0x00000000,
+//	0x00000000, 0xFFFFFFFF, 0x00000000,
+//	0xFFFFFFFF, 0x00000000, 0x00000000,
+//	0x80000000, 0x80000000, 0x00000001,
+//	0x55555555, 0x55555555, 0x0000FFFF,
+//	0x55555555, 0xAAAAAAAA, 0x00000000,
+//	0x789ABCDE, 0x0F0F0F0F, 0x00008ACE,
+//	0x789ABCDE, 0xF0F0F0F0, 0x000079BD,
+//	0x92345678, 0x80000000, 0x00000001,
+//	0x12345678, 0xF0035555, 0x000004ec,
+//	0x80000000, 0xF0035555, 0x00002000,
+}
+
+template <class _T> _T __minor(_T a, _T b, _T c, _T d)
+{
+	_T i, j, rmin;
+
+	rmin = 0xFFFFFFFF;
+	for (i = a; i <= b; i++)
+	{
+		for (j = c; j <= d; j++)
+		{
+			if (rmin > (i | j))
+				rmin = (i | j);
+		}
+	}
+	return rmin;
+}
+
+template <class _T> _T __maxor(_T a, _T b, _T c, _T d)
+{
+	_T i, j, rmax;
+
+	rmax = 0;
+	for (i = a; i <= b; i++)
+	{
+		for (j = c; j <= d; j++)
+		{
+			if (rmax < (i | j))
+				rmax = (i | j);
+		}
+	}
+	return rmax;
+}
+
+template <class _T> _T minand(_T a, _T b, _T c, _T d)
+{
+	_T i, j, rmin;
+
+	rmin = 0xFFFFFFFF;
+	for (i = a; i <= b; i++)
+	{
+		for (j = c; j <= d; j++)
+		{
+			if (rmin > (i & j))
+				rmin = (i & j);
+		}
+	}
+	return rmin;
+}
+
+template <class _T> _T maxand(_T a, _T b, _T c, _T d)
+{
+	_T i, j, rmax;
+
+	rmax = 0;
+	for (i = a; i <= b; i++)
+	{
+		for (j = c; j <= d; j++)
+		{
+			if (rmax < (i & j))
+				rmax = (i & j);
+		}
+	}
+	return rmax;
+}
+
+template <class _T> _T minxor(_T a, _T b, _T c, _T d)
+{
+	_T i, j, rmin;
+
+	rmin = 0xFFFFFFFF;
+	for (i = a; i <= b; i++)
+	{
+		for (j = c; j <= d; j++)
+		{
+			if (rmin > (i ^ j))
+				rmin = (i ^ j);
+		}
+	}
+	return rmin;
+}
+
+template <class _T> _T maxxor(_T a, _T b, _T c, _T d)
+{
+	_T i, j, rmax;
+
+	rmax = 0;
+	for (i = a; i <= b; i++)
+	{
+		for (j = c; j <= d; j++)
+		{
+			if (rmax < (i ^ j))
+				rmax = (i ^ j);
+		}
+	}
+	return rmax;
+}
+
+template <class _T> int SimpCos(_T x)
+{
+	if (x <= 0) return 4096;
+	if (x >= 4096) return 0;
+
+	const static WORD Data[] =
+	{
+		0x1000, 0x0FFF, 0x0FFF, 0x0FFF, 0x0FFE, 0x0FFE, 0x0FFD, 0x0FFC, 
+		0x0FFB, 0x0FF9, 0x0FF8, 0x0FF6, 0x0FF4, 0x0FF2, 0x0FF0, 0x0FEE, 
+		0x0FEC, 0x0FE9, 0x0FE7, 0x0FE4, 0x0FE1, 0x0FDE, 0x0FDA, 0x0FD7, 
+		0x0FD3, 0x0FCF, 0x0FCB, 0x0FC7, 0x0FC3, 0x0FBF, 0x0FBA, 0x0FB6, 
+		0x0FB1, 0x0FAC, 0x0FA7, 0x0FA1, 0x0F9C, 0x0F96, 0x0F91, 0x0F8B, 
+		0x0F85, 0x0F7F, 0x0F78, 0x0F72, 0x0F6B, 0x0F64, 0x0F5D, 0x0F56, 
+		0x0F4F, 0x0F48, 0x0F40, 0x0F39, 0x0F31, 0x0F29, 0x0F21, 0x0F18, 
+		0x0F10, 0x0F08, 0x0EFF, 0x0EF6, 0x0EED, 0x0EE4, 0x0EDB, 0x0ED1, 
+		0x0EC8, 0x0EBE, 0x0EB4, 0x0EAA, 0x0EA0, 0x0E96, 0x0E8B, 0x0E81, 
+		0x0E76, 0x0E6B, 0x0E60, 0x0E55, 0x0E4A, 0x0E3F, 0x0E33, 0x0E28, 
+		0x0E1C, 0x0E10, 0x0E04, 0x0DF8, 0x0DEB, 0x0DDF, 0x0DD2, 0x0DC6, 
+		0x0DB9, 0x0DAC, 0x0D9F, 0x0D91, 0x0D84, 0x0D77, 0x0D69, 0x0D5B, 
+		0x0D4D, 0x0D3F, 0x0D31, 0x0D23, 0x0D14, 0x0D06, 0x0CF7, 0x0CE8, 
+		0x0CD9, 0x0CCA, 0x0CBB, 0x0CAC, 0x0C9D, 0x0C8D, 0x0C7D, 0x0C6E, 
+		0x0C5E, 0x0C4E, 0x0C3E, 0x0C2D, 0x0C1D, 0x0C0D, 0x0BFC, 0x0BEB, 
+		0x0BDA, 0x0BCA, 0x0BB8, 0x0BA7, 0x0B96, 0x0B85, 0x0B73, 0x0B62, 
+		0x0B50, 0x0B3E, 0x0B2C, 0x0B1A, 0x0B08, 0x0AF6, 0x0AE3, 0x0AD1, 
+		0x0ABE, 0x0AAC, 0x0A99, 0x0A86, 0x0A73, 0x0A60, 0x0A4D, 0x0A39, 
+		0x0A26, 0x0A12, 0x09FF, 0x09EB, 0x09D7, 0x09C4, 0x09B0, 0x099C, 
+		0x0987, 0x0973, 0x095F, 0x094B, 0x0936, 0x0921, 0x090D, 0x08F8, 
+		0x08E3, 0x08CE, 0x08B9, 0x08A4, 0x088F, 0x087A, 0x0864, 0x084F, 
+		0x0839, 0x0824, 0x080E, 0x07F8, 0x07E2, 0x07CD, 0x07B7, 0x07A0, 
+		0x078A, 0x0774, 0x075E, 0x0748, 0x0731, 0x071B, 0x0704, 0x06ED, 
+		0x06D7, 0x06C0, 0x06A9, 0x0692, 0x067B, 0x0664, 0x064D, 0x0636, 
+		0x061F, 0x0608, 0x05F0, 0x05D9, 0x05C2, 0x05AA, 0x0593, 0x057B, 
+		0x0563, 0x054C, 0x0534, 0x051C, 0x0504, 0x04EC, 0x04D5, 0x04BD, 
+		0x04A5, 0x048C, 0x0474, 0x045C, 0x0444, 0x042C, 0x0413, 0x03FB, 
+		0x03E3, 0x03CA, 0x03B2, 0x0399, 0x0381, 0x0368, 0x0350, 0x0337, 
+		0x031F, 0x0306, 0x02ED, 0x02D5, 0x02BC, 0x02A3, 0x028A, 0x0271, 
+		0x0259, 0x0240, 0x0227, 0x020E, 0x01F5, 0x01DC, 0x01C3, 0x01AA, 
+		0x0191, 0x0178, 0x015F, 0x0146, 0x012D, 0x0114, 0x00FB, 0x00E2, 
+		0x00C8, 0x00AF, 0x0096, 0x007D, 0x0064, 0x004B, 0x0032, 0x0019, 
+		0x0000
+	};
+
+	int i = (int)(x >> 4);
+	int e = (int)(x & 15);
+	int a = (int)(Data[i    ]);
+	int b = (int)(Data[i + 1]);
+
+	return a - (((a - b) * e) >> 4);
+}
+
+template <class _T> int SimpaTan(_T x, _T y)
+{
+	if (y == 0) return 0;
+	if (x == 0) return 4096;
+
+	const static WORD Data[] =
+	{
+		0x0000, 0x000A, 0x0014, 0x001E, 0x0028, 0x0032, 0x003D, 0x0047, 
+		0x0051, 0x005B, 0x0065, 0x006F, 0x007A, 0x0084, 0x008E, 0x0098, 
+		0x00A2, 0x00AC, 0x00B7, 0x00C1, 0x00CB, 0x00D5, 0x00DF, 0x00E9, 
+		0x00F3, 0x00FD, 0x0107, 0x0112, 0x011C, 0x0126, 0x0130, 0x013A, 
+		0x0144, 0x014E, 0x0158, 0x0162, 0x016C, 0x0176, 0x0180, 0x018A, 
+		0x0194, 0x019E, 0x01A8, 0x01B1, 0x01BB, 0x01C5, 0x01CF, 0x01D9, 
+		0x01E3, 0x01ED, 0x01F6, 0x0200, 0x020A, 0x0214, 0x021E, 0x0227, 
+		0x0231, 0x023B, 0x0244, 0x024E, 0x0258, 0x0261, 0x026B, 0x0275, 
+		0x027E, 0x0288, 0x0291, 0x029B, 0x02A5, 0x02AE, 0x02B8, 0x02C1, 
+		0x02CA, 0x02D4, 0x02DD, 0x02E7, 0x02F0, 0x02F9, 0x0303, 0x030C, 
+		0x0315, 0x031F, 0x0328, 0x0331, 0x033A, 0x0343, 0x034D, 0x0356, 
+		0x035F, 0x0368, 0x0371, 0x037A, 0x0383, 0x038C, 0x0395, 0x039E, 
+		0x03A7, 0x03B0, 0x03B9, 0x03C2, 0x03CB, 0x03D3, 0x03DC, 0x03E5, 
+		0x03EE, 0x03F6, 0x03FF, 0x0408, 0x0411, 0x0419, 0x0422, 0x042A, 
+		0x0433, 0x043B, 0x0444, 0x044C, 0x0455, 0x045D, 0x0466, 0x046E, 
+		0x0477, 0x047F, 0x0487, 0x048F, 0x0498, 0x04A0, 0x04A8, 0x04B0, 
+		0x04B9, 0x04C1, 0x04C9, 0x04D1, 0x04D9, 0x04E1, 0x04E9, 0x04F1, 
+		0x04F9, 0x0501, 0x0509, 0x0511, 0x0518, 0x0520, 0x0528, 0x0530, 
+		0x0538, 0x053F, 0x0547, 0x054F, 0x0556, 0x055E, 0x0566, 0x056D, 
+		0x0575, 0x057C, 0x0584, 0x058B, 0x0593, 0x059A, 0x05A1, 0x05A9, 
+		0x05B0, 0x05B7, 0x05BF, 0x05C6, 0x05CD, 0x05D4, 0x05DC, 0x05E3, 
+		0x05EA, 0x05F1, 0x05F8, 0x05FF, 0x0606, 0x060D, 0x0614, 0x061B, 
+		0x0622, 0x0629, 0x0630, 0x0637, 0x063D, 0x0644, 0x064B, 0x0652, 
+		0x0659, 0x065F, 0x0666, 0x066D, 0x0673, 0x067A, 0x0680, 0x0687, 
+		0x068D, 0x0694, 0x069A, 0x06A1, 0x06A7, 0x06AE, 0x06B4, 0x06BB, 
+		0x06C1, 0x06C7, 0x06CD, 0x06D4, 0x06DA, 0x06E0, 0x06E6, 0x06ED, 
+		0x06F3, 0x06F9, 0x06FF, 0x0705, 0x070B, 0x0711, 0x0717, 0x071D, 
+		0x0723, 0x0729, 0x072F, 0x0735, 0x073B, 0x0741, 0x0746, 0x074C, 
+		0x0752, 0x0758, 0x075D, 0x0763, 0x0769, 0x076E, 0x0774, 0x077A, 
+		0x077F, 0x0785, 0x078B, 0x0790, 0x0796, 0x079B, 0x07A1, 0x07A6, 
+		0x07AB, 0x07B1, 0x07B6, 0x07BC, 0x07C1, 0x07C6, 0x07CC, 0x07D1, 
+		0x07D6, 0x07DB, 0x07E1, 0x07E6, 0x07EB, 0x07F0, 0x07F5, 0x07FA, 
+		0x0800
+	};
+
+	int X = ABS(x);
+	int Y = ABS(y);
+	int w = Y < X ? (Y << 12) / X : (X << 12) / Y;
+
+	int i = (int)(w >> 4);
+	int e = (int)(w & 15);
+	int a = (int)(Data[i    ]);
+	int b = (int)(Data[i + 1]);
+
+	w = a - (((a - b) * e) >> 4);
+	if (Y > X) w = 4096 - w;
+
+	if (x > 0 && y > 0)
+		return w;
+	if (x < 0 && y > 0)
+		return 4096 * 2 - w;
+	if (x < 0 && y < 0)
+		return 4096 * 2 + w;
+
+		return 4096 * 4 - w;
+}
+
+#ifdef __SUPPORT_TRIGONOMETRIC_TABLE_EXPORT__
+#include <math.h>
+
+#ifndef PI
+#define PI 3.1415926535897932384626433832795
+#endif
+
+template <class _T> void MakeCosTab(_T *FileName)
+{
+	FILE *fp = fopen(FileName, "w");
+	if (fp == NULL)
+		return;
+
+	fputs("\t{\n", fp);
+	for(int i = 0; i <= 256;)
+	{
+		int c = (int)(cos((i / 256.0) * (PI / 2.0)) * 4096.0);
+
+		if ((i & 0x07) == 0)
+			fputs("\t\t", fp);
+		fprintf(fp, "0x%04X, ", c), i++;
+		if ((i & 0x07) == 0)
+			fputs("\n", fp);
+	}
+	fputs("\n\t};", fp);
+	fclose(fp);
+}
+
+template <class _T> void MakeaTanTab(_T *FileName)
+{
+	FILE *fp = fopen(FileName, "w");
+	if (fp == NULL)
+		return;
+
+	fputs("\t{\n", fp);
+	for(int i = 0; i <= 256;)
+	{
+		int c = (int)(atan(i / 256.0) / (PI / 2.0) * 4096.0);
+
+		if ((i & 0x07) == 0)
+			fputs("\t\t", fp);
+		fprintf(fp, "0x%04X, ", c), i++;
+		if ((i & 0x07) == 0)
+			fputs("\n", fp);
+	}
+	fputs("\n\t};", fp);
+	fclose(fp);
+}
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// math function end
+//
+/////////////////////////////////////////////////////////////////////////////
+// 返回经纬度坐标 * n，如3600000、1000000
+template <class _T>
+int GetCoorFromStr(const _T *Str, int n = 3600000)
+{
+	int nVal = 0;
+
+	_T  nTmp;
+	while((nTmp = *Str++) != 0 && nTmp != '.')
+		nVal = nVal * 10 + nTmp - '0';
+	nVal *= n;
+
+	if (nTmp != 0)
+	{
+		int i = 1;
+		while((nTmp = *Str++) != 0)
+		{
+			nVal += (nTmp - '0') * n / (i *= 10);
+		}
+	}
+	return nVal;
+}
+
+
+} // namespace MTL
+
+#endif   //__MAPTRIXC_MATH_LIB__
+
