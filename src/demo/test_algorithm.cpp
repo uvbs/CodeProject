@@ -126,20 +126,61 @@ void test_algorithm()
 	uint64 hilbert_code1 = MTL::mcHilbert<uint32, uint64>::Encode2(x1, y1, 28);
 	uint64 hilbert_code2 = MTL::mcHilbert<uint32, uint64>::Encode2(x2, y2, 28);
 
-    //test compress
-    char orginal_data[] = "0000000000000000000000000000000000000000000";
-    uLong data_len = strlen(orginal_data);
-    // compress
-    char* zip_data = new char[data_len];
-    memset(zip_data, 0, data_len);
-    uLong zip_len = data_len;
-    gzcompress((Bytef*)orginal_data, data_len, (Bytef*)zip_data, &zip_len);
+        //test compress
+    FILE * fp = fopen("./data/test6.log", "r+b");
+    if (fp)
+    {
+        fseek(fp, 0, SEEK_END);
+        int data_len = (int)::ftell(fp);
+        char * orginal_data = new char[data_len + 1];
+        memset(orginal_data, 0, data_len + 1);
+        ::fseek(fp, 0, SEEK_SET);
+        fread(orginal_data, 1, data_len, fp);
 
-    // decompress()
-    uLong unzip_len = zip_len * 4;
-    char* unzip_data = new char[unzip_len];
-    memset(unzip_data, 0, unzip_len);
-    gzdecompress((byte*)zip_data, zip_len, (byte*)unzip_data, &unzip_len);
+        // compress data
+        uLong zip_len = data_len * 3;
+        char* zip_data = new char[zip_len];
+        memset(zip_data, 0, zip_len);
+        int ret = gzcompress((Bytef*)orginal_data, data_len, (Bytef*)zip_data, (uLong*)&zip_len);
+        if (ret)
+        {
+            printf("gzcompress error!\n");
+        }
 
+        // decompress data
+        uLong unzip_len = zip_len * 4;
+        char* unzip_data = new char[unzip_len];
+        memset(unzip_data, 0, unzip_len);
+        ret = gzdecompress((byte*)zip_data, zip_len, (byte*)unzip_data, (uLong*)&unzip_len);
+        if (ret)
+        {
+            printf("gzdecompress error!\n");
+        }
+    }
+
+    //test decompress zip
+    fp = fopen("./data/1.zip", "r");
+    if (fp)
+    {
+        // read data
+        ::fseek(fp, 0, SEEK_END);
+        int eta_len = (int)::ftell(fp);
+        char* eta_data = new char[eta_len + 1];
+        memset(eta_data, 0, eta_len + 1);
+        ::fseek(fp, 0, SEEK_SET);
+        ::fread(eta_data, 1, eta_len, fp);
+        eta_data[eta_len] = '\0';
+
+        // decompress data
+        uLong unzip_len = eta_len * 10;
+        char* unzip_data = new char[unzip_len];
+        memset(unzip_data, 0, unzip_len);
+        int ret = gzdecompress((byte*)eta_data, (uLong)eta_len, (byte*)unzip_data, (uLong*)&unzip_len);
+        if (ret)
+        {
+            printf("gzdecompress error!\n");
+        }
+    }
 
 }
+
