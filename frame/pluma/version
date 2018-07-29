@@ -1,0 +1,6 @@
+LIB_NAME=pluma
+LIB_VERSION=2.4.2
+GCC_PATH=/home/chenzhifeng/work/tool/binary/gcc-4.9.4
+MPC_PATH=/home/chenzhifeng/work/tool/binary/mpc-1.1.0
+MPFR_PATH=/home/chenzhifeng/work/tool/binary/mpfr-4.0.1
+GMP_PATH=/home/chenzhifeng/work/tool/binary/gmp-6.1.2
