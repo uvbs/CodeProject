@@ -2,10 +2,13 @@ cmake_minimum_required(VERSION 2.8)
 set(CMAKE_BUILID_TYPE Debug)
 set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -g gdb3 -Wno-invalid-offsetof")
 set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -g gdb3 -O2 -Wno-invalid-offsetof")
+set(CMAKE_C_COMPILER "/home/chenzhifeng/bin/gcc-4.9.4/bin/gcc")
+set(CMAKE_CXX_COMPILER "/home/chenzhifeng/bin/gcc-4.9.4/bin/g++")
 
 project(CodeProj)
 set(EXECUTABLE_OUTPUT_PATH ${CodeProj_SOURCE_DIR}/../../build/bin/)
 add_definitions(-g -D _LINUX64)
+add_definitions(-std=c++11)
 include_directories(
 ./
 ../../frame/cpp_reflect
@@ -20,6 +23,7 @@ include_directories(
 ../../src/pattern
 ../../src/reflect
 ../../src/simple_reflect
+../../src/ucs
 ../../src/util
 ../../dependency/output/boost/include
 ../../dependency/output/libConhash/include
@@ -34,6 +38,7 @@ link_directories(
 ${CodeProj_SOURCE_DIR}/../../dependency/output/boost/lib
 ${CodeProj_SOURCE_DIR}/../../dependency/output/libConhash/lib
 ${CodeProj_SOURCE_DIR}/../../dependency/output/libcurl/linux/lib
+${CodeProj_SOURCE_DIR}/../../dependency/output/libevent/linux/lib
 ${CodeProj_SOURCE_DIR}/../../dependency/output/libJsonc/lib
 ${CodeProj_SOURCE_DIR}/../../dependency/output/libMySql/linux/lib
 ${CodeProj_SOURCE_DIR}/../../dependency/output/libNet/lib
@@ -54,10 +59,12 @@ file(GLOB ALL_HEADER_SRCS
 ../../src/pattern/*.h
 ../../src/reflect/*.h
 ../../src/simple_reflect/*.h
+../../src/ucs/*.h
 ../../src/util/*.h
 ../../dependency/output/boost/include/*.h
 ../../dependency/output/libConhash/include/*.h
 ../../dependency/output/libcurl/linux/include/*.h
+../../dependency/output/libevent/linux/include/*.h
 ../../dependency/output/libJsonc/include/*.h
 ../../dependency/output/libMySql/linux/include/*.h
 ../../dependency/output/libNet/include/*.h
@@ -78,9 +85,12 @@ file(GLOB ALL_CXX_SRCS
 ../../src/pattern/*.cpp
 ../../src/reflect/*.cpp
 ../../src/simple_reflect/*.cpp
+../../src/ucs/*.cpp
 ../../src/util/*.cpp
 )
 
-set(ALL_LIB dl pthread curl ssl crypto Conhash Jsonc MySql_c mysqlclient Net rt log4cplus boost_date_time boost_filesystem boost_regex boost_system)
+set(ALL_LIB dl pthread curl ssl crypto Conhash Jsonc MySql_c mysqlclient Net
+    rt log4cplus boost_date_time boost_filesystem boost_regex boost_system
+    boost_thread libevent.a)
 add_executable(CodeProj ${ALL_HEADER_SRCS} ${ALL_CXX_SRCS})
 target_link_libraries(CodeProj ${ALL_LIB})

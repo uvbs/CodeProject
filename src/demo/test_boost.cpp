@@ -1,28 +1,12 @@
 #include "socketdef.h"
 #include "test_boost.h"
 #include <iostream>
-
-#if defined(_LINUX64) && (__cplusplus == 201103L)
-#include <unordered_map>
-#include "boost/regex.h"
-#include "boost/shared_ptr.hpp"
-#elif defined(_WIN32)
-#include <unordered_map>
-#include "boost/regex.h"
-#include "boost/shared_ptr.hpp"
-#endif
-
-using std::cout;
-
-#ifdef _LINUX64
-#if( __cplusplus == 201103L )
+#include <memory>
 #include <unordered_map>
 #include <unordered_set>
+#include "boost/regex.h"
+
 using namespace std;
-#endif
-#else
-using std::tr1::unordered_map;
-#endif
 
 void test_regex()
 {
@@ -50,11 +34,10 @@ void test_regex()
     }
     
     unordered_map<int, int> m;
-    typedef unordered_map<int, int>::_Pairib PAIR;
     int sz0 = m.size();
-    PAIR ret = m.insert(unordered_map<int, int>::value_type(1, 2));
+    m.insert(unordered_map<int, int>::value_type(1, 2));
     int sz1 = m.size();
-    ret = m.insert(unordered_map<int, int>::value_type(1, 3));
+    m.insert(unordered_map<int, int>::value_type(1, 3));
     int sz2 = m.size();
 #endif
 }
@@ -78,7 +61,7 @@ void test_smartptr()
         }
     };
     MyStruct* obj = new MyStruct;
-    boost::shared_ptr<MyStruct> o(obj);
+    shared_ptr<MyStruct> o(obj);
 #endif
 }
 
