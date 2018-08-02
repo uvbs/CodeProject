@@ -1,6 +1,7 @@
 #include "property.h"
-#include "assert.h"
+#include "myassert.h"
 #include <stdlib.h>
+
 // -----------------------------------------------------------------------------------------------------
 Property::Property()
 {
@@ -129,28 +130,28 @@ std::string Property::getName() const
 // -----------------------------------------------------------------------------------------------------
 int Property::getInt()
 {
-	Assert(_type == INT);
+	MyAssert(_type == INT);
 	return *_data.piValue;
 }
 
 // -----------------------------------------------------------------------------------------------------
 float Property::getFloat()
 {
-	Assert(_type == FLOAT);
+	MyAssert(_type == FLOAT);
 	return *_data.pfValue;
 }
 
 // -----------------------------------------------------------------------------------------------------
 std::string Property::getString()
 {
-	Assert(_type == STRING);
+	MyAssert(_type == STRING);
 	return *_data.pstrValue;
 }
 
 // -----------------------------------------------------------------------------------------------------
 bool Property::getBool()
 {
-	Assert(_type == BOOL);
+	MyAssert(_type == BOOL);
 	return *_data.pbValue;
 }
 

@@ -86,7 +86,7 @@ String& String::operator += (const char *s)
 
 inline char& String::operator [](int index)
 {
-	Assert(index >= 0 && index < _size);
+	MyAssert(index >= 0 && index < _size);
 	return _buffer[index];
 }
 

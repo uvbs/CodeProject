@@ -11,7 +11,7 @@
 
 #include "maths.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 #include "partition.h"
 
 namespace algorithm
@@ -275,7 +275,7 @@ namespace algorithm
 	template<int MAX_DIGITS>
 	int getkey(int s, int m)
 	{
-		Assert(m >= 0 && m < MAX_DIGITS);
+		MyAssert(m >= 0 && m < MAX_DIGITS);
 		int keys[RADIX] = {0};
 		int i = MAX_DIGITS - 1;
 		while (s)

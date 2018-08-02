@@ -8,7 +8,7 @@
 #include <stdarg.h>
 #include "lock.h"
 #include "maths.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include "helper.h"
 #include <string.h>
@@ -76,7 +76,7 @@ bool LogSystem::saveLog(LOG_FILE logid, char* msg, ...)
 	if (f == NULL)
 	{
         printf("log %s error\r\n", g_logFileName[logid]);
-		AssertSpecial(0, "Open file %s fail.", filename);
+		MyAssertSpecial(0, "Open file %s fail.", filename);
         return false;
 	}
 	fwrite(buffer, 1, str_util::strlen(buffer), f);

@@ -1,6 +1,6 @@
 #include "variable_system.h"
 #include "string_util.h"
-#include "assert.h"
+#include "myassert.h"
 
 WX_IMPLEMENT_SINGLEON(CVariableSystem);
 

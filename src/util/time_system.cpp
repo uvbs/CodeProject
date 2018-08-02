@@ -1,6 +1,6 @@
 #include "time_system.h"
-#include "assert.h"
-#include <assert.h>
+#include "myassert.h"
+//#include <assert.h>
 #include <string.h>
 #include <stdio.h>
 #include "maths.h"
@@ -300,7 +300,7 @@ int TimeSystem::getDayDistance(int date1, int date2 ) const
 uint64
 TimeSystem::getSystemTime()
 {
-    Assert( sizeof(uint64) == 64/8 );
+    MyAssert( sizeof(uint64) == 64/8 );
 
 #if defined(_WIN32)  
 	static const uint64 epoch = 116444736000000000;

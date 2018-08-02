@@ -10,7 +10,7 @@
 #define __TABLE_H_
 
 #include "type.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include "serializer_table.h"
 
@@ -36,7 +36,7 @@ public:
 	const T& operator[](const int ID) const { return getRow(ID); } //注意！这里的operator[]返回的是根据ID查找到的Row，而不是根据Index查找到的Row！
 	
 	//根据表格的row数组下标索引表格,用于某些情况下遍历整张表格
-	const T& getRowByIndex(const int index) const { Assert(index >= 0 && index < _count); return _pRows[index]; }
+	const T& getRowByIndex(const int index) const { MyAssert(index >= 0 && index < _count); return _pRows[index]; }
 
 	int	 rowCount() const { return _count; }
 

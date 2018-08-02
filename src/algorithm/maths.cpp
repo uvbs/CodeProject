@@ -1,7 +1,7 @@
 #include "maths.h"
 #include <math.h>		// system <maths.h>
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 #include <iostream>
 using std::swap;
 
@@ -11,7 +11,7 @@ namespace algorithm {
 	bool isPrime(uint n)
 	{
 		int find = static_cast<int>(sqrt(static_cast<float>(n)));
-		Assert(find > 0);
+		MyAssert(find > 0);
 		for (int i = 2; i <= find; ++i)
 		{
 			if (n % i == 0)

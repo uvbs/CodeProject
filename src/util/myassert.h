@@ -7,8 +7,8 @@
 //
 ////////////////////////////////////////////////////////////////////////////////////
 #pragma once
-#ifndef __ASSERT_H_
-#define __ASSERT_H_
+#ifndef __UTIL_ASSERT_H_
+#define __UTIL_ASSERT_H_
 
 #include "type.h"
 
@@ -24,15 +24,15 @@ namespace sys_util {
 	void	__assertspecial__(const char* file, uint line, const char* function, const char* exception, const char* msg, ...);
 
 	#if defined(_WIN32)
-	#define Assert(exception) ((void)((exception) ? 0 : (__assert__(__FILE__, __LINE__, __FUNCTION__, #exception), 0)))
-	#define AssertEx(exception, msg) ((void)((exception) ? 0 : (__assertex__(__FILE__, __LINE__, __FUNCTION__, #exception, msg), 0)))
-	#define AssertSpecial(exception, msg, ...) ((void)((exception) ? 0 : (__assertspecial__(__FILE__, __LINE__, __FUNCTION__, #exception, msg, __VA_ARGS__),0)))
+	#define MyAssert(exception) ((void)((exception) ? 0 : (__assert__(__FILE__, __LINE__, __FUNCTION__, #exception), 0)))
+	#define MyAssertEx(exception, msg) ((void)((exception) ? 0 : (__assertex__(__FILE__, __LINE__, __FUNCTION__, #exception, msg), 0)))
+	#define MyAssertSpecial(exception, msg, ...) ((void)((exception) ? 0 : (__assertspecial__(__FILE__, __LINE__, __FUNCTION__, #exception, msg, __VA_ARGS__),0)))
 	#endif
 
 	#if defined(_LINUX64)
-	#define Assert(exception) {if(!(exception)){__assert__(__FILE__, __LINE__, __PRETTY_FUNCTION__, #exception); }}
-	#define AssertEx(exception, msg) {if(!(exception)){__assertex__(__FILE__, __LINE__, __PRETTY_FUNCTION__, #exception, msg); }}
-	#define AssertSpecial(exception, msg, ...) {if(!(exception)){__assertspecial__(__FILE__, __LINE__, __PRETTY_FUNCTION__, #exception, msg, ##__VA_ARGS__);}}
+	#define MyAssert(exception) {if(!(exception)){__assert__(__FILE__, __LINE__, __PRETTY_FUNCTION__, #exception); }}
+	#define MyAssertEx(exception, msg) {if(!(exception)){__assertex__(__FILE__, __LINE__, __PRETTY_FUNCTION__, #exception, msg); }}
+	#define MyAssertSpecial(exception, msg, ...) {if(!(exception)){__assertspecial__(__FILE__, __LINE__, __PRETTY_FUNCTION__, #exception, msg, ##__VA_ARGS__);}}
 	#endif
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -40,12 +40,12 @@ namespace sys_util {
 	////////////////////////////////////////////////////////////////////////////////
 	#if defined(_WIN32)
 	#define __ENTER_FUNCTION {try{
-	#define __LEAVE_FUNCTION }catch(...){AssertSpecial(false,__FUNCTION__);}}
+	#define __LEAVE_FUNCTION }catch(...){MyAssertSpecial(false,__FUNCTION__);}}
 	#endif
 
 	#if defined(_LINUX64)
 	#define __ENTER_FUNCTION {try{
-	#define __LEAVE_FUNCTION }catch(...){AssertSpecial(false,__PRETTY_FUNCTION__);}}
+	#define __LEAVE_FUNCTION }catch(...){MyAssertSpecial(false,__PRETTY_FUNCTION__);}}
 	#endif
 
 	#define __MYTRY try

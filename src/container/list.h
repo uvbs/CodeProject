@@ -89,14 +89,14 @@ public:
 		
 		Iterator() { p = NULL; }
 		Iterator(Node* pNode) { p = pNode; }
-		Iterator&	operator ++ () { Assert(NULL != p); p = p->next; return *this; }
-		Iterator&	operator ++ (int) { Assert(NULL != p); p = p->next; return *this; }
-		Iterator&	operator -- () { Assert(NULL != p); p = p->prev; return *this; }
-		Iterator&	operator -- (int) { Assert(NULL != p); p = p->prev; return *this; }
+		Iterator&	operator ++ () { MyAssert(NULL != p); p = p->next; return *this; }
+		Iterator&	operator ++ (int) { MyAssert(NULL != p); p = p->next; return *this; }
+		Iterator&	operator -- () { MyAssert(NULL != p); p = p->prev; return *this; }
+		Iterator&	operator -- (int) { MyAssert(NULL != p); p = p->prev; return *this; }
 		bool		operator == (const Iterator& other) const { return this->p == other.p; }
 		bool		operator != (const Iterator& other) const { return this->p != other.p; }
-		T&			operator * () { Assert(NULL != p); return p->elem; }
-		const T&	operator * () const { Assert(NULL != p); return p->elem; }
+		T&			operator * () { MyAssert(NULL != p); return p->elem; }
+		const T&	operator * () const { MyAssert(NULL != p); return p->elem; }
 	};
 
 private:

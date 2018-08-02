@@ -11,7 +11,7 @@
 #define __BIT_SET_H_
 
 #include "type.h"
-#include "assert.h"
+#include "myassert.h"
 #include <string.h>
 
 namespace sys_util {
@@ -46,7 +46,7 @@ template<int bitNumber>
 bool	BitSet<bitNumber>::isSetBit(uint index) const
 {
 	__ENTER_FUNCTION
-	Assert(index < bitNumber);
+	MyAssert(index < bitNumber);
 	return (_flags[index / BYTE_SIZE] &(1 << (index % BYTE_SIZE))) ? true : false;
 	__LEAVE_FUNCTION
 	return false;
@@ -72,7 +72,7 @@ template<int bitNumber>
 void	BitSet<bitNumber>::_updateBit(uint index, bool flag)
 {
 	__ENTER_FUNCTION
-	Assert(index < bitNumber);
+	MyAssert(index < bitNumber);
 	if (flag)
 	{
 		_flags[index / BYTE_SIZE] |= (1 << (index % BYTE_SIZE));

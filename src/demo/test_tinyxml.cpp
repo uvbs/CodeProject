@@ -1,7 +1,7 @@
 /*
    Test program for TinyXML.
 */
-
+#include "myassert.h"
 #include "test_tinyxml.h"
 #include <string>
 #include <vector>
@@ -176,22 +176,22 @@ int test_XmlTest2()
 		// Get the "ToDo" element.
 		// It is a child of the document, and can be selected by name.
 		node = doc.FirstChild( "ToDo" );
-		assert( node );
+		MyAssert( node );
 		todoElement = node->ToElement();
-		assert( todoElement  );
+		MyAssert( todoElement  );
 
 		// Going to the toy store is now our second priority...
 		// So set the "priority" attribute of the first item in the list.
 		node = todoElement->FirstChildElement();	// This skips the "PDA" comment.
-		assert( node );
+		MyAssert( node );
 		itemElement = node->ToElement();
-		assert( itemElement  );
+		MyAssert( itemElement  );
 		itemElement->SetAttribute( "priority", 2 );
 
 		// Change the distance to "doing bills" from
 		// "none" to "here". It's the next sibling element.
 		itemElement = itemElement->NextSiblingElement();
-		assert( itemElement );
+		MyAssert( itemElement );
 		itemElement->SetAttribute( "distance", "here" );
 
 		// Remove the "Look for Evil Dinosaurs!" item.
@@ -304,22 +304,22 @@ int test_XmlTest()
 		// Get the "ToDo" element.
 		// It is a child of the document, and can be selected by name.
 		node = doc.FirstChild( "ToDo" );
-		assert( node );
+		MyAssert( node );
 		todoElement = node->ToElement();
-		assert( todoElement  );
+		MyAssert( todoElement  );
 
 		// Going to the toy store is now our second priority...
 		// So set the "priority" attribute of the first item in the list.
 		node = todoElement->FirstChildElement();	// This skips the "PDA" comment.
-		assert( node );
+		MyAssert( node );
 		itemElement = node->ToElement();
-		assert( itemElement  );
+		MyAssert( itemElement  );
 		itemElement->SetAttribute( "priority", 2 );
 
 		// Change the distance to "doing bills" from
 		// "none" to "here". It's the next sibling element.
 		itemElement = itemElement->NextSiblingElement();
-		assert( itemElement );
+		MyAssert( itemElement );
 		itemElement->SetAttribute( "distance", "here" );
 
 		// Remove the "Look for Evil Dinosaurs!" item.
@@ -366,9 +366,9 @@ int test_XmlTest()
 
 		// And add the node to the existing list after the first child.
 		node = todoElement->FirstChild( "Item" );
-		assert( node );
+		MyAssert( node );
 		itemElement = node->ToElement();
-		assert( itemElement );
+		MyAssert( itemElement );
 
 		todoElement->InsertAfterChild( itemElement, item );
 
@@ -399,7 +399,7 @@ int test_XmlTest()
 	#endif
 
 		node = doc.RootElement();
-		assert( node );
+		MyAssert( node );
 		XmlTest( "Root element exists.", true, ( node != 0 && node->ToElement() ) );
 		XmlTest ( "Root element value is 'ToDo'.", "ToDo",  node->Value());
 
@@ -593,13 +593,13 @@ int test_XmlTest()
 		TiXmlHandle docHandle( &doc );
 		TiXmlHandle roomHandle = docHandle.FirstChildElement( "room" );
 
-		assert( docHandle.Node() );
-		assert( roomHandle.Element() );
+		MyAssert( docHandle.Node() );
+		MyAssert( roomHandle.Element() );
 
 		TiXmlElement* room = roomHandle.Element();
-		assert( room );
+		MyAssert( room );
 		TiXmlAttribute* doors = room->FirstAttribute();
-		assert( doors );
+		MyAssert( doors );
 
 		XmlTest( "Location tracking: Tab 8: room row", room->Row(), 1 );
 		XmlTest( "Location tracking: Tab 8: room col", room->Column(), 49 );
@@ -624,22 +624,22 @@ int test_XmlTest()
 		TiXmlHandle door0Handle = docHandle.FirstChildElement( "room" ).ChildElement( 0 );
 		TiXmlHandle door1Handle = docHandle.FirstChildElement( "room" ).ChildElement( 1 );
 
-		assert( docHandle.Node() );
-		assert( roomHandle.Element() );
-		assert( commentHandle.Node() );
-		assert( textHandle.Text() );
-		assert( door0Handle.Element() );
-		assert( door1Handle.Element() );
+		MyAssert( docHandle.Node() );
+		MyAssert( roomHandle.Element() );
+		MyAssert( commentHandle.Node() );
+		MyAssert( textHandle.Text() );
+		MyAssert( door0Handle.Element() );
+		MyAssert( door1Handle.Element() );
 
 		TiXmlDeclaration* declaration = doc.FirstChild()->ToDeclaration();
-		assert( declaration );
+		MyAssert( declaration );
 		TiXmlElement* room = roomHandle.Element();
-		assert( room );
+		MyAssert( room );
 		TiXmlAttribute* doors = room->FirstAttribute();
-		assert( doors );
+		MyAssert( doors );
 		TiXmlText* text = textHandle.Text();
 		TiXmlComment* comment = commentHandle.Node()->ToComment();
-		assert( comment );
+		MyAssert( comment );
 		TiXmlElement* door0 = door0Handle.Element();
 		TiXmlElement* door1 = door1Handle.Element();
 
@@ -1090,7 +1090,7 @@ int test_XmlTest()
 			fclose( textfile );
 		}
 		textfile = fopen( "textfile.txt", "r" );
-		assert( textfile );
+		MyAssert( textfile );
 		if ( textfile )
 		{
 			char buf[ 1024 ];
@@ -1265,8 +1265,8 @@ int test_XmlTest()
  //           TiXmlHandle docHandle( &doc );
  //           TiXmlHandle aHandle = docHandle.FirstChildElement("?");
  //           TiXmlHandle tHandle = aHandle.Child( 0 );
- //           assert( aHandle.Element() );
- //           assert( tHandle.Text() );
+ //           MyAssert( aHandle.Element() );
+ //           MyAssert( tHandle.Text() );
  //           XmlTest( "ISO-8859-1 Parsing.", "CöntäntßäöüÄÖ?", tHandle.Text()->Value() );
  //   }
 

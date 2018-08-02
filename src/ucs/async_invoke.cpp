@@ -9,7 +9,7 @@ using namespace std;
 class DelegateTask : public threadpool::Task {
 public:
     typedef std::tr1::function<void()> CompleteHandler;
-    DelegateTask(boost::shared_ptr<IDelegate> delegate, const CompleteHandler& complete_handler)
+    DelegateTask(std::shared_ptr<IDelegate> delegate, const CompleteHandler& complete_handler)
         : threadpool::Task()
         , delegate_(delegate)
         , complete_handler_(complete_handler)
@@ -25,13 +25,13 @@ public:
     }
 
 private:
-    boost::shared_ptr<IDelegate> delegate_;
+    std::shared_ptr<IDelegate> delegate_;
     CompleteHandler              complete_handler_;
 };
 
 class DelegateResult {
 public:
-    DelegateResult(boost::shared_ptr<IDelegate> delegate, 
+    DelegateResult(std::shared_ptr<IDelegate> delegate, 
             const DelegateCompleteHandler& complete_handler)
         : delegate_(delegate)
         , complete_handler_(complete_handler)
@@ -46,7 +46,7 @@ public:
     }
 
 private:
-    boost::shared_ptr<IDelegate> delegate_;
+    std::shared_ptr<IDelegate> delegate_;
     DelegateCompleteHandler      complete_handler_;
 };
 
@@ -73,12 +73,12 @@ bool AsyncInvoke::Init(struct event_base* base, unsigned int thread_num)
         thread_num = 100;
     } 
  
-    boost::shared_ptr<threadpool::ThreadPool> threadpool(new threadpool::ThreadPool(thread_num));
+    std::shared_ptr<threadpool::ThreadPool> threadpool(new threadpool::ThreadPool(thread_num));
 
     return Init(base, threadpool);
 }
 
-bool AsyncInvoke::Init(struct event_base* base, boost::shared_ptr<threadpool::ThreadPool> threadpool)
+bool AsyncInvoke::Init(struct event_base* base, std::shared_ptr<threadpool::ThreadPool> threadpool)
 {
     if (base == NULL) {
         return false;
@@ -104,17 +104,17 @@ void AsyncInvoke::HandleTask()
     boost::mutex::scoped_lock lock(results_mutex_);
 
     while (!results_.empty()) {
-        boost::shared_ptr<DelegateResult> result = results_.front();
+        std::shared_ptr<DelegateResult> result = results_.front();
         results_.pop();
         result->CompleteHandler();
     }
 }
 
-void AsyncInvoke::CompleteHandler(boost::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler)
+void AsyncInvoke::CompleteHandler(std::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler)
 {
     if (handler) {
         boost::mutex::scoped_lock lock(results_mutex_);
-        boost::shared_ptr<DelegateResult> result(new DelegateResult(delegate, handler));
+        std::shared_ptr<DelegateResult> result(new DelegateResult(delegate, handler));
         results_.push(result);
         if (results_.size() == 1) {
             result_watcher_->Notify();
@@ -122,15 +122,15 @@ void AsyncInvoke::CompleteHandler(boost::shared_ptr<IDelegate> delegate, const D
     } 
 }
 
-bool AsyncInvoke::Invoke(boost::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler)
+bool AsyncInvoke::Invoke(std::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler)
 {
-    boost::shared_ptr<DelegateTask> task(
+    std::shared_ptr<DelegateTask> task(
             new DelegateTask(delegate, 
                 std::tr1::bind(&AsyncInvoke::CompleteHandler, this, delegate, handler)));
     return threadpool_->AddTask(task);
 }
 
-bool AsyncInvoke::Invoke(boost::shared_ptr<IDelegate> delegate)
+bool AsyncInvoke::Invoke(std::shared_ptr<IDelegate> delegate)
 {
     DelegateCompleteHandler handler;
     return Invoke(delegate, handler);

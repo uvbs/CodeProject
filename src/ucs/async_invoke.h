@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <queue> 
 #include <tr1/functional>
-#include <boost/shared_ptr.hpp>
+//#include <boost/shared_ptr.hpp>
+#include <boost/scoped_ptr.hpp>
 #include <boost/thread.hpp>
 #include <event.h>
 #include "threadpool.h"
@@ -21,7 +22,7 @@ public:
     virtual void operator()() = 0;
 };
 
-typedef std::tr1::function<void(boost::shared_ptr<IDelegate>)> DelegateCompleteHandler;
+typedef std::tr1::function<void(std::shared_ptr<IDelegate>)> DelegateCompleteHandler;
 
 class AsyncInvoke {
 public:
@@ -29,10 +30,10 @@ public:
     ~AsyncInvoke();
 
     bool Init(struct event_base* base, unsigned int thread_num);
-    bool Init(struct event_base* base, boost::shared_ptr<threadpool::ThreadPool> threadpool);
-    bool Invoke(boost::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler);
-    bool Invoke(boost::shared_ptr<IDelegate> delegate);
-    void CompleteHandler(boost::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler);
+    bool Init(struct event_base* base, std::shared_ptr<threadpool::ThreadPool> threadpool);
+    bool Invoke(std::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler);
+    bool Invoke(std::shared_ptr<IDelegate> delegate);
+    void CompleteHandler(std::shared_ptr<IDelegate> delegate, const DelegateCompleteHandler& handler);
 
 private:
     void HandleTask();
@@ -40,10 +41,10 @@ private:
 private:
     struct event_base* event_base_;
 
-    std::queue<boost::shared_ptr<DelegateResult> > results_;
+    std::queue<std::shared_ptr<DelegateResult> > results_;
     boost::mutex results_mutex_;
     boost::scoped_ptr<PipedEventWatcher> result_watcher_;
-    boost::shared_ptr<threadpool::ThreadPool> threadpool_;
+    std::shared_ptr<threadpool::ThreadPool> threadpool_;
 };
 
 } // namespace cloud_ucs

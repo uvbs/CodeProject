@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 // 
 // @file: stack.h
 // @author: by Mr.Chen
@@ -10,7 +10,7 @@
 #ifndef __STACK_H_
 #define  __STACK_H_
 
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 
 namespace container {
@@ -36,7 +36,7 @@ public:
         if (!_base)
         {
             //cerr << "Memory allocation failure!" << endl;
-            Assert(0);
+            MyAssert(0);
         }
         _top = -1;
         _size = ms;
@@ -57,7 +57,7 @@ public:
         if (_top == -1)
         {
             //cerr << "Stack is empty!" << endl;
-            Assert(0);
+            MyAssert(0);
         }
         _top--;
         return _base[_top + 1];
@@ -68,7 +68,7 @@ public:
         if (_top == -1)
         {
             //cerr << "Stack is empty!" << endl;
-            Assert(0);
+            MyAssert(0);
         }
         return _base[_top];
     }
@@ -93,7 +93,7 @@ public:
         if (_top == -1)
         {
             //cerr << "Stack is empty!" << endl;
-            Assert(0);
+            MyAssert(0);
             return;
         }
         for (int i = 0; i <= _top; ++i)
@@ -111,7 +111,7 @@ public:
         if (_top == -1)
         {
             //cerr << "Stack is empty!" << endl;
-            Assert(0);
+            MyAssert(0);
             return;
         }
         for (int i = 0; i <= _top; ++i)

@@ -4,7 +4,7 @@
 #include <exception>
 #include "string_util.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -48,7 +48,7 @@ DBCFile::~DBCFile()
 
 bool DBCFile::openFromMemory(const char* pMemory, const char* pDeadEnd, const char* szFileName)
 {
-	Assert(pMemory && pDeadEnd);
+	MyAssert(pMemory && pDeadEnd);
 	//----------------------------------------------------
 	//判断是否是二进制格式
 	if(pDeadEnd - pMemory >= sizeof(FILE_HEAD) && *((uint*)pMemory) == 0XDDBBCC00)
@@ -352,7 +352,7 @@ bool DBCFile::openFromMemoryImplText(const char* pMemory, const char* pDeadEnd, 
 
 bool DBCFile::openFromTXT(const char* szFileName)
 {
-	Assert(szFileName);
+	MyAssert(szFileName);
 	//----------------------------------------------------
 	//打开文件
 	FILE* fp = fopen(szFileName, "rb");
@@ -393,7 +393,7 @@ void DBCFile::createIndex(int nColum, const char* szFileName)
 #ifdef GAME_CLIENT
 			throw std::string(temp);
 #else
-			AssertEx(false, temp);
+			MyAssertEx(false, temp);
 #endif
 			return;
 		}
@@ -421,7 +421,7 @@ const FIELD* DBCFile::searchPosition(int recordLine, int columNum) const
 #ifdef GAME_CLIENT
 		throw std::string(temp);
 #else
-		AssertEx(false, temp);
+		MyAssertEx(false, temp);
 #endif
 		return NULL;
 	}

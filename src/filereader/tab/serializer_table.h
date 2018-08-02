@@ -10,7 +10,7 @@
 #define _SERIALIZER_TABLE_H
 
 #include "serializer.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include <stdio.h>
 
@@ -136,7 +136,7 @@ private:
 		}
 		void add(char* pString) 
 		{ 
-			Assert(_count < MAX_STRING_POOL_COUNT); 
+			MyAssert(_count < MAX_STRING_POOL_COUNT); 
 			_pString[_count++] = pString; 
 		}
 	};
@@ -173,7 +173,7 @@ private:
 		}
 		void add(int* pIntArray) 
 		{ 
-			Assert(_nCount < MAX_INT_ARRAY_POOL_COUNT); 
+			MyAssert(_nCount < MAX_INT_ARRAY_POOL_COUNT); 
 			_ppIntArrays[_nCount++] = pIntArray; 
 		}
 	};
@@ -210,7 +210,7 @@ private:
 		}
 		void add(float* pFloatArray) 
 		{ 
-			Assert(_nCount < MAX_FLOAT_ARRAY_POOL_COUNT); 
+			MyAssert(_nCount < MAX_FLOAT_ARRAY_POOL_COUNT); 
 			_ppFloatArrays[_nCount++] = pFloatArray; 
 		}
 	};

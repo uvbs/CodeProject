@@ -33,6 +33,7 @@
 #include "test_tinyxml.h"
 #include "test_varsystem.h"
 #include "test_log4cplus.h"
+#include "test_serializer.h"
 
 using namespace std;
 using std::string;
@@ -80,6 +81,8 @@ int main()
 		//test_time();
 		test_XmlTest();
 		test_varsystem();
+        test_serializer_json();
+        test_serializer_php();
 		//wait
 		cin.get();
 	}

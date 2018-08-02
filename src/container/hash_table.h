@@ -11,7 +11,7 @@
 #define __HASH_TABLE_H_
 
 #include <iostream>
-#include "assert.h"
+#include "myassert.h"
 #include "type.h"
 #include "string_util.h"
 #include "macrodef.h"
@@ -234,7 +234,7 @@ namespace container
 	HashTable<Key, Value, HashFunc, CmpFunc>::HashTable(int capacity) : _capacity(capacity), _pBuckets(NULL), _elementsCount(0), _usedCount(0)
 	{
 		_capacity = (uint)getPrime(capacity); 
-		Assert(_capacity);
+		MyAssert(_capacity);
 		_pBuckets = new HashNode*[_capacity];
 		for (uint i = 0; i < _capacity; ++i)
 		{
@@ -248,7 +248,7 @@ namespace container
 		bool ret = clear();
 		if (!ret)
 		{
-			Assert(0);
+			MyAssert(0);
 			return;
 		}
 		SAFE_DELETE_ARRAY(_pBuckets);
@@ -258,7 +258,7 @@ namespace container
 	uint HashTable<Key, Value, HashFunc, CmpFunc>::getHash(const Key& key, const uint capacity) const
 	{
 		uint hashCode = _hashFunc(key);
-		Assert(hashCode != (uint)(INVALID_VALUE));
+		MyAssert(hashCode != (uint)(INVALID_VALUE));
 		return hashCode % capacity;
 	}
 
@@ -297,7 +297,7 @@ namespace container
 	bool HashTable<Key, Value, HashFunc, CmpFunc>::insertNoResize(const Key& key, const Value& value)
 	{
 		uint index = getHash(key, _capacity);
-		Assert(index != (uint)(INVALID_VALUE));
+		MyAssert(index != (uint)(INVALID_VALUE));
 		HashNode* hashNode = new HashNode(key, value);
 		return insertNode(index, hashNode);
 	}
@@ -326,7 +326,7 @@ namespace container
 				bool ret = insertNode(node->_key, node);
 				if (!ret)
 				{
-					Assert(0);
+					MyAssert(0);
 					return ret;
 				}
 			}
@@ -366,7 +366,7 @@ namespace container
 	bool HashTable<Key, Value, HashFunc, CmpFunc>::update(const Key& key, const Value& value)
 	{
 		Value* oldValue = const_cast<Value*>(find(key));
-		Assert(oldValue != NULL);
+		MyAssert(oldValue != NULL);
 		*oldValue = value;
 		return true;
 	}

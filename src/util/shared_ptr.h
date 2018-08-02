@@ -10,7 +10,7 @@
 #ifndef _SHAREDPTR_H
 #define _SHAREDPTR_H
 
-#include "assert.h"
+#include "myassert.h"
 #include "lock.h"
 #include <iostream>
 using namespace std;
@@ -20,12 +20,12 @@ namespace sys_util
 
 #define OGRE_AUTO_SHARED_MUTEX mutable MLock *OGRE_AUTO_MUTEX_NAME;
 #define OGRE_SET_AUTO_SHARED_MUTEX_NULL OGRE_AUTO_MUTEX_NAME = 0;
-#define OGRE_NEW_AUTO_SHARED_MUTEX Assert(!OGRE_AUTO_MUTEX_NAME); OGRE_AUTO_MUTEX_NAME = new MLock();
+#define OGRE_NEW_AUTO_SHARED_MUTEX MyAssert(!OGRE_AUTO_MUTEX_NAME); OGRE_AUTO_MUTEX_NAME = new MLock();
 #define OGRE_LOCK_MUTEX(name) AutoMLock ogrenameLock(name);
-#define OGRE_COPY_AUTO_SHARED_MUTEX(from) Assert(!OGRE_AUTO_MUTEX_NAME); OGRE_AUTO_MUTEX_NAME = from;
-#define OGRE_LOCK_AUTO_SHARED_MUTEX Assert(OGRE_AUTO_MUTEX_NAME); AutoMLock ogreAutoMutexLock(*OGRE_AUTO_MUTEX_NAME);
+#define OGRE_COPY_AUTO_SHARED_MUTEX(from) MyAssert(!OGRE_AUTO_MUTEX_NAME); OGRE_AUTO_MUTEX_NAME = from;
+#define OGRE_LOCK_AUTO_SHARED_MUTEX MyAssert(OGRE_AUTO_MUTEX_NAME); AutoMLock ogreAutoMutexLock(*OGRE_AUTO_MUTEX_NAME);
 #define OGRE_MUTEX_CONDITIONAL(mutex) if (mutex)
-#define OGRE_DELETE_AUTO_SHARED_MUTEX Assert(OGRE_AUTO_MUTEX_NAME); delete OGRE_AUTO_MUTEX_NAME;
+#define OGRE_DELETE_AUTO_SHARED_MUTEX MyAssert(OGRE_AUTO_MUTEX_NAME); delete OGRE_AUTO_MUTEX_NAME;
 	/** Reference-counted shared pointer, used for objects where implicit destruction is 
         required. 
     @remarks
@@ -139,12 +139,12 @@ namespace sys_util
 
 		inline T& operator*() const 
 		{ 
-			Assert(_pRep); 
+			MyAssert(_pRep); 
 			return *_pRep; 
 		}
 		inline T* operator->() const 
 		{ 
-			Assert(_pRep); 
+			MyAssert(_pRep); 
 			return _pRep; 
 		}
 		inline T* get() const { return _pRep; }
@@ -155,7 +155,7 @@ namespace sys_util
 		*/
 		void bind(T* rep) 
 		{
-			Assert(!_pRep && !_pUseCount);
+			MyAssert(!_pRep && !_pUseCount);
             OGRE_NEW_AUTO_SHARED_MUTEX
 			OGRE_LOCK_AUTO_SHARED_MUTEX
 			_pUseCount = new unsigned int (1);
@@ -165,13 +165,13 @@ namespace sys_util
 		inline bool unique() const 
 		{ 
 			OGRE_LOCK_AUTO_SHARED_MUTEX 
-			Assert(_pUseCount); 
+			MyAssert(_pUseCount); 
 			return *_pUseCount == 1; 
 		}
 		inline unsigned int useCount() const 
 		{ 
 			OGRE_LOCK_AUTO_SHARED_MUTEX 
-			Assert(_pUseCount); 
+			MyAssert(_pUseCount); 
 			return *_pUseCount; 
 		}
 		inline unsigned int* useCountPointer() const { return _pUseCount; }

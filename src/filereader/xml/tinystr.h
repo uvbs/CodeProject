@@ -27,13 +27,12 @@ distribution.
 #ifndef TIXML_STRING_INCLUDED
 #define TIXML_STRING_INCLUDED
 
-#include <assert.h>
+//#include <assert.h>
 #include <string.h>
-
-#ifndef assert
-#include "assert.h"
-#define assert Assert
-#endif
+//#ifndef assert
+#include "myassert.h"
+//#define assert Assert
+//#endif
 /*	The support for explicit isn't that universal, and it isn't really
 	required - it is used to check that the TiXmlString class isn't incorrectly
 	used. Be nice to old compilers and macro it here:
@@ -150,14 +149,14 @@ class TiXmlString
 	// single char extraction
 	const char& at (size_type index) const
 	{
-		assert( index < length() );
+		MyAssert( index < length() );
 		return rep_->str[ index ];
 	}
 
 	// [] operator
 	char& operator [] (size_type index) const
 	{
-		assert( index < length() );
+		MyAssert( index < length() );
 		return rep_->str[ index ];
 	}
 

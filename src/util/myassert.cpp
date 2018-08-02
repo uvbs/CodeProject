@@ -1,4 +1,4 @@
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include <stdio.h>
 #include <stdarg.h>

@@ -165,14 +165,14 @@ void TableSerializer::set(IntArray& value)
 	}
 	if (true == value.isValid())
 	{
-		Assert(0);
+		MyAssert(0);
 		return;
 	}
 	//生成临时的新字符串
 	const int64 maxSize = _pCurr - pBegin + 1;
 	if (maxSize <= 0)
 	{
-		Assert(0);
+		MyAssert(0);
 		return;
 	}
 	char* wholeString = new char[maxSize];
@@ -204,7 +204,7 @@ void TableSerializer::set(IntArray& value)
 	int tokenCount = 0;
 	while (token != NULL)
 	{
-		Assert(tokenCount < value._nCount);
+		MyAssert(tokenCount < value._nCount);
 		pArray[tokenCount] = str_util::strToL(token, NULL, 10);
 		token = str_util::strtok_s(NULL, seperator, &tokenContext);
 		tokenCount++;
@@ -223,14 +223,14 @@ void TableSerializer::set(FloatArray& value)
 	}
 	if (value._pArray != NULL)
 	{
-		Assert(0);
+		MyAssert(0);
 		return;
 	}
 	//生成临时的新字符串
 	const int64 maxSize = _pCurr - pBegin + 1;
 	if (maxSize <= 0)
 	{
-		Assert(0);
+		MyAssert(0);
 		return;
 	}
 	char* wholeString = new char[maxSize];
@@ -256,7 +256,7 @@ void TableSerializer::set(FloatArray& value)
 	int tokenCount = 0;
 	while (token != NULL)
 	{
-		Assert(tokenCount < value._nCount);
+		MyAssert(tokenCount < value._nCount);
 		value._pArray[tokenCount] = static_cast<float>(str_util::strToDouble(token, NULL));
 		token = str_util::strtok_s(NULL, seperator, &tokenContext);
 		tokenCount++;
@@ -300,13 +300,13 @@ void TableSerializer::skipHeader()
 	//指向第一行，列的名称
 	if (!nextLine())
 	{
-		Assert(false);
+		MyAssert(false);
 		return;
 	}
 	//指向第二行，列的类型
 	if (!nextLine())
 	{
-		Assert(false);
+		MyAssert(false);
 		return;
 	}
 	//m_IsFirstColumn = true;
@@ -400,12 +400,12 @@ int FileSize(FILE* file)
 #endif
 	if( result != 0 )
 	{
-		Assert(false);
+		MyAssert(false);
 		return 0;
 	}
 	m_size = fileStat.st_size;
 	fseek(file, oldPosition, SEEK_SET);
-	Assert(m_size >= 0);
+	MyAssert(m_size >= 0);
 	return m_size;
 }
 
@@ -441,7 +441,7 @@ void TableSerializer::prepareRead()
 	}
 	if (NULL == _pFile)
 	{
-		Assert(false);
+		MyAssert(false);
 		return;
 	}
 	SAFE_DELETE_ARRAY(_pReadBuf);
@@ -567,7 +567,7 @@ void TableSerializer::_checkColumnType(EM_TYPE_COLUMN columnType)
 {
 	if (_bCheckColumn)
 	{
-		Assert(_nColumnsType[_nColumnOfCurrLine] == columnType);
+		MyAssert(_nColumnsType[_nColumnOfCurrLine] == columnType);
 		if (_nColumnsType[_nColumnOfCurrLine] != columnType)
 		{
 			/*Log("\ntable [%s], column [%d] (column[%s] in excel) isn't match!\n"

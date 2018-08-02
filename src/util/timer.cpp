@@ -1,5 +1,5 @@
 #include "timer.h"
-#include "assert.h"
+#include "myassert.h"
 
 namespace sys_util {
 
@@ -37,7 +37,7 @@ void	Timer::endTimer()
 bool Timer::isReach(uint uNowTime)
 {
 	__ENTER_FUNCTION
-	Assert(_isSet);
+	MyAssert(_isSet);
 
 	uint nElapsedTime = 0;
 	if (uNowTime >= _startTime)

@@ -1,4 +1,5 @@
 #include "property_set.h"
+#include "myassert.h"
 
 // -----------------------------------------------------------------------------------------------------
 PropertySet::PropertySet(void)
@@ -126,7 +127,7 @@ int PropertySet::getInt(std::string const& name)
 	PropertyItor itor = _properties.find(name);
 	if (itor == _properties.end())
 	{
-		Assert(!"can not find the int property.");
+		MyAssert(!"can not find the int property.");
 	}
 	return (itor->second)->getInt();
 }
@@ -137,7 +138,7 @@ float PropertySet::getFloat(std::string const& name)
 	PropertyItor itor = _properties.find(name);
 	if (itor == _properties.end())
 	{
-		Assert(!"can not find the float property.");
+		MyAssert(!"can not find the float property.");
 	}
 	return (itor->second)->getFloat();
 }
@@ -148,7 +149,7 @@ std::string PropertySet::getString(std::string const& name)
 	PropertyItor itor = _properties.find(name);
 	if (itor == _properties.end())
 	{
-		Assert(!"can not find the string property.");
+		MyAssert(!"can not find the string property.");
 	}
 	return (itor->second)->getString();
 }
@@ -159,7 +160,7 @@ bool PropertySet::getBool(std::string const& name)
 	PropertyItor itor = _properties.find(name);
 	if (itor == _properties.end())
 	{
-		Assert(!"can not find the bool property.");
+		MyAssert(!"can not find the bool property.");
 	}
 	return (itor->second)->getBool();
 }

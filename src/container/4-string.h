@@ -9,7 +9,7 @@
 #ifndef __STRING_
 #define __STRING_
 
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include "string_util.h"
 #include <string.h>

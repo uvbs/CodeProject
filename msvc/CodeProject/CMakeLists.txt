@@ -19,6 +19,9 @@ include_directories(
 ../../src/filereader/ini
 ../../src/filereader/tab
 ../../src/filereader/xml
+../../src/json_php_serializer
+../../src/json_php_serializer/json
+../../src/json_php_serializer/php
 ../../src/main
 ../../src/pattern
 ../../src/reflect
@@ -55,6 +58,9 @@ file(GLOB ALL_HEADER_SRCS
 ../../src/filereader/ini/*.h
 ../../src/filereader/tab/*.h
 ../../src/filereader/xml/*.h
+../../src/json_php_serializer/*.h
+../../src/json_php_serializer/json/*.h
+../../src/json_php_serializer/php/*.h
 ../../src/main/*.h
 ../../src/pattern/*.h
 ../../src/reflect/*.h
@@ -81,6 +87,9 @@ file(GLOB ALL_CXX_SRCS
 ../../src/filereader/ini/*.cpp
 ../../src/filereader/tab/*.cpp
 ../../src/filereader/xml/*.cpp
+../../src/json_php_serializer/*.cpp
+../../src/json_php_serializer/json/*.cpp
+../../src/json_php_serializer/php/*.cpp
 ../../src/main/*.cpp
 ../../src/pattern/*.cpp
 ../../src/reflect/*.cpp
@@ -94,3 +103,4 @@ set(ALL_LIB dl pthread curl ssl crypto Conhash Jsonc MySql_c mysqlclient Net
     boost_thread libevent.a)
 add_executable(CodeProj ${ALL_HEADER_SRCS} ${ALL_CXX_SRCS})
 target_link_libraries(CodeProj ${ALL_LIB})
+

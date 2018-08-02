@@ -1,7 +1,7 @@
 #include "socketdef.h"
 #include "test_spider.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 #include "string_util.h"
 #include "log.h"
 #include "http_client.h"
@@ -38,14 +38,14 @@ bool DBInterface::loadPersonData(const char* sql)
     };
 
     CDataBase* pDataBase = getDataBase();
-    Assert(pDataBase);
+    MyAssert(pDataBase);
     // ¶Á±í
     char SQLString[MAX_SQL_LEN] = {0};
     str_util::snprintf(SQLString,MAX_SQL_LEN,sql,PERSON_TABLE);
     bool bResult = pDataBase->execute(SQLString,str_util::strlen(SQLString));
-    Assert(bResult);
+    MyAssert(bResult);
     CDBResult* pResult = pDataBase->getResult();
-    Assert(pResult);
+    MyAssert(pResult);
 
     int count = 0;
     _persons.clear();
@@ -86,7 +86,7 @@ bool DBInterface::savePersonData(QTYPE qtype, std::list<stPersonResult>& _dataQ)
     char sqlString[1024*4] = {0};
     bool firstFlag = true;
     CDataBase* pDataBase = getDataBase();
-    Assert(pDataBase);
+    MyAssert(pDataBase);
     std::list<stPersonResult>::iterator iter=_dataQ.begin();
     bool ret = false;
     for (; iter != _dataQ.end(); ++iter)
@@ -120,7 +120,7 @@ bool DBInterface::saveRankData(vector<Person>& data)
     char sqlString[1024*2] = {0};
 
     CDataBase* pDataBase = getDataBase();
-    Assert(pDataBase);
+    MyAssert(pDataBase);
 
     str_util::snprintf(tmpString,sizeof(tmpString),DEL_PERSON_RANK_SQL, RANK_TABLE);
     bool ret = pDataBase->execute(tmpString, str_util::strlen(tmpString));
@@ -1012,7 +1012,7 @@ static void kill_locks(void)
 bool test_bk()
 {
     SpiderMgr* pSpiderMgr = SpiderMgr::getSinglePtr();
-    Assert(pSpiderMgr);
+    MyAssert(pSpiderMgr);
     bool ret = pSpiderMgr->getBKToken();
     if(!ret)
     {
@@ -1075,7 +1075,7 @@ bool test_bk()
 bool test_tupu()
 {
     SpiderMgr* pSpiderMgr = SpiderMgr::getSinglePtr();
-    Assert(pSpiderMgr);
+    MyAssert(pSpiderMgr);
     //load person where bkId > 0
     if(!DBInterface::getSinglePtr()->loadPersonData(LOAD_PERSON_TP_SQL))
     {
@@ -1204,7 +1204,7 @@ bool test_rank()
     bool ret = DBInterface::getSinglePtr()->init(const_cast<char*>(ip.c_str()), port, 
         const_cast<char*>(user.c_str()), const_cast<char*>(pwd.c_str()),
         const_cast<char*>(db.c_str()), const_cast<char*>(encoding.c_str()));
-    Assert(ret);
+    MyAssert(ret);
 
     //read rank file
     TiXmlDocument doc(rankfile.c_str());
@@ -1260,7 +1260,7 @@ bool test_spider()
 
     //initialize
     SpiderMgr* pSpiderMgr = SpiderMgr::getSinglePtr();
-    Assert(pSpiderMgr);
+    MyAssert(pSpiderMgr);
     bool ret = pSpiderMgr->init(5978657, //app_id
         "RiYiObM8SlO93BzwszBaWhOt", //api_key
         "FYgEHzIEljDaOLlPVNYQT6DZqD1fZEb2"); //secret_key

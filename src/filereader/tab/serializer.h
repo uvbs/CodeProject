@@ -10,7 +10,7 @@
 #define _SERIALIZER_H
 
 #include "type.h"
-#include "assert.h"
+#include "myassert.h"
 
 namespace file_parser {
 
@@ -28,7 +28,7 @@ public:
 	~IntArray() {}
 	int operator[](const int i) const 
 	{ 
-		Assert(i < _nCount && i >= 0); 
+		MyAssert(i < _nCount && i >= 0); 
 		return _pArray[i]; 
 	}
 	int count() const { return _nCount; }
@@ -74,7 +74,7 @@ struct FloatArray
 	~FloatArray() {}
 	float operator[](const int i) const 
 	{ 
-		Assert(i < _nCount && i >= 0); 
+		MyAssert(i < _nCount && i >= 0); 
 		return _pArray[i]; 
 	}
 };

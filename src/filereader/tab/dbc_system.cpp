@@ -1,7 +1,7 @@
 #include "socketdef.h"
 #include "dbc_system.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 
 WX_IMPLEMENT_SINGLEON(file_parser::DBCSystem);
@@ -20,53 +20,53 @@ DBC::~DBC()
 
 const FIELD* DBC::searchIndexEQ(int iIndexValue) const 
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->searchIndexEQ(iIndexValue);
 }
 
 const FIELD* DBC::searchLineNumEQ(int lineNum) const
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return  _pDBCFile->searchPosition(lineNum, 0); 
 }
 
 //查找某列等于指定值的第一行
 const FIELD* DBC::searchFirstColumnEQ(int columnNum, const FIELD& value) const
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->searchFirstColumnEQ(columnNum, value.iValue);
 }
 
 const FIELD* DBC::searchPosition(int recordLine, int columNum) const
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->searchPosition(recordLine, columNum);
 }
 
 //取得ID
 int DBC::getID(void) const
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->getID(); 
 }
 
 //取得列数
 uint DBC::getFieldsNum(void) const
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->getFieldsNum(); 
 }
 
 //取得记录的条数
 uint DBC::getRecordsNum(void)const
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->getRecordsNum(); 
 }
 
 bool DBC::openFromTXT(const char* szFileName)
 {
-	Assert(_pDBCFile);
+	MyAssert(_pDBCFile);
 	return _pDBCFile->openFromTXT(szFileName);
 }
 

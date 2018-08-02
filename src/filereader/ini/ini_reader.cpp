@@ -1,5 +1,5 @@
 #include "ini_reader.h"
-#include "assert.h"
+#include "myassert.h"
 #include "string_util.h"
 #include "macrodef.h"
 #include <stdio.h>
@@ -33,7 +33,7 @@ IniReader::IniReader(const char *pFileName)
 	bool ret = open(pFileName);
 	if (!ret)
 	{
-		Assert(0);
+		MyAssert(0);
 	}
 	__LEAVE_FUNCTION
 }
@@ -51,7 +51,7 @@ bool IniReader::open(const char* pFileName)
 	__ENTER_FUNCTION
 
 	//判断文件名是否有效
-	Assert(pFileName != NULL);
+	MyAssert(pFileName != NULL);
 	if (_filename[0] == '\0')
 	{
 		str_util::strncpy(_filename, pFileName, sizeof(_filename)-1);
@@ -61,7 +61,7 @@ bool IniReader::open(const char* pFileName)
 	FILE*	 fp = ::fopen(_filename, "r+b");
 	if (fp == NULL)
 	{
-		AssertSpecial(0, "Can't Open File!, FileName = %s ", _filename);
+		MyAssertSpecial(0, "Can't Open File!, FileName = %s ", _filename);
 	}
 	//get file length
 	::fseek(fp, 0, SEEK_END);
@@ -70,7 +70,7 @@ bool IniReader::open(const char* pFileName)
 	//read file
 	::fseek(fp, 0, SEEK_SET);
 	_pData = new char[_dataLen + 1];
-	Assert(_pData);
+	MyAssert(_pData);
 	::fread(_pData, 1, _dataLen, fp);
 	_pData[_dataLen] = '\0';
 
@@ -82,7 +82,7 @@ bool IniReader::open(const char* pFileName)
 	memcpy(&uFlag, _pData, sizeof(uFlag));
 	if((uFlag == 0xFFFE) || (uFlag == 0xFEFF))
 	{
-		AssertSpecial(0, "Can't Read Unicode File!, FileName = %s ", _filename);
+		MyAssertSpecial(0, "Can't Read Unicode File!, FileName = %s ", _filename);
 	}
 
 	//初始化段起始位置索引
@@ -96,10 +96,10 @@ bool IniReader::open(const char* pFileName)
 bool IniReader::save()
 {
 	__ENTER_FUNCTION
-	Assert(_filename[0] != '\0');
+	MyAssert(_filename[0] != '\0');
 
 	FILE* pFile = ::fopen(_filename, "wb");
-	Assert(pFile!=NULL);
+	MyAssert(pFile!=NULL);
 	
 	::fseek(pFile, 0, SEEK_SET);
 	::fwrite(_pData, _dataLen, 1, pFile);
@@ -113,8 +113,8 @@ bool IniReader::save()
 bool IniReader::readString(const char* pSect, const char* pKey, char* pOut, int len) const
 {
 	__ENTER_FUNCTION
-	Assert(pSect != NULL);
-	Assert(pKey != NULL);
+	MyAssert(pSect != NULL);
+	MyAssert(pKey != NULL);
 
 	//找到段的起始偏移
 	int pos = _findSect(pSect);
@@ -213,9 +213,9 @@ bool IniReader::writeString(const char* pSect, const char* pKey, char* pValue)
 {
 	__ENTER_FUNCTION
 
-	Assert(pSect != NULL);
-	Assert(pKey != NULL);
-	Assert(pValue != NULL);
+	MyAssert(pSect != NULL);
+	MyAssert(pKey != NULL);
+	MyAssert(pValue != NULL);
 
 	//查找段
 	int pos = _findSect(pSect);
@@ -224,7 +224,7 @@ bool IniReader::writeString(const char* pSect, const char* pKey, char* pValue)
 	{
 		addSect(pSect);
 		pos = _findSect(pSect);
-		Assert(pos != -1);
+		MyAssert(pos != -1);
 	}
 
 	//跳到下一行（键值对行）
@@ -292,7 +292,7 @@ bool IniReader::addKeyValuePair(const char* pSect, const char* pKey, const char*
 	int IncSize = 2 + KeyLen + 1 + ValueLen;
 	
 	char* pNewData = new char[_dataLen+IncSize];
-	Assert(pNewData!=NULL);
+	MyAssert(pNewData!=NULL);
 
 	//拷贝原来的数据的前半
 	if (insertPos > 0)
@@ -328,15 +328,15 @@ bool IniReader::modifyKeyValuePair(const char* pSect, const char* pKey, const ch
 
 	//查找段
 	int pos = _findSect(pSect);
-	Assert(pos != -1);
+	MyAssert(pos != -1);
 
 	//跳到下一行（键值对行）
 	pos = _findNextLineBegin(pos);
-	Assert(pos != -1);
+	MyAssert(pos != -1);
 
 	//查找键,没找到则添加
 	pos = _findKey(pos, pKey);
-	Assert(pos != -1);
+	MyAssert(pos != -1);
 
 	int oldSize = -1;
 	int endPos = -1;
@@ -371,7 +371,7 @@ bool IniReader::modifyKeyValuePair(const char* pSect, const char* pKey, const ch
 	int incSize = newSize - oldSize;
 
 	char* pNewData = new char[_dataLen + incSize];
-	Assert(pNewData != NULL);
+	MyAssert(pNewData != NULL);
 
 	//拷贝原来的数据的前半
 	if (pos > 0)
@@ -421,7 +421,7 @@ int IniReader::_getIndexByPos(int Pos) const
 int IniReader::_findSect(const char* pSect) const
 {
 	__ENTER_FUNCTION
-	Assert(pSect!=NULL);
+	MyAssert(pSect!=NULL);
 
 	char buffer[INI_VALUE_LEN] = {0};
 	memset(buffer, 0, sizeof(buffer));
@@ -450,9 +450,9 @@ int IniReader::_findSect(const char* pSect) const
 int IniReader::_getLine(char* pBuff, int bufferLen, int beginPos) const
 {
 	__ENTER_FUNCTION
-	Assert(pBuff != 0);
-	Assert(bufferLen > 0);
-	Assert(beginPos >= 0 && beginPos < _dataLen);
+	MyAssert(pBuff != 0);
+	MyAssert(bufferLen > 0);
+	MyAssert(beginPos >= 0 && beginPos < _dataLen);
 
 	int index = 0;
 	while (beginPos < _dataLen && index < bufferLen - 1)
@@ -490,7 +490,7 @@ int IniReader::_getLine(char* pBuff, int bufferLen, int beginPos) const
 int IniReader::_findKey(int begin, const char* pKey) const
 {
 	__ENTER_FUNCTION
-	Assert(pKey != NULL);
+	MyAssert(pKey != NULL);
 
 	char lineBuffer[INI_LINE_LEN] = {0};
 	memset(lineBuffer, 0, sizeof(lineBuffer));
@@ -581,11 +581,11 @@ void IniReader::addSect(const char* pSect)
 	//检测
 	if (NULL == pSect)
 	{
-		AssertEx(0, "sect error!");
+		MyAssertEx(0, "sect error!");
 	}
 	if (str_util::strlen(pSect) > INI_SECT_LEN - 8)
 	{
-		AssertEx(0, "sect too long!");
+		MyAssertEx(0, "sect too long!");
 		return;
 	}
 	//段存在则直接返回
@@ -606,7 +606,7 @@ void IniReader::addSect(const char* pSect)
 	if (_pData[_dataLen - 1] != '\n')
 	{
 		pNewData = new char[_dataLen + incLen + 2];
-		Assert(pNewData != NULL);
+		MyAssert(pNewData != NULL);
 		
 		//拷贝原来的数据
 		memcpy(pNewData, _pData, _dataLen);
@@ -624,7 +624,7 @@ void IniReader::addSect(const char* pSect)
 	else
 	{
 		pNewData = new char[_dataLen + incLen + 2];
-		Assert(pNewData != NULL);
+		MyAssert(pNewData != NULL);
 
 		//拷贝原来的数据
 		memcpy(pNewData, _pData, _dataLen);
@@ -648,8 +648,8 @@ void IniReader::addSect(const char* pSect)
 bool IniReader::_getValue(int begin, char* pValue, int len) const
 {
 	__ENTER_FUNCTION
-	Assert(begin>0 && begin<_dataLen);
-	Assert(pValue != NULL);
+	MyAssert(begin>0 && begin<_dataLen);
+	MyAssert(pValue != NULL);
 
 	bool flag = false;
 	memset(pValue, 0, sizeof(char) * len);
@@ -688,7 +688,7 @@ bool IniReader::_getValue(int begin, char* pValue, int len) const
 void IniReader::_initSectIndex()
 {
 	__ENTER_FUNCTION
-	Assert(_dataLen>0);
+	MyAssert(_dataLen>0);
 	
 	//计算段数目
 	_sectCount = 0;

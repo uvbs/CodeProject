@@ -11,7 +11,7 @@
 #define __ANY_OBJ_H_
 
 #include <typeinfo>
-#include "assert.h"
+#include "myassert.h"
 #include <iostream>
 #include <ostream>
 #include <string.h>
@@ -155,7 +155,7 @@ namespace sys_util {
 		{
 			if (!_content) 
 			{
-				Assert("Bad cast from uninitialised Any");
+				MyAssert("Bad cast from uninitialised Any");
 			}
 			else if (getType() == typeid(ValueType))
 			{
@@ -163,7 +163,7 @@ namespace sys_util {
 			}
 			else
 			{
-				Assert("Bad cast from uninitialised Any");
+				MyAssert("Bad cast from uninitialised Any");
 			}
 		}
 
@@ -172,7 +172,7 @@ namespace sys_util {
 		{
 			if (!_content) 
 			{
-				Assert("Bad cast from uninitialised Any");
+				MyAssert("Bad cast from uninitialised Any");
 			}
 			else if (getType() == typeid(ValueType))
 			{
@@ -180,7 +180,7 @@ namespace sys_util {
 			}
 			else
 			{
-				Assert("Bad cast from uninitialised Any");
+				MyAssert("Bad cast from uninitialised Any");
 			}
 		}
 
@@ -207,7 +207,7 @@ namespace sys_util {
 		const ValueType * result = any_cast<ValueType>(&operand);
 		if (!result)
 		{
-			Assert("Bad cast from type");
+			MyAssert("Bad cast from type");
 		}
 		return *result;
 	}

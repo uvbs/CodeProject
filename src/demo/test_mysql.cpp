@@ -1,7 +1,7 @@
 #include "socketdef.h"
 #include "test_mysql.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 #include "string_util.h"
 #include "log.h"
 #include <iostream>
@@ -14,7 +14,7 @@ IDBInterface::IDBInterface()
     __ENTER_FUNCTION
     _reconnTimer.endTimer();
     _pDataBase = new CDataBase();
-    Assert(_pDataBase);
+    MyAssert(_pDataBase);
     __LEAVE_FUNCTION
 }
 
@@ -39,7 +39,7 @@ bool IDBInterface::init(const char* ip, uint port, const char* user, const char*
     //Á¬½Ódb
     if (!connect())
     {
-        Assert(0);
+        MyAssert(0);
     }
     return true ;
     __LEAVE_FUNCTION
@@ -77,7 +77,7 @@ bool IDBInterface::connect()
 {
     __ENTER_FUNCTION
     bool bRet = _pDataBase->init(_ip,_user,_pwd,_dbname,_port,_encoding);
-    Assert(bRet);
+    MyAssert(bRet);
     LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO,
 		"connect db [%s] ok.", _dbname);
     return true;

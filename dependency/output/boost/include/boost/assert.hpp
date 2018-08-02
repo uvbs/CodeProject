@@ -56,7 +56,6 @@ namespace boost
 #else
 
 # include <assert.h> // .h to support old libraries w/o <cassert> - effect is the same
-
 # define BOOST_ASSERT(expr) assert(expr)
 # define BOOST_ASSERT_MSG(expr, msg) assert((expr)&&(msg))
 #if defined(NDEBUG)

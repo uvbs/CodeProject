@@ -1,11 +1,11 @@
 #include "mutex.h"
-#include "assert.h"
+#include "myassert.h"
 
 Mutex::Mutex()
 {
 #ifndef _WIN32
    int ret = pthread_mutex_init(&mId, 0);
-   Assert(ret == 0);
+   MyAssert(ret == 0);
 #else
    // Note:  Windows Critical sections are recursive in nature and perhaps
    //        this implementation calls for a non-recursive implementation
@@ -19,7 +19,7 @@ Mutex::~Mutex()
 {
 #ifndef _WIN32
    int ret = pthread_mutex_destroy(&mId);
-   Assert(ret == 0);
+   MyAssert(ret == 0);
 #else
    DeleteCriticalSection(&mId);
 #endif
@@ -29,7 +29,7 @@ void Mutex::lock()
 {
 #ifndef _WIN32
    int ret = pthread_mutex_lock(&mId);
-   Assert(ret == 0);
+   MyAssert(ret == 0);
 #else
    EnterCriticalSection(&mId);
 #endif
@@ -39,7 +39,7 @@ void Mutex::unLock()
 {
 #ifndef _WIN32
    int ret = pthread_mutex_unlock(&mId);
-   Assert(ret == 0);
+   MyAssert(ret == 0);
 #else
    LeaveCriticalSection(&mId);
 #endif
@@ -73,7 +73,7 @@ void RWMutex::unLock()
    // Unlocking a write lock.
    if ( mWriterHasLock )
    {
-      Assert( mReaderCount == 0 );
+      MyAssert( mReaderCount == 0 );
       mWriterHasLock = false;
       // Pending writers have priority. Could potentially starve readers.
       if ( mPendingWriterCount > 0 )
@@ -91,7 +91,7 @@ void RWMutex::unLock()
    // Unlocking a read lock.
    else
    {
-      Assert( mReaderCount > 0 );
+      MyAssert( mReaderCount > 0 );
       mReaderCount--;
       if ( mReaderCount == 0 && mPendingWriterCount > 0 )
       {

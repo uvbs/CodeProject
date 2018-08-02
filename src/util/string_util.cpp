@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdarg.h>
 #include <algorithm>
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 #include <sstream>
 using std::stringstream;
@@ -17,8 +17,8 @@ namespace str_util {
 char* strcpy(char* pDestination, const char* pSource)
 {
 	__ENTER_FUNCTION
-	Assert(pDestination);
-	Assert(pSource);
+	MyAssert(pDestination);
+	MyAssert(pSource);
 	return ::strcpy(pDestination, pSource);
 	__LEAVE_FUNCTION
 	return NULL;
@@ -27,8 +27,8 @@ char* strcpy(char* pDestination, const char* pSource)
 char* strncpy(char* pDestination, const char* pSource, uint length)
 {
 	__ENTER_FUNCTION
-	Assert(pDestination);
-	Assert(pSource);
+	MyAssert(pDestination);
+	MyAssert(pSource);
 	return ::strncpy(pDestination, pSource, length);
 	__LEAVE_FUNCTION
 	return NULL;
@@ -37,11 +37,11 @@ char* strncpy(char* pDestination, const char* pSource, uint length)
 char* strcpy_s(char* pDestination, const char* pSource, const int length)
 {
 	__ENTER_FUNCTION
-	Assert(pDestination);
-	Assert(pSource);
+	MyAssert(pDestination);
+	MyAssert(pSource);
 	if (str_util::strlen(pSource) >= length)
 	{
-		Assert(false);
+		MyAssert(false);
 	}
 
 #ifdef _WIN32
@@ -68,8 +68,8 @@ char* strcpy_s(char* pDestination, const char* pSource, const int length)
 char* strcat(char* pDestination, const char* pSource)	
 {
 	__ENTER_FUNCTION
-	Assert(pDestination);
-	Assert(pSource);
+	MyAssert(pDestination);
+	MyAssert(pSource);
 	return ::strcat(pDestination, pSource);
 	__LEAVE_FUNCTION
 	return NULL;
@@ -78,8 +78,8 @@ char* strcat(char* pDestination, const char* pSource)
 char* strncat(char* pDestination, const char* pSource, uint length)
 {
 	__ENTER_FUNCTION
-	Assert(pDestination);
-	Assert(pSource);
+	MyAssert(pDestination);
+	MyAssert(pSource);
 	return ::strncat(pDestination, pSource, length);
 	__LEAVE_FUNCTION
 	return NULL;
@@ -95,8 +95,8 @@ char* strncat(char* pDestination, const char* pSource, uint length)
 int strcmp(const char* pSource1, const char* pSource2)	
 {
 	__ENTER_FUNCTION
-	Assert(pSource1);
-	Assert(pSource2);
+	MyAssert(pSource1);
+	MyAssert(pSource2);
 	return ::strcmp(pSource1, pSource2);
 	__LEAVE_FUNCTION
 	return -1;
@@ -105,8 +105,8 @@ int strcmp(const char* pSource1, const char* pSource2)
 int strncmp(const char* pSource1, const char* pSource2, uint length)	
 {
 	__ENTER_FUNCTION
-	Assert(pSource1);
-	Assert(pSource2);
+	MyAssert(pSource1);
+	MyAssert(pSource2);
 	return ::strncmp(pSource1, pSource2, length);
 	__LEAVE_FUNCTION
 	return -1;
@@ -115,7 +115,7 @@ int strncmp(const char* pSource1, const char* pSource2, uint length)
 int strlen(const char* pSource)			
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 	return (int)::strlen(pSource);
 	__LEAVE_FUNCTION
 	return -1;
@@ -129,7 +129,7 @@ int strlen(const char* pSource)
 int	 strUtf8len(const char* s)
 {
 	__ENTER_FUNCTION
-	Assert(s);
+	MyAssert(s);
 	uchar tcp;
 	const uchar* buf = reinterpret_cast<const uchar*>(s);
 	int count = 0;
@@ -178,8 +178,8 @@ int	 strUtf8len(const char* s)
 const char* strstr(const char* pHaystack, const char* pNeedle)
 {
 	__ENTER_FUNCTION
-	Assert(pHaystack);
-	Assert(pNeedle);
+	MyAssert(pHaystack);
+	MyAssert(pNeedle);
 	return ::strstr(pHaystack, pNeedle);
 	__LEAVE_FUNCTION
 	return NULL;
@@ -188,8 +188,8 @@ const char* strstr(const char* pHaystack, const char* pNeedle)
 int snprintf(char *pBuffer, int maxlen, const char *pFormat, ...)
 {
 	__ENTER_FUNCTION
-	Assert(pBuffer);
-	Assert(pFormat);
+	MyAssert(pBuffer);
+	MyAssert(pFormat);
 
 	int result;
 	va_list argptr ;
@@ -210,8 +210,8 @@ int snprintf(char *pBuffer, int maxlen, const char *pFormat, ...)
 int vsnprintf(char* buf, int maxlen, const char* format, va_list varList)
 {
 	__ENTER_FUNCTION
-	Assert(buf);
-	Assert(format);
+	MyAssert(buf);
+	MyAssert(format);
 
 	int result = 0;
 #if defined (_LINUX64)
@@ -234,7 +234,7 @@ int vsnprintf(char* buf, int maxlen, const char* format, va_list varList)
 char* strtok(char* pSource, const char* pDelimit)
 {
 	__ENTER_FUNCTION
-	Assert(pDelimit);
+	MyAssert(pDelimit);
 	return ::strtok(pSource, pDelimit);
 	__LEAVE_FUNCTION
 	return NULL;
@@ -244,7 +244,7 @@ char* strtok_s(char* pSource, const char* pDelimit, char** pContext)
 {
 	__ENTER_FUNCTION
 		
-	Assert(pDelimit);
+	MyAssert(pDelimit);
 #ifdef _WIN32
 	return ::strtok_s(pSource, pDelimit, pContext);
 #endif
@@ -373,7 +373,7 @@ const char* getLineFromMemory(char* pStringBuf, int bufSize, const char* pMemSta
 int strToInt(const char* pSource)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 	return ::atoi(pSource);
 	__LEAVE_FUNCTION
 	return -1;
@@ -382,7 +382,7 @@ int strToInt(const char* pSource)
 uint strToUint(const char*  pSource, char**  pEnd, int nBase)
 {
     __ENTER_FUNCTION
-    Assert(pSource);
+    MyAssert(pSource);
     return ::strtoul(pSource, pEnd, nBase);
     __LEAVE_FUNCTION
      return (uint)-1;
@@ -395,7 +395,7 @@ uint strToUint(const char*  pSource, char**  pEnd, int nBase)
 long strToL(const char* pSource, char**  pEnd, int nBase)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 	return ::strtol(pSource, pEnd, nBase);
 	__LEAVE_FUNCTION
 	return -1;
@@ -404,7 +404,7 @@ long strToL(const char* pSource, char**  pEnd, int nBase)
 ulong strToUL(const char*  pSource, char**  pEnd, int nBase)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 	return ::strtoul(pSource, pEnd, nBase);
 	__LEAVE_FUNCTION
 	return (ulong)-1;
@@ -443,7 +443,7 @@ uint64 strToUint64(const char*  pSource, char**  pEnd, int nBase)
 float strToFloat(const char* pSource)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 	return ::atof(pSource);
 	__LEAVE_FUNCTION
 	return -1.0f;
@@ -456,7 +456,7 @@ float strToFloat(const char* pSource)
 double strToDouble(const char*  pSource, char**  pEnd)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 	return ::strtod(pSource, pEnd);
 	__LEAVE_FUNCTION
 	return -1.0f;
@@ -465,7 +465,7 @@ double strToDouble(const char*  pSource, char**  pEnd)
 char* int32ToStr(int nValue, char* pString, int nRadix)
 {
 	__ENTER_FUNCTION
-	Assert(pString);
+	MyAssert(pString);
 
 #if defined (_WIN32)
 	return ::itoa(nValue, pString, nRadix);
@@ -570,7 +570,7 @@ int trimRight( char* s )
 bool trimLeft(char *pSrc)
 {
 	__ENTER_FUNCTION
-	Assert(pSrc);
+	MyAssert(pSrc);
 	if (pSrc == NULL)
 	{
 		return false;
@@ -591,7 +591,7 @@ bool trimLeft(char *pSrc)
 bool trimRightV2(char *pSrc)
 {
 	__ENTER_FUNCTION
-	Assert(pSrc);
+	MyAssert(pSrc);
 
 	if (pSrc == NULL)
 	{
@@ -615,7 +615,7 @@ bool trimRightV2(char *pSrc)
 bool trim(char *pSrc)
 {
 	__ENTER_FUNCTION
-	Assert(pSrc);
+	MyAssert(pSrc);
 
 	bool bErase1 = trimLeft(pSrc);
 	bool bErase2 = trimRightV2(pSrc);
@@ -639,7 +639,7 @@ bool trim(string& str, char c)
 bool isInteger(const char* pSource)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 
 	if (pSource[0] == '-')
 	{
@@ -666,7 +666,7 @@ bool isInteger(const char* pSource)
 bool isFloat(const char* pSource)
 {
 	__ENTER_FUNCTION
-	Assert(pSource);
+	MyAssert(pSource);
 
 	if (pSource[0] == '-')
 	{

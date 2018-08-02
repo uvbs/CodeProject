@@ -8,7 +8,7 @@
 
 #include <new>	//placement new
 #include <stdlib.h> //malloc()
-#include "assert.h"
+#include "myassert.h"
 #include "stack.h"
 
 namespace algorithm 
@@ -65,15 +65,15 @@ void single_allocator<T>::init(const int maxSize)
 {
 	if (_s_hasInit)
 	{
-		Assert(0);
+		MyAssert(0);
 		return;
 	}
 	//为了规避init时对T的构造函数的调用，这里使用malloc
 	//后来为了方便new_tracer能够记录single_allocator分配的内存，这里又改成了new byte[]
 	_s_memory = static_cast<T*>(static_cast<void*>(new byte[maxSize * sizeof(T)]));
-	Assert(_s_memory);
+	MyAssert(_s_memory);
 	_s_free = new Stack<int>(maxSize);
-	Assert(_s_free);
+	MyAssert(_s_free);
 	_s_allocCount = maxSize; 
 	_s_hasInit = true;
 }
@@ -92,7 +92,7 @@ T* single_allocator<T>::alloc()
 {
 	if (!_s_hasInit)
 	{
-		Assert(0);
+		MyAssert(0);
 		return NULL;
 	}
 	if (_s_allocCount > 0)
@@ -110,7 +110,7 @@ T* single_allocator<T>::alloc()
 	else
 	{
 		//throw(1);	//TODO 定义对应异常
-		//Assert(0);
+		//MyAssert(0);
 		return NULL;
 	}
 }
@@ -120,7 +120,7 @@ void single_allocator<T>::free(T* const pElem)
 {
 	if (!_s_hasInit)
 	{
-		Assert(0);
+		MyAssert(0);
 		return;
 	}
 	if (NULL != pElem)
