@@ -34,6 +34,7 @@
 #include "test_varsystem.h"
 #include "test_log4cplus.h"
 #include "test_serializer.h"
+#include "test_jconfig.h"
 
 using namespace std;
 using std::string;
@@ -47,7 +48,6 @@ int main()
 		TimeSystem::getSinglePtr()->start();
 		LogSystem::getSinglePtr()->init(1024*1024);
 		LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "start");
-
 		//int *pTest = NULL;
 		//int aaa = *pTest;
         //test_log4cplus();
@@ -83,6 +83,8 @@ int main()
 		test_varsystem();
         test_serializer_json();
         test_serializer_php();
+        test_jconfig();
+
 		//wait
 		cin.get();
 	}
@@ -97,3 +99,4 @@ int main()
 
 	return 0;
 }
+

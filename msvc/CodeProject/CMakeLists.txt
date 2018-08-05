@@ -17,6 +17,8 @@ include_directories(
 ../../src/container
 ../../src/demo
 ../../src/filereader/ini
+../../src/filereader/jconfig
+../../src/filereader/json
 ../../src/filereader/tab
 ../../src/filereader/xml
 ../../src/json_php_serializer
@@ -56,6 +58,8 @@ file(GLOB ALL_HEADER_SRCS
 ../../src/container/*.h
 ../../src/demo/*.h
 ../../src/filereader/ini/*.h
+../../src/filereader/jconfig/*.h
+../../src/filereader/json/*.h
 ../../src/filereader/tab/*.h
 ../../src/filereader/xml/*.h
 ../../src/json_php_serializer/*.h
@@ -85,6 +89,8 @@ file(GLOB ALL_CXX_SRCS
 ../../src/container/*.cpp
 ../../src/demo/*.cpp
 ../../src/filereader/ini/*.cpp
+../../src/filereader/jconfig/*.cpp
+../../src/filereader/json/*.cpp
 ../../src/filereader/tab/*.cpp
 ../../src/filereader/xml/*.cpp
 ../../src/json_php_serializer/*.cpp
