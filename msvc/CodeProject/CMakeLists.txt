@@ -32,6 +32,7 @@ include_directories(
 ../../src/simple_reflect
 ../../src/ucs
 ../../src/util
+../../src/util/url_util
 ../../dependency/output/boost/include
 ../../dependency/output/libConhash/include
 ../../dependency/output/libcurl/linux/include
@@ -75,6 +76,7 @@ file(GLOB ALL_HEADER_SRCS
 ../../src/simple_reflect/*.h
 ../../src/ucs/*.h
 ../../src/util/*.h
+../../src/util/url_util/*.h
 ../../dependency/output/boost/include/*.h
 ../../dependency/output/libConhash/include/*.h
 ../../dependency/output/libcurl/linux/include/*.h
@@ -108,11 +110,12 @@ file(GLOB ALL_CXX_SRCS
 ../../src/simple_reflect/*.cpp
 ../../src/ucs/*.cpp
 ../../src/util/*.cpp
+../../src/util/url_util/*.cpp
 )
 
 set(ALL_LIB dl pthread curl ssl crypto Conhash Jsonc MySql_c mysqlclient Net
-    rt log4cplus boost_date_time boost_filesystem boost_regex boost_system
-    boost_thread libevent.a)
+    rt log4cplus boost_date_time boost_filesystem  boost_system boost_thread
+    libboost_regex.a libevent.a)
 add_executable(CodeProj ${ALL_HEADER_SRCS} ${ALL_CXX_SRCS})
 target_link_libraries(CodeProj ${ALL_LIB})
 
