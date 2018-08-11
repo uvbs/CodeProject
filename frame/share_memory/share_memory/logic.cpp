@@ -44,9 +44,9 @@ bool	LogicThread::init()
 #define INIT_SMU(TYPE, SMU, COUNT) \
     ShareMemPool<SMU>* p##SMU##Pool = static_cast<ShareMemPool<SMU>*>(_shm[TYPE]._pool); \
     key = _shm[TYPE]._key; \
-    ret = p##SMU##Pool->init(COUNT, key, SM_ShareMemory); Assert(ret);\
+    ret = p##SMU##Pool->init(COUNT, key, SM_ShareMemory); MyAssert(ret);\
     ShareMemLogicHandler<SMU>* p##SMU##Handler = static_cast<ShareMemLogicHandler<SMU>*>(_shm[TYPE]._handler);\
-    ret = p##SMU##Handler->init(p##SMU##Pool); Assert(ret);
+    ret = p##SMU##Handler->init(p##SMU##Pool); MyAssert(ret);
 
     SM_Key key = 0;
     bool ret = false;
@@ -96,7 +96,7 @@ LogicThread::~LogicThread()
 #define DEL_SMU(TYPE, SMU) \
     ShareMemPool<SMU>* p##SMU##Pool = static_cast<ShareMemPool<SMU>*>(_shm[TYPE]._pool); \
     ShareMemLogicHandler<SMU>* p##SMU##Handler = static_cast<ShareMemLogicHandler<SMU>*>(_shm[TYPE]._handler);\
-    ret = p##SMU##Pool->finalize(); Assert(ret);\
+    ret = p##SMU##Pool->finalize(); MyAssert(ret);\
     SAFE_DELETE(p##SMU##Pool);\
     SAFE_DELETE(p##SMU##Handler);
 

@@ -45,8 +45,8 @@ void	ScenePlayerMgr::getMaxMinFD(SOCK removedFD,SOCK& maxFD,SOCK& minFD)
 bool ScenePlayerMgr::kickPlayer(GamePlayer* pPlayer)
 {
 	__ENTER_FUNCTION
-	Assert(pPlayer);
-	Assert(_pScene);
+	MyAssert(pPlayer);
+	MyAssert(_pScene);
     bool bRet = false;
 
 	//清除Socket信息
@@ -60,11 +60,11 @@ bool ScenePlayerMgr::kickPlayer(GamePlayer* pPlayer)
 	//_pScene->removePacket(playerId) ;
 	//char* strIP = pPlayer->GetSocket()->GetIp();
 	bRet = removePlayer(playerId) ;
-	Assert(bRet);
+	MyAssert(bRet);
 
 	//清除在池中的信息
 	bRet = pPlayer->free();
-	Assert(bRet) ;
+	MyAssert(bRet) ;
 
 	return true ;
 	__LEAVE_FUNCTION

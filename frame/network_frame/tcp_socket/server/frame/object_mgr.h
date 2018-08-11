@@ -10,7 +10,7 @@
 #define __OBJECT_MGR_H_
 
 #include "type.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 
 template<class T> 
@@ -34,7 +34,7 @@ public:
 	{
 		__ENTER_FUNCTION
 		
-		Assert(_ppObjList == NULL);
+		MyAssert(_ppObjList == NULL);
 		if (count <= 0 )
 		{
 			return false;
@@ -70,7 +70,7 @@ public:
 	//Ôö¼Ó
 	bool addObj(T* pObject)
 	{
-		Assert(pObject);
+		MyAssert(pObject);
 		if (_size >= _capacity)
 		{
 			return false;
@@ -84,7 +84,7 @@ public:
 	//É¾³ý
 	bool removeObj(T* pObject)
 	{
-		Assert(pObject);
+		MyAssert(pObject);
 		if (_size <= 0)
 		{
 			return false;

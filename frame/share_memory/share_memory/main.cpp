@@ -6,7 +6,7 @@
 **********************************/
 #include "seh_file.h"
 #include "shm_server.h"
-#include "assert.h"
+#include "myassert.h"
 
 int		main(int argc, char* argv[])
 {
@@ -17,11 +17,11 @@ int		main(int argc, char* argv[])
 
 	ShmServer s;
 	bool ret = s.init();
-    Assert(ret);
+    MyAssert(ret);
 	ret = s.start();
-    Assert(ret);
+    MyAssert(ret);
 	ret = s.wait();
-    Assert(ret);
+    MyAssert(ret);
 
 	return 0;
 	__LEAVE_FUNCTION

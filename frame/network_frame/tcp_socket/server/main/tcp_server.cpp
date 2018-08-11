@@ -1,4 +1,4 @@
-#include "assert.h"
+#include "myassert.h"
 #include "tcp_server.h"
 #include "log.h"
 #include "logic.h"
@@ -28,53 +28,53 @@ bool	TcpSocketServer::init()
 	int err = WSAStartup(wVersionRequested, &wsaData); 
 	if (err != 0)
 	{
-		Assert(0);
+		MyAssert(0);
 	}
 #endif
 
 	// 时间
 	_pTimeSystem = TimeSystem::getSinglePtr();
-	Assert(_pTimeSystem);
+	MyAssert(_pTimeSystem);
 	_pTimeSystem->start();
 
 	// 日志
 	_pLogSystem = LogSystem::getSinglePtr();
-	Assert(_pLogSystem);
+	MyAssert(_pLogSystem);
 	ret = _pLogSystem->init(DEFAULT_LOG_CACHE_SIZE);
-	Assert(ret);
+	MyAssert(ret);
 
 	//// 场景管理器
 	//_pSceneMgr = SceneMgr::getSinglePtr();
-	//Assert(_pSceneMgr);
+	//MyAssert(_pSceneMgr);
 	//ret = _pSceneMgr->init();
-	//Assert(ret);
+	//MyAssert(ret);
 	//LogSystem::getSinglePtr()->saveLogImmediately(LOG_FILE_SYSTEM, "SceneMgr init OK.");
 
 	// 连接池
 	int nMaxPlayerCount = 1024; // read from config
 	_pGamePlayerPool = PlayerPool<GamePlayer>::getSinglePtr();
-	Assert(_pGamePlayerPool);
+	MyAssert(_pGamePlayerPool);
 	ret = _pGamePlayerPool ->init(nMaxPlayerCount);
-	Assert(ret);
+	MyAssert(ret);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "GamePlayerPool init OK.");
 	
 	// 包工厂管理器
 	_pPacketFactoryMgr = PacketFactoryMgr::getSinglePtr();
-	Assert(_pPacketFactoryMgr);
+	MyAssert(_pPacketFactoryMgr);
 	ret = _pPacketFactoryMgr->init();
-	Assert(ret);
+	MyAssert(ret);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "PacketFactoryMgr init OK.");
 
 	// 接入线程
 	ret = _incomingThread.init(nMaxPlayerCount);
-	Assert(ret);
+	MyAssert(ret);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "IncomingThread init OK.");
 
 	// 逻辑线程
 	_pLogicThreadsMgr = LogicThreadMgr::getSinglePtr();
-	Assert(_pLogicThreadsMgr);
+	MyAssert(_pLogicThreadsMgr);
 	ret = _pLogicThreadsMgr->init();
-	Assert(ret);
+	MyAssert(ret);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "LogicThreadsMgr init OK.");
 
 	return true;

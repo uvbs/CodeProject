@@ -28,7 +28,7 @@ public:
 	void	setTid(ThreadId id){ _nTid = id;}
 	ThreadId	getTid() const { return _nTid; }
 	ScenePlayerMgr*	getScenePlayerMgr() { return _pScenePlayerMgr;}
-	int	   getPlayerCount() const { Assert(_pScenePlayerMgr); return _pScenePlayerMgr->getObjNum(); }
+	int	   getPlayerCount() const { MyAssert(_pScenePlayerMgr); return _pScenePlayerMgr->getObjNum(); }
 	bool broadCast(Packet* pPacket);
 
 private:

@@ -2,7 +2,7 @@
 #include "socket.h"
 #endif
 #include "dbhelper.h"
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 #include "string_util.h"
 

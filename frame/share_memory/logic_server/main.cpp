@@ -6,7 +6,7 @@
 ***************************************************/
 #include "seh_file.h"
 #include "logic_server.h"
-#include "assert.h"
+#include "myassert.h"
 
 int main(int argc, char* argv[])
 {
@@ -19,13 +19,13 @@ __ENTER_FUNCTION
 
 	LogicServer s;
 	bool bRet = s.init();
-    Assert(bRet);
+    MyAssert(bRet);
 
 	bRet = s.loop();
-    Assert(bRet);
+    MyAssert(bRet);
 
 	bRet = s.exit();
-    Assert(bRet);
+    MyAssert(bRet);
 
 	return 0;
 __LEAVE_FUNCTION

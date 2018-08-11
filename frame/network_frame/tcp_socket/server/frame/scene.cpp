@@ -12,12 +12,12 @@ Scene::Scene(int nSceneId)
 	_nSceneId = nSceneId;
 
 	_pPacketCache = new PacketCache[kPacketCacheGrow];
-	Assert(_pPacketCache) ;
+	MyAssert(_pPacketCache) ;
 	_nPacketCacheCurrSize = kPacketCacheGrow ;
 	_nHead = _nTail = 0 ;
 
 	_pScenePlayerMgr = new ScenePlayerMgr();
-	Assert(_pScenePlayerMgr);
+	MyAssert(_pScenePlayerMgr);
 	_pScenePlayerMgr->setScene(this);
 }
 
@@ -29,9 +29,9 @@ Scene::~Scene()
 
 bool Scene::init(int nPlayerCount)
 {
-	Assert(_pScenePlayerMgr);
+	MyAssert(_pScenePlayerMgr);
 	bool ret =  _pScenePlayerMgr->init(nPlayerCount);
-	Assert(ret);
+	MyAssert(ret);
 
 	return true;
 }
@@ -50,14 +50,14 @@ bool Scene::tick(uint uTime)
 	bool ret = false;
 	__MYTRY 
 	{ 
-		ret = _pScenePlayerMgr->processExceptions(); Assert(ret); 
-		ret = _pScenePlayerMgr->select(); Assert(ret);
-		ret = _pScenePlayerMgr->processExceptions(); Assert(ret);
-		ret = _pScenePlayerMgr->processInputs(); Assert(ret);
-		ret = _pScenePlayerMgr->processOutputs(); Assert(ret);
-		ret = _pScenePlayerMgr->processCmds(); Assert(ret);
+		ret = _pScenePlayerMgr->processExceptions(); MyAssert(ret); 
+		ret = _pScenePlayerMgr->select(); MyAssert(ret);
+		ret = _pScenePlayerMgr->processExceptions(); MyAssert(ret);
+		ret = _pScenePlayerMgr->processInputs(); MyAssert(ret);
+		ret = _pScenePlayerMgr->processOutputs(); MyAssert(ret);
+		ret = _pScenePlayerMgr->processCmds(); MyAssert(ret);
 		processCacheCmds();
-		ret = heartBeat(uTime); Assert(ret);
+		ret = heartBeat(uTime); MyAssert(ret);
 	}
 	__MYCATCH
 	{
@@ -118,7 +118,7 @@ bool Scene::sendPacket(Packet* pPacket, Player_ID nPlayerId, bool bRemove)
 	if (_pPacketCache[_nTail].pPacket != NULL)
 	{
 		bool ret = resizeCache(); 
-		Assert(ret);
+		MyAssert(ret);
 	}
 	_pPacketCache[_nTail].pPacket = pPacket;
 	_pPacketCache[_nTail].nPlayerId = nPlayerId;
@@ -136,7 +136,7 @@ bool Scene::resizeCache( )
 	__ENTER_FUNCTION
 
 	//一定有数据
-	Assert(_pPacketCache[_nTail].pPacket != NULL);
+	MyAssert(_pPacketCache[_nTail].pPacket != NULL);
 	PacketCache* pNew = new PacketCache[_nPacketCacheCurrSize + kPacketCacheGrow];
 	if (pNew == NULL) { return false; }
 	if (_nHead < _nTail)
@@ -170,11 +170,11 @@ bool Scene::processCacheCmds()
 	{
 		bool ret = recvPacket(pPacket, nPlayerId, bRemove);
 		if (!ret) { return true; }
-		Assert(pPacket);
+		MyAssert(pPacket);
 		if (bRemove)
 		{
 			ret = PacketFactoryMgr::getSinglePtr()->removePacket(pPacket) ;
-			Assert(ret);
+			MyAssert(ret);
 			continue;
 		}
 		bool bNeedRemove = true;
@@ -243,7 +243,7 @@ bool	Scene::heartBeat(uint uTime)
 		TimeSystem::getSinglePtr()->getTimeTM(); //设定此桢的时间
 		uTime = TimeSystem::getSinglePtr()->getRunTime(); 
 		bool ret = _pScenePlayerMgr->heartBeat(uTime);
-		Assert(ret);
+		MyAssert(ret);
 	}
 	__MYCATCH
 	{
@@ -298,9 +298,9 @@ bool Scene::broadCast(Packet* pPacket)
 //	int count = kMaxSceneCount; //read from config
 //	for (int i = 0; i < count; ++i)
 //	{
-//		Scene* pScene = new Scene(i); Assert(pScene);
-//		bool ret = pScene->init(i); Assert(ret);
-//		ret = addScene(pScene); Assert(ret);
+//		Scene* pScene = new Scene(i); MyAssert(pScene);
+//		bool ret = pScene->init(i); MyAssert(ret);
+//		ret = addScene(pScene); MyAssert(ret);
 //	}
 //	return true;
 //}
@@ -323,7 +323,7 @@ bool Scene::broadCast(Packet* pPacket)
 //
 //bool SceneMgr::addScene(Scene* pScene)
 //{
-//	Assert(pScene);
+//	MyAssert(pScene);
 //	if (_nSceneCount < kMaxSceneCount)
 //	{
 //		_pScenes[_nSceneCount++] = pScene;

@@ -20,16 +20,16 @@ bool	ShmServer::init()
 	__ENTER_FUNCTION
     //时间系统
 	_time_system = TimeSystem::getSinglePtr();
-	Assert(_time_system);
+	MyAssert(_time_system);
 	_time_system->start();
     //日志系统
 	_log_system = LogSystem::getSinglePtr();
-	Assert(_log_system);
+	MyAssert(_log_system);
 	bool bRet = _log_system->init();
-    Assert(bRet);
+    MyAssert(bRet);
 	//SMU Pool Thread
     bRet = _thread.init();
-    Assert(bRet);
+    MyAssert(bRet);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "smu pool thread init OK.");
 	
 	return true;

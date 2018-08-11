@@ -12,7 +12,7 @@
 #include "shm_util.h"
 #include "dbstruct.h"
 #include "data_struct.h"
-#include "assert.h"
+#include "myassert.h"
 
 #pragma pack(push, 1)
 

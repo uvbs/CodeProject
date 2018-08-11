@@ -17,7 +17,7 @@ WX_IMPLEMENT_SINGLEON(GamePlayerMgr);
 GamePlayerMgr::GamePlayerMgr()
 {
 	_pPacketQ = new PacketCache[MAX_PACKET_CACHE_SIZE];
-	Assert(_pPacketQ) ;
+	MyAssert(_pPacketQ) ;
 	_packetQSize = MAX_PACKET_CACHE_SIZE ;
 	_head = 0 ;
 	_tail = 0 ;
@@ -34,17 +34,17 @@ bool GamePlayerMgr::init(int count, const char* host, int port)
 	__ENTER_FUNCTION
 
 	bool ret = ObjectMgr<GamePlayer>::init(count);
-	Assert(ret);
+	MyAssert(ret);
 	_pSrvSocket = new SocketServer(); 
-	Assert(_pSrvSocket) ;
+	MyAssert(_pSrvSocket) ;
 	ret =  _pSrvSocket->create(host, port);
-	Assert(ret) ;
+	MyAssert(ret) ;
 	ret = _pSrvSocket->bind() ;
-	Assert(ret) ;
+	MyAssert(ret) ;
 	ret = _pSrvSocket->listen(5) ;
-	Assert(ret) ;
+	MyAssert(ret) ;
 	ret = _pSrvSocket->setNonBlocking() ;
-	Assert(ret) ;
+	MyAssert(ret) ;
 	
 	_srvSocketFd = _pSrvSocket->getFd();
 	FD_SET(_srvSocketFd , &_readFds[EM_SELECT_BAK]);
@@ -71,7 +71,7 @@ bool GamePlayerMgr::acceptNewConnection()
 		return false ;
 	}
 	Socket* pSocket = pClient->getSocket();
-	Assert(pSocket);
+	MyAssert(pSocket);
 	SOCK fd = INVALID_SOCKET;
 
 	__MYTRY
@@ -132,7 +132,7 @@ bool GamePlayerMgr::acceptNewConnection()
 		//设置当前客户端连接的状态
 		pClient->setStatus(EM_PLAYER_STATUS_CONNECT) ;
 		ret = addPlayer(pClient) ;
-		Assert(ret);
+		MyAssert(ret);
 	}
 	__MYCATCH
 	{
@@ -328,7 +328,7 @@ bool GamePlayerMgr::sendPacket(Packet* pPacket, int playerId, bool isRemove)
 	if (_pPacketQ[_tail].pPacket != NULL)
 	{
 		bool ret = resizePacketCache( ) ;
-		Assert(ret);
+		MyAssert(ret);
 	}
 	_pPacketQ[_tail].pPacket = pPacket ;
 	_pPacketQ[_tail].nPlayerId = playerId ;
@@ -393,7 +393,7 @@ bool GamePlayerMgr::processCacheCmds()
 		{
 			return true;
 		}
-		Assert(pPacket) ;
+		MyAssert(pPacket) ;
 		if (isRemove)
 		{
 			ret = PacketFactoryMgr::getSinglePtr()->removePacket(pPacket) ;
@@ -475,7 +475,7 @@ bool GamePlayerMgr::kickPlayer(GamePlayer* pPlayer)
 
 	//清除在池中的信息
 	bool bRet = pPlayer->free();
-	Assert(bRet) ;
+	MyAssert(bRet) ;
 	return true ;
 }
 
@@ -483,8 +483,8 @@ void GamePlayerMgr::relive()
 {
    __ENTER_FUNCTION
 
-   Assert(_pSrvSocket);
-   Assert(_srvSocketFd >= 0);
+   MyAssert(_pSrvSocket);
+   MyAssert(_srvSocketFd >= 0);
 
    kickAllPlayers();
 

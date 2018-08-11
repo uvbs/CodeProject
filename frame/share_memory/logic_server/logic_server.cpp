@@ -10,7 +10,7 @@
     readSize = fread(&data, 1, sizeof(data), f);\
     LogSystem::getSinglePtr()->saveLog(LOG_FILE_DEBUG,"Read = %d, sizeof(%s) = %d", readSize, #data, sizeof(data)); \
     if(readSize == 0) \
-    Assert(0);\
+    MyAssert(0);\
     totalReadSize += readSize; \
 
 //写文件宏
@@ -18,7 +18,7 @@
     writeSize = fwrite(&data, 1, sizeof(data), f);\
     LogSystem::getSinglePtr()->saveLog(LOG_FILE_DEBUG,"Write = %d, sizeof(%s) = %d", writeSize, #data, sizeof(data)); \
     if(writeSize == 0) \
-    Assert(0);\
+    MyAssert(0);\
 
 int LogicServer::_s_serial = 0;
 
@@ -36,18 +36,18 @@ bool	LogicServer::init()
 {
 	// 时间系统
     m_pTimeController = TimeSystem::getSinglePtr();
-	Assert(m_pTimeController);
+	MyAssert(m_pTimeController);
 	m_pTimeController->start();
 	// 日志系统
     m_pLogSystem = LogSystem::getSinglePtr();
-	Assert(m_pLogSystem);
+	MyAssert(m_pLogSystem);
 	bool bRet = m_pLogSystem->init();
-	Assert(bRet);
+	MyAssert(bRet);
 	// 玩家对象池
 	m_pHumanPool = ObjectHumanPool::getSinglePtr();
-	Assert(m_pHumanPool);
+	MyAssert(m_pHumanPool);
 	bRet = m_pHumanPool->init(1024);
-    Assert(bRet);
+    MyAssert(bRet);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "ObjectHumanPool init OK.");
 
 	return true;
@@ -89,7 +89,7 @@ bool	LogicServer::loop()
     bool bNewSMU = false;
     ObjectHuman* pHuman = NULL;
     pHuman = ObjectHumanPool::getSinglePtr()->allocObject(guid, bNewSMU, pHuman);
-    Assert(pHuman);
+    MyAssert(pHuman);
     pHuman->init(&data);
 
     while (true)

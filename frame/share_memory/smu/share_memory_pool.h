@@ -10,7 +10,7 @@
 #include "share_memory_obj.h"
 #include "shm_def.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 
 
 template<typename T>
@@ -100,7 +100,7 @@ public:
 	SM_Key getKey() { return _key; }
 	uint getHeadVer()
 	{
-		Assert(_pRefObjPtr);
+		MyAssert(_pRefObjPtr);
 		return _pRefObjPtr->getHeadVer();
 	}
 	void setHeadVer(uint ver)

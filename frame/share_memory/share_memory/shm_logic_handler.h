@@ -9,7 +9,7 @@
 
 #include "share_memory_pool.h"
 #include "shm_def.h"
-#include "assert.h"
+#include "myassert.h"
 #include "time_system.h"
 #include "dbhelper.h"
 
@@ -37,7 +37,7 @@ public:
 	bool heartBeat()
 	{
 		__ENTER_FUNCTION
-		Assert(_shm_pool);
+		MyAssert(_shm_pool);
 		uint uTime = TimeSystem::getSinglePtr()->getRunTime();
 		if ((uTime - _old_check_time) > MAX_SERVER_IDLE_TIME) // πÿ±’¡ÀLogicServer
 		{

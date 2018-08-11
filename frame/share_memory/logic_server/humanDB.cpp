@@ -81,7 +81,7 @@ const ItemData* HumanDB::getEquipItem(int i) const
 
 void	HumanDB::fillFullUserData(const FullUserData* userdata)
 {
-	Assert(userdata);
+	MyAssert(userdata);
 	memcpy(&_user_data._human_data, &userdata->_human_data, sizeof(_user_data._human_data));
 	memcpy(&_user_data._bag_data, &userdata->_bag_data, sizeof(_user_data._bag_data));
 	memcpy(&_user_data._equip_data, &userdata->_equip_data, sizeof(_user_data._equip_data));
@@ -144,7 +144,7 @@ void	HumanDB::regAttrs()
 void	HumanDB::regSMAttrs()
 {
 	#define REG_SM_ATTR(type,var)		_regAttr(type, &(var), sizeof(var), true);
-	Assert(_human_SMU);
+	MyAssert(_human_SMU);
 	//////////////////////////////////////////////////////////////////////////
 	//»ù±¾ÊôÐÔ
 	//////////////////////////////////////////////////////////////////////////
@@ -177,9 +177,9 @@ void	HumanDB::regSMAttrs()
 
 void	HumanDB::_regAttr(EM_ATTR_DB offset, void* arg, int size, bool smu /*= false*/)
 {
-	Assert(offset >= 0 && offset < EM_ATTR_DB_NUM);
-	Assert(arg);
-	Assert(size > 0);
+	MyAssert(offset >= 0 && offset < EM_ATTR_DB_NUM);
+	MyAssert(arg);
+	MyAssert(size > 0);
 	if (!smu)
 	{
 		_reg_attr.m_AttrPtr[offset] = arg;
@@ -194,27 +194,27 @@ void	HumanDB::_regAttr(EM_ATTR_DB offset, void* arg, int size, bool smu /*= fals
 
 void* 	HumanDB::_getAttr(EM_ATTR_DB offset, bool smu/* = false*/) const
 {
-	Assert(offset >= 0 && offset < EM_ATTR_DB_NUM);
+	MyAssert(offset >= 0 && offset < EM_ATTR_DB_NUM);
 	if (!smu) { return _reg_attr.m_AttrPtr[offset]; }
 	else { return _reg_sm_attr.m_AttrPtr[offset]; }
 }
 
 int		HumanDB::_getAttrSize(EM_ATTR_DB offset) const
 {
-	Assert(offset >= 0 && offset < EM_ATTR_DB_NUM);
+	MyAssert(offset >= 0 && offset < EM_ATTR_DB_NUM);
 	return _reg_attr.m_AttrSize[offset];
 }
 
 void	HumanDB::setDBAttrDirty(EM_ATTR_DB offset, bool flag)
 {
-	Assert(offset >= 0 && offset < EM_ATTR_DB_NUM);
+	MyAssert(offset >= 0 && offset < EM_ATTR_DB_NUM);
 	if (flag) { _dbAttr_dirty_flag.setBit(offset); }
 	else { _dbAttr_dirty_flag.clearBit(offset); }
 }
 
 bool	HumanDB::getDBAttrDirty(EM_ATTR_DB offset)
 {
-	Assert(offset >= 0 && offset < EM_ATTR_DB_NUM);
+	MyAssert(offset >= 0 && offset < EM_ATTR_DB_NUM);
 	return _dbAttr_dirty_flag.isSetBit(offset);
 }
 

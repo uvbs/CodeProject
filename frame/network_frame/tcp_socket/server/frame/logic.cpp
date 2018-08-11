@@ -1,6 +1,6 @@
 #include "socketdef.h"
 #include "logic.h"
-#include "assert.h"
+#include "myassert.h"
 #include "game_player_mgr.h"
 #include "helper.h"
 #include "log.h"
@@ -14,9 +14,9 @@ bool IncomingThread::init(int nPlayerCount /*= 1024*/)
 	__ENTER_FUNCTION
 
 	_pGamePlayerMgr = GamePlayerMgr::getSinglePtr();
-	Assert(_pGamePlayerMgr);
+	MyAssert(_pGamePlayerMgr);
 	bool ret = _pGamePlayerMgr->init(nPlayerCount, "127.0.0.1", 8888) ;
-	Assert(ret);
+	MyAssert(ret);
 
 	return true;
 	__LEAVE_FUNCTION
@@ -39,13 +39,13 @@ void IncomingThread::do_service()
 		else { sys_util::sleep(100 - uDelta); }
 		__MYTRY
 		{
-			ret = _pGamePlayerMgr->select(); Assert(ret);
-			ret = _pGamePlayerMgr->processExceptions(); Assert(ret);
-			ret = _pGamePlayerMgr->processInputs(); Assert(ret);
-			ret = _pGamePlayerMgr->processOutputs(); Assert(ret);
-			ret = _pGamePlayerMgr->processCmds(); Assert(ret);
-			ret = _pGamePlayerMgr->processCacheCmds(); Assert(ret);
-			ret = _pGamePlayerMgr->heartBeat(uTime); Assert(ret);
+			ret = _pGamePlayerMgr->select(); MyAssert(ret);
+			ret = _pGamePlayerMgr->processExceptions(); MyAssert(ret);
+			ret = _pGamePlayerMgr->processInputs(); MyAssert(ret);
+			ret = _pGamePlayerMgr->processOutputs(); MyAssert(ret);
+			ret = _pGamePlayerMgr->processCmds(); MyAssert(ret);
+			ret = _pGamePlayerMgr->processCacheCmds(); MyAssert(ret);
+			ret = _pGamePlayerMgr->heartBeat(uTime); MyAssert(ret);
 		}
 		__MYCATCH
 		{
@@ -70,7 +70,7 @@ int g_logic_framecount	= 0;
 void	LogicThread::init(int index) 
 {
 	_pScene = new Scene(index);
-	Assert(_pScene);
+	MyAssert(_pScene);
 	_pScene->init(kMaxPlayerCount);
 }
 
@@ -117,7 +117,7 @@ void	LogicThread::do_service()
 		__MYTRY
 		{
 			bool ret = _pScene->tick(uCurrTime);
-			Assert(ret);
+			MyAssert(ret);
 		}
 		__MYCATCH
 		{
@@ -133,12 +133,12 @@ WX_IMPLEMENT_SINGLEON(LogicThreadMgr);
 bool LogicThreadMgr::init()
 {
 	_nThreadsCount = kMaxLogicThreadsCount;
-	Assert(_nThreadsCount > 0);
+	MyAssert(_nThreadsCount > 0);
 	//int count = SceneMgr::getSinglePtr()->getSceneCount();
 	//for (int i = 0; i < count; ++i)
 	//{
 	//	Scene* pScene = SceneMgr::getSinglePtr()->getSceneByIndex(i);
-	//	Assert(pScene);
+	//	MyAssert(pScene);
 	//	_threads[i % _nThreadsCount].addScene(pScene);
 	//}
 	for (int i = 0; i < _nThreadsCount; ++i)

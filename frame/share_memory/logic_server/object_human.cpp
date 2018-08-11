@@ -4,9 +4,9 @@
 
 bool	ObjectHuman::init(const FullUserData* pUserDB)
 {
-	Assert(pUserDB);
+	MyAssert(pUserDB);
 	bool bRet = Object::init();
-	Assert(bRet);
+	MyAssert(bRet);
 	_human_db.fillFullUserData(pUserDB);
 	initAttrBackUp();
 	_human_db.validateSMU(true);
@@ -41,10 +41,10 @@ bool	ObjectHuman::heartBeat(uint uTime)
 	}
 
 	bool bRet = Object::heartBeat(uTime);
-	Assert(bRet);
+	MyAssert(bRet);
 
 	TimeSystem* pTimeSystem = TimeSystem::getSinglePtr();
-	Assert(pTimeSystem);
+	MyAssert(pTimeSystem);
 	if (_last_fresh_day != pTimeSystem->getToday())
 	{
 		_last_fresh_day = pTimeSystem->getToday();
@@ -120,7 +120,7 @@ bool	ObjectHuman::addMoney(int money)
 
 bool ObjectHuman::executeMail(Mail* pMail)
 {
-	Assert(pMail);
+	MyAssert(pMail);
 	EM_MAIL_EXE_TYPE mailExeType =   (EM_MAIL_EXE_TYPE)pMail->_params[0];
 	switch (mailExeType)
 	{

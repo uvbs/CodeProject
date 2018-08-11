@@ -1,5 +1,5 @@
 #include "robot.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include "string_util.h"
 #include "socket_client.h"
@@ -32,11 +32,11 @@ bool Robot::init()
 {
 	__ENTER_FUNCTION
 	SocketClient* pSocket = static_cast<SocketClient*>(getSocket());
-	Assert(pSocket);
+	MyAssert(pSocket);
 	bool bRet = pSocket->create(g_Host, g_Port); //read from config
-	Assert(bRet);
+	MyAssert(bRet);
 	if (!isValid()) { 
-		Assert(0);
+		MyAssert(0);
 	}
 	_status = EM_PLAYER_STATUS_IDLE;
 	return true;
@@ -124,7 +124,7 @@ bool Robot::processInputs()
 		if (pSocket->isSockError())
 		{
 			ret = removeSocket();
-			Assert(ret);
+			MyAssert(ret);
 		}
 		else
 		{
@@ -135,7 +135,7 @@ bool Robot::processInputs()
 				{
 					sendCloseMsg();
 					ret = removeSocket();
-					Assert(ret);
+					MyAssert(ret);
 					LogSystem::getSinglePtr()->cacheLog(LOG_FILE_ERROR, 
 						"RemoveSocket In ProcessInput() ...");
 				}
@@ -144,7 +144,7 @@ bool Robot::processInputs()
 			{
 				MyExceptionLog();
 				ret = removeSocket();
-				Assert(ret);
+				MyAssert(ret);
 			}
 		}
 	}
@@ -178,7 +178,7 @@ bool Robot::processOutputs( )
 		if (pSocket->isSockError())
 		{
 			ret = removeSocket();
-			Assert(ret);
+			MyAssert(ret);
 		}
 		else
 		{
@@ -188,7 +188,7 @@ bool Robot::processOutputs( )
 				if (!ret)
 				{
 					ret = removeSocket();
-					Assert(ret);
+					MyAssert(ret);
 					LogSystem::getSinglePtr()->cacheLog(LOG_FILE_ERROR, 
 						"RemoveSocket In ProcessOutput() ...") ;
 				}
@@ -227,7 +227,7 @@ bool Robot::processExceptions( )
 	if (FD_ISSET(s, &_exceptFds[EM_SELECT_USE]))
 	{
 		bool ret = removeSocket();
-		Assert(ret);
+		MyAssert(ret);
 	}
 
 	return true;
@@ -251,7 +251,7 @@ bool Robot::processCmds( )
 	if (getSocket()->isSockError())
 	{
 		bRet = removeSocket();
-		Assert(bRet);
+		MyAssert(bRet);
 	}
 	else
 	{
@@ -275,7 +275,7 @@ bool	Robot::connectServer()
 	__ENTER_FUNCTION
 	bool bRet = false;
 	SocketClient* pSocket = static_cast<SocketClient*>(getSocket());
-	Assert(pSocket);
+	MyAssert(pSocket);
 	__MYTRY
 	{
 		if (!isValid())
@@ -343,13 +343,13 @@ bool	Robot::useSocket()
 {
 	__ENTER_FUNCTION
 	SocketClient* pSocket = static_cast<SocketClient*>(getSocket());
-	Assert(pSocket);
+	MyAssert(pSocket);
 	SOCK fd = pSocket->getFd();
-	Assert(fd != INVALID_SOCKET);
+	MyAssert(fd != INVALID_SOCKET);
 
 	if (_fdSize >= FD_SETSIZE)
 	{
-		Assert(0);
+		MyAssert(0);
 	}
 	FD_SET(fd , &_readFds[EM_SELECT_BAK]);
 	FD_SET(fd , &_writeFds[EM_SELECT_BAK]);
@@ -367,11 +367,11 @@ bool	Robot::removeSocket()
 {
 	__ENTER_FUNCTION
 	SocketClient* pSocket = static_cast<SocketClient*>(getSocket());
-	Assert(pSocket);
+	MyAssert(pSocket);
 	SOCK fd = pSocket->getFd();
-	Assert(fd != INVALID_SOCKET);
-	Assert(_minFd != INVALID_SOCKET);
-	Assert(_maxFd != INVALID_SOCKET);
+	MyAssert(fd != INVALID_SOCKET);
+	MyAssert(_minFd != INVALID_SOCKET);
+	MyAssert(_maxFd != INVALID_SOCKET);
 
 	//_minFd = _maxFd = INVALID_SOCKET ;
 	//FD_CLR(fd , &_readFds[EM_SELECT_BAK]);
@@ -381,7 +381,7 @@ bool	Robot::removeSocket()
 	//FD_CLR(fd , &_exceptFds[EM_SELECT_BAK]);
 	//FD_CLR(fd , &_exceptFds[EM_SELECT_USE]);
 	//_fdSize--;
-	//Assert(_fdSize>=0) ;
+	//MyAssert(_fdSize>=0) ;
 
 	cleanUp();
 

@@ -1,5 +1,5 @@
 #include "socketdef.h"
-#include "assert.h"
+#include "myassert.h"
 #include "tcp_client.h"
 #include "log.h"
 #include "logic.h"
@@ -27,29 +27,29 @@ bool	TcpSocketClient::init()
 	int err = WSAStartup(wVersionRequested, &wsaData); 
 	if (err != 0)
 	{
-		Assert(0);
+		MyAssert(0);
 	}
 #endif
 
 	// 时间
 	_pTimeSystem = TimeSystem::getSinglePtr();
-	Assert(_pTimeSystem);
+	MyAssert(_pTimeSystem);
 	_pTimeSystem->start();
 
 	// 日志
 	_pLogSystem = LogSystem::getSinglePtr();
-	Assert(_pLogSystem);
+	MyAssert(_pLogSystem);
 	ret = _pLogSystem->init(DEFAULT_LOG_CACHE_SIZE);
-	Assert(ret);
+	MyAssert(ret);
 
 	// 包工厂管理器
 	_pPacketFactoryMgr = PacketFactoryMgr::getSinglePtr();
-	Assert(_pPacketFactoryMgr);
+	MyAssert(_pPacketFactoryMgr);
 	_pPacketFactoryMgr->init();
 
 	// 逻辑线程
 	ret = _logicThreadsMgr.init();
-	Assert(ret);
+	MyAssert(ret);
 	LogSystem::getSinglePtr()->saveLog(LOG_FILE_INFO, "LogicThreadsMgr init OK.");
 
 	return true;

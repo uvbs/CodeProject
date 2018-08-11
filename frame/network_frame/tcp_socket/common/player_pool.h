@@ -14,7 +14,7 @@
 #include "lock.h"
 #include "singleton.h"
 #include "macrodef.h"
-#include "assert.h"
+#include "myassert.h"
 
 template<class Player_T>
 class PlayerPool : public Singleton<PlayerPool<Player_T> >
@@ -29,7 +29,7 @@ public :
 	//初始化
 	bool init(int count)
 	{
-		Assert(count > 0);
+		MyAssert(count > 0);
 		_capacity = count;
 		_pPlayerPool = new Player_T[_capacity];
 		return true;
@@ -38,7 +38,7 @@ public :
 	//根据玩家的PlayerID取得数据指针
 	Player_T* getPlayer(int playerId)
 	{
-		Assert(_pPlayerPool);
+		MyAssert(_pPlayerPool);
 		if (playerId < 0 || playerId >= _capacity)
 		{
 			return NULL;

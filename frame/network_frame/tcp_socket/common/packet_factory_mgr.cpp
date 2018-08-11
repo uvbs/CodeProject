@@ -1,5 +1,5 @@
 #include "packet_factory_mgr.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include "CSAuthorizePacket.h"
 #include "SCRetAuthorizePacket.h"
@@ -14,9 +14,9 @@ namespace tcp_net {
 PacketFactoryMgr::PacketFactoryMgr()
 {
 	_ppFactories = new PacketFactory*[PACKET_NUMBER];
-	Assert(_ppFactories);
+	MyAssert(_ppFactories);
 	_pStatistics = new int[PACKET_NUMBER];
-	Assert(_pStatistics);
+	MyAssert(_pStatistics);
 	for (int i = 0; i < PACKET_NUMBER; ++i)
 	{
 		_ppFactories[i] = NULL;
@@ -50,7 +50,7 @@ Packet* PacketFactoryMgr::createPacket(Packet_ID id)
 	Packet* pPacket = pFactory->createPacket();
 	if (pPacket == NULL)
 	{
-		Assert(0);
+		MyAssert(0);
 	}
 	//增加包的创建计数
 	++_pStatistics[id];
@@ -103,7 +103,7 @@ bool PacketFactoryMgr::addFactory(PacketFactory* pFactory)
 	}
 	if (_ppFactories[id] != NULL) 
 	{//重复设定
-		Assert(0) ;
+		MyAssert(0) ;
 		return false;
 	}
 	_ppFactories[id] = pFactory ;

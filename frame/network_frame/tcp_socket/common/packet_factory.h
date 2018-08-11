@@ -13,7 +13,7 @@
 #include "type.h"
 #include "packet.h"
 #include "lock.h"
-#include "assert.h"
+#include "myassert.h"
 
 using tcp_net::Packet;
 namespace tcp_net {

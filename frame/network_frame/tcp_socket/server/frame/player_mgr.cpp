@@ -107,14 +107,14 @@ bool PlayerMgr::processInputs()
 			continue;
 		}
 		SOCK s = pSocket->getFd();
-		Assert(s != INVALID_SOCKET) ;
+		MyAssert(s != INVALID_SOCKET) ;
 		if (FD_ISSET(s, &_readFds[EM_SELECT_USE]))
 		{
 			//连接出现错误
 			if (pSocket->isSockError())
 			{
 				ret = kickPlayer(pPlayer) ;
-				Assert(ret);
+				MyAssert(ret);
 			}
 			else
 			{
@@ -129,7 +129,7 @@ bool PlayerMgr::processInputs()
 				__MYCATCH
 				{
 					ret = kickPlayer( pPlayer ) ;
-					Assert(ret);
+					MyAssert(ret);
 				}
 			}
 		}
@@ -171,14 +171,14 @@ bool PlayerMgr::processOutputs( )
 			continue;
 		}
 		SOCK s = pSocket->getFd();
-		Assert(s != INVALID_SOCKET) ;
+		MyAssert(s != INVALID_SOCKET) ;
 		if (FD_ISSET(s, &_writeFds[EM_SELECT_USE]))
 		{
 			//连接出现错误
 			if (pSocket->isSockError())
 			{
 				ret = kickPlayer( pPlayer ) ;
-				Assert(ret);	//严重错误,不再向下执行,这种情况也基本不可能
+				MyAssert(ret);	//严重错误,不再向下执行,这种情况也基本不可能
 			}
 			else
 			{
@@ -196,7 +196,7 @@ bool PlayerMgr::processOutputs( )
 				__MYCATCH
 				{
 					ret = kickPlayer( pPlayer ) ;
-					Assert(ret);
+					MyAssert(ret);
 				}
 			}
 		}
@@ -238,11 +238,11 @@ bool PlayerMgr::processExceptions( )
 			continue;
 		}
 		SOCK s = pSocket->getFd();
-		Assert(s != INVALID_SOCKET) ;
+		MyAssert(s != INVALID_SOCKET) ;
 		if (FD_ISSET(s, &_exceptFds[EM_SELECT_USE]))
 		{
 			ret = kickPlayer( pPlayer ) ;
-			Assert(ret);
+			MyAssert(ret);
 		}
 	}
 	return true ;
@@ -281,13 +281,13 @@ bool PlayerMgr::processCmds( )
 			continue;
 		}
 		SOCK s = pSocket->getFd();
-		Assert(s != INVALID_SOCKET) ;
+		MyAssert(s != INVALID_SOCKET) ;
 
 		//连接出现错误
 		if (pSocket->isSockError())
 		{
 			bRet = kickPlayer( pPlayer ) ;
-			Assert(bRet);
+			MyAssert(bRet);
 		}
 		else
 		{
@@ -302,7 +302,7 @@ bool PlayerMgr::processCmds( )
 			__MYCATCH
 			{
 				bRet = kickPlayer( pPlayer ) ;
-				Assert(bRet);
+				MyAssert(bRet);
 			}
 		}
 	}
@@ -358,7 +358,7 @@ bool PlayerMgr::addPlayer(GamePlayer* pPlayer)
 		return false;
 	}
 	SOCK fd = pSocket->getFd();
-	Assert(fd != INVALID_SOCKET) ;
+	MyAssert(fd != INVALID_SOCKET) ;
 	if (FD_ISSET(fd, &_readFds[EM_SELECT_BAK]))
 	{
 		return false ;

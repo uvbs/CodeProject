@@ -20,7 +20,7 @@ namespace db_helper
     readSize = fread(&data, 1, sizeof(data), f);\
     LogSystem::getSinglePtr()->saveLog(LOG_FILE_DEBUG,"Read = %d, sizeof(%s) = %d", readSize, #data, sizeof(data)); \
     if(readSize == 0) \
-    Assert(0);\
+    MyAssert(0);\
     totalReadSize += readSize; \
 
 //Ð´ÎÄ¼þºê
@@ -28,7 +28,7 @@ namespace db_helper
     writeSize = fwrite(&data, 1, sizeof(data), f);\
     LogSystem::getSinglePtr()->saveLog(LOG_FILE_DEBUG,"Write = %d, sizeof(%s) = %d", writeSize, #data, sizeof(data)); \
     if(writeSize == 0) \
-    Assert(0);\
+    MyAssert(0);\
 
     bool  saveUserData(const FullUserData& value, const char* dir = "./data/db");
 

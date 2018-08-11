@@ -1,6 +1,6 @@
 #include "socketdef.h"
 #include "logic.h"
-#include "assert.h"
+#include "myassert.h"
 #include "helper.h"
 #include "log.h"
 #include "robot.h"
@@ -22,7 +22,7 @@ void	LogicThread::init(int index)
 	{
 		int userid = index * 100 + i;
 		_pRobot[i] = new Robot(userid);
-		Assert(_pRobot[i]);
+		MyAssert(_pRobot[i]);
 		_pRobot[i]->init();
 	}
 }
@@ -53,12 +53,12 @@ void	LogicThread::do_service()
 			__MYTRY
 			{
 				uint uTime = TimeSystem::getSinglePtr()->getRunTime();
-				bool ret = _pRobot[i]->select(); Assert(ret);
-				ret = _pRobot[i]->processExceptions(); Assert(ret);
-				ret = _pRobot[i]->processInputs(); Assert(ret);
-				ret = _pRobot[i]->processOutputs(); Assert(ret);
-				ret = _pRobot[i]->processCmds(); Assert(ret) ;
-				ret = _pRobot[i]->heartBeat(uTime); Assert(ret);
+				bool ret = _pRobot[i]->select(); MyAssert(ret);
+				ret = _pRobot[i]->processExceptions(); MyAssert(ret);
+				ret = _pRobot[i]->processInputs(); MyAssert(ret);
+				ret = _pRobot[i]->processOutputs(); MyAssert(ret);
+				ret = _pRobot[i]->processCmds(); MyAssert(ret) ;
+				ret = _pRobot[i]->heartBeat(uTime); MyAssert(ret);
 			}
 			__MYCATCH
 			{
@@ -76,7 +76,7 @@ WX_IMPLEMENT_SINGLEON(LogicThreadMgr);
 bool LogicThreadMgr::init()
 {
 	_nThreadsCount = kMaxLogicThreadsCount;
-	Assert(_nThreadsCount > 0);
+	MyAssert(_nThreadsCount > 0);
 	for (int i = 0; i < _nThreadsCount; ++i)
 	{
 		_threads[i].init(i);

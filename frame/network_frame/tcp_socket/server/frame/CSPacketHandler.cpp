@@ -18,7 +18,7 @@
 #include "helper.h"
 #include "time_system.h"
 #include "log.h"
-#include "assert.h"
+#include "myassert.h"
 #include "logic.h"
 #include "scene.h"
 
@@ -28,12 +28,12 @@
 int CSAuthorizePacketHandler::execute(CSAuthorizePacket* pPacket, Player* pPlayer)
 {
 	__ENTER_FUNCTION
-	Assert(pPacket);
+	MyAssert(pPacket);
 
 	if (pPlayer)
 	{
 		//检查线程执行资源是否正确
-		Assert(getCurrTid() == GamePlayerMgr::getSinglePtr()->_tid);
+		MyAssert(getCurrTid() == GamePlayerMgr::getSinglePtr()->_tid);
 		GamePlayer* pGamePlayer = static_cast<GamePlayer*>(pPlayer);
 		const char* user = pPacket->getUserId();
 		const char* key = pPacket->getKey();
@@ -71,15 +71,15 @@ int	 CSEnterScenePacketHandler::execute(CSEnterScenePacket* pPacket, Player* pPl
 {
 	__ENTER_FUNCTION
 	GamePlayer* pGamePlayer = static_cast<GamePlayer*>(pPlayer);
-	Assert(pGamePlayer);
+	MyAssert(pGamePlayer);
 	if (pGamePlayer->getStatus() == EM_PLAYER_STATUS_AUTHORIZED)
 	{
 		//当前玩家是刚接入的
 		//检查线程执行资源是否正确
-		Assert(getCurrTid() == GamePlayerMgr::getSinglePtr()->_tid);
+		MyAssert(getCurrTid() == GamePlayerMgr::getSinglePtr()->_tid);
 		//得到负载最小的线程
 		const LogicThread* pThread = LogicThreadMgr::getSinglePtr()->getMinloadThread();
-		Assert(pThread && pThread->getScene());
+		MyAssert(pThread && pThread->getScene());
 		//删除接入模块中数据
 		Player_ID id = pGamePlayer->getPlayerID();
 		bool ret = GamePlayerMgr::getSinglePtr()->removePlayer(id);
@@ -110,18 +110,18 @@ int	 CSEnterScenePacketHandler::execute(CSEnterScenePacket* pPacket, Player* pPl
 		//2.玩家发送一个消息
 		int sceneId = pPacket->getSceneId();
 		const LogicThread* pThread = LogicThreadMgr::getSinglePtr()->getThread(sceneId);
-		Assert(pThread);
+		MyAssert(pThread);
 		Scene* pScene = pThread->getScene();
 		if (NULL == pScene)
 		{
 			return PACKET_EXE_ERROR ;
 		}
 		//检查线程执行资源是否正确
-		Assert(getCurrTid() == pScene->getTid()) ;
+		MyAssert(getCurrTid() == pScene->getTid()) ;
 		
 		//将客户端连接加入目的场景玩家管理器
 		ScenePlayerMgr* pScenePlayerMgr = pScene->getScenePlayerMgr();
-		Assert(pScenePlayerMgr);
+		MyAssert(pScenePlayerMgr);
 		bool ret = pScenePlayerMgr->addPlayer(static_cast<GamePlayer*>(pPlayer));
 		if (!ret)
 		{
@@ -142,7 +142,7 @@ int	 CSEnterScenePacketHandler::execute(CSEnterScenePacket* pPacket, Player* pPl
 	}
 	else
 	{
-		Assert(0) ;
+		MyAssert(0) ;
 	}
 
 	return PACKET_EXE_CONTINUE ;
@@ -156,8 +156,8 @@ int	 CSEnterScenePacketHandler::execute(CSEnterScenePacket* pPacket, Player* pPl
 int		CSHeartBeatPacketHandler::execute(CSHeartBeatPacket* pPacket, Player* pPlayer)
 {
 	__ENTER_FUNCTION
-	Assert(pPacket);
-	Assert(pPlayer);
+	MyAssert(pPacket);
+	MyAssert(pPlayer);
 
 	GamePlayer* pGamePlayer = static_cast<GamePlayer*>(pPlayer);
 	LogSystem::getSinglePtr()->cacheLog(LOG_FILE_INFO,

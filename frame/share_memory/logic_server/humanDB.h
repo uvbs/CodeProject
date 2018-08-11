@@ -51,7 +51,7 @@ public:
 	int		getFreeOwnFlag() const;
 	//¥Ê≈Ã
 	void	validateSMU(bool bForceAll = false);
-	void	setSMU(HumanSMU* pHumanSMU){ Assert(pHumanSMU); _human_SMU = pHumanSMU; regSMAttrs();}
+	void	setSMU(HumanSMU* pHumanSMU){ MyAssert(pHumanSMU); _human_SMU = pHumanSMU; regSMAttrs();}
 	HumanSMU* getSMU() const {return _human_SMU;}
 	
 protected:

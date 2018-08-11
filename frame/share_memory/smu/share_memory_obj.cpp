@@ -1,6 +1,6 @@
 #include "share_memory_obj.h"
 #include "share_memory_api.h"
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 
 using namespace ShareMemAPI;
@@ -58,8 +58,8 @@ bool ShareMemObj::attach(SM_Key key, uint size)
 	if (_header)
 	{
 		_dataPtr = _header + sizeof(SMHead);
-		Assert(((SMHead*)_header)->_key	 ==	key);
-		Assert(((SMHead*)_header)->_size  ==	size);
+		MyAssert(((SMHead*)_header)->_key	 ==	key);
+		MyAssert(((SMHead*)_header)->_size  ==	size);
 		_size = size;
 		return true;
 	}

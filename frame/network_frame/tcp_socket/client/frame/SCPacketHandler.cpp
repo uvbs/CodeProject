@@ -14,8 +14,8 @@
 int	 SCRetAuthorizePacketHandler::execute(SCRetAuthorizePacket* pPacket, Player* pPlayer)
 {
 	__ENTER_FUNCTION
-	Assert(pPacket);
-	Assert(pPlayer);
+	MyAssert(pPacket);
+	MyAssert(pPlayer);
 	Robot* pHuman = (Robot*)pPlayer;
 	pHuman->_status = EM_PLAYER_STATUS_AUTHORIZED;
 
@@ -32,8 +32,8 @@ int	 SCRetAuthorizePacketHandler::execute(SCRetAuthorizePacket* pPacket, Player*
 int SCRetEnterScenePacketHandler::execute(SCRetEnterScenePacket* pPacket, Player* pPlayer)
 {
 	__ENTER_FUNCTION
-	Assert(pPacket);
-	Assert(pPlayer);
+	MyAssert(pPacket);
+	MyAssert(pPlayer);
 
 	Robot* pHuman = static_cast<Robot*>(pPlayer);
 	switch (pPacket->getResult())

@@ -36,7 +36,7 @@ file(GLOB ALL_CXX_SRCS
 ../../../frame/share_memory/com/*.cpp
 ../../../frame/share_memory/smu/*.cpp
 ../../../frame/share_memory/logic_server/*.cpp
-../../../src/util/assert.cpp
+../../../src/util/myassert.cpp
 ../../../src/util/helper.cpp
 ../../../src/util/log.cpp
 ../../../src/util/string_util.cpp

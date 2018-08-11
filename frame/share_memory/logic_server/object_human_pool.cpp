@@ -8,7 +8,7 @@ WX_IMPLEMENT_SINGLEON(ObjectHumanPool);
 ObjectHumanPool::ObjectHumanPool()
 {
 	_human_sm_pool = new ShareMemPool<HumanSMU>;
-	Assert(_human_sm_pool);
+	MyAssert(_human_sm_pool);
 }
 
 ObjectHumanPool::~ObjectHumanPool()
@@ -19,21 +19,21 @@ ObjectHumanPool::~ObjectHumanPool()
 
 bool	ObjectHumanPool::init(int nCount)
 {
-	Assert(nCount > 0);
+	MyAssert(nCount > 0);
 	_human_pool = new  ObjectHuman[nCount];
-	Assert(_human_pool);
+	MyAssert(_human_pool);
 	int humanKey = 0x1000;
 	bool bRet = _human_sm_pool->init(nCount, humanKey, SM_LogicServer);
-	Assert(bRet);
+	MyAssert(bRet);
 	_capacity = nCount;
 	_id_table = new HashTable<uint64, int>(nCount);
-	Assert(_id_table);
+	MyAssert(_id_table);
 	return true;
 }
 
 ObjectHuman* ObjectHumanPool::getObject(const Guid& guid)
 {
-	Assert(_human_pool);
+	MyAssert(_human_pool);
 	if (!guid.isValid()) { return NULL; }
 	const int* pID = _id_table->find(guid.value());
 	if (!pID) { return NULL; }
@@ -47,8 +47,8 @@ ObjectHuman* ObjectHumanPool::allocObject(Guid guid, bool& bNewSmuObj, ObjectHum
 {
 	__ENTER_FUNCTION
 	AutoMLock autolock(_lock);
-	Assert(_human_pool);
-	Assert(_human_sm_pool);
+	MyAssert(_human_pool);
+	MyAssert(_human_sm_pool);
 
 	bNewSmuObj = false;
 	if (NULL== pObjectHuman)
@@ -72,7 +72,7 @@ ObjectHuman* ObjectHumanPool::allocObject(Guid guid, bool& bNewSmuObj, ObjectHum
 		pSMU = _human_sm_pool->newObj();
 		bNewSmuObj = true;
 	}
-	Assert(pSMU);
+	MyAssert(pSMU);
 	pSMU->_SMU_header.clearVersion();
 
 	pObjectHuman->setSMU(pSMU);
@@ -93,7 +93,7 @@ bool	ObjectHumanPool::recycleObject(const Guid& guid)
 	if (!bErase) { return false; }
 
 	HumanSMU* pSMU = pObjectHuman->getSMU();
-	Assert(pSMU);
+	MyAssert(pSMU);
 	pObjectHuman->getHumanDB()->setFreeOwnFlag(SM_USE_READYFREE);
 	pObjectHuman->cleanUp();
 	return true;

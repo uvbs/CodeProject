@@ -1,7 +1,7 @@
 #include "shm_util.h"
 #include "shm_def.h"
 #include "helper.h"
-#include "assert.h"
+#include "myassert.h"
 #include <stdio.h>
 
 void	sm_lock(char& flag, char type)

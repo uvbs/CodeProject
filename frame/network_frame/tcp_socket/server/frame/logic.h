@@ -45,7 +45,7 @@ public:
 	LogicThread() : _pScene(NULL) {}
 	~LogicThread();
 	
-	int		getload() const { Assert(_pScene); return _pScene->getPlayerCount(); }
+	int		getload() const { MyAssert(_pScene); return _pScene->getPlayerCount(); }
 	Scene*	getScene() const { return _pScene; }
 	void	init(int index);
 	void	start() { _thread.start(&LogicThread::run, this); }

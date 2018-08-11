@@ -7,7 +7,7 @@
 #include "packet_factory_mgr.h"
 #include "input_stream.h"
 #include "output_stream.h"
-#include "assert.h"
+#include "myassert.h"
 #include "macrodef.h"
 #include "player_pool.h"
 #include "log.h"
@@ -30,10 +30,10 @@ Player::Player(bool isClient)
 		_pSocket = new SocketServer();
 	}
 	_pSocketStream = new SocketStream();
-	Assert(_pSocketStream);
-	Assert(_pSocket);
+	MyAssert(_pSocketStream);
+	MyAssert(_pSocket);
 	bool ret = _pSocketStream->init(_pSocket);
-	Assert(ret);
+	MyAssert(ret);
 }
 
 Player::~Player()
@@ -63,7 +63,7 @@ bool Player::processInput( )
 {
 	__ENTER_FUNCTION
 
-	Assert(_pSocketStream);
+	MyAssert(_pSocketStream);
 	__MYTRY 
 	{
 		int err = _pSocketStream->reveive() ;
@@ -87,11 +87,11 @@ bool Player::processCmd( )
 {
 	__ENTER_FUNCTION
 
-	Assert(_pSocketStream);
+	MyAssert(_pSocketStream);
 	InputStream* pInStream = _pSocketStream->getInstream();
-	Assert(pInStream);
+	MyAssert(pInStream);
 	PacketFactoryMgr* pPacketFactryMgr = PacketFactoryMgr::getSinglePtr();
-	Assert(pPacketFactryMgr);
+	MyAssert(pPacketFactryMgr);
 
 	Packet* pPacket = NULL;
 
@@ -265,7 +265,7 @@ bool Player::processOutput()
 {
 	__ENTER_FUNCTION
 
-	Assert(_pSocketStream);
+	MyAssert(_pSocketStream);
 
 	__MYTRY
 	{
@@ -296,8 +296,8 @@ bool Player::sendPacket(Packet* pPacket)
 {
 	__ENTER_FUNCTION
 
-	Assert(_pSocketStream);
-	Assert(pPacket);
+	MyAssert(_pSocketStream);
+	MyAssert(pPacket);
 
 	int beforeSize = _pSocketStream->getOutstream()->getLength();
 	int afterSize = 0;
@@ -308,7 +308,7 @@ bool Player::sendPacket(Packet* pPacket)
 		//查询当前包尾位置。记录写包前位置
 		int tail_begin = _pSocketStream->getOutstream()->getTail();
 		ret = _pSocketStream->writePacket(pPacket);
-		Assert(ret);
+		MyAssert(ret);
 		//查询当前包尾位置。记录写包后位置
 		int tail_end = _pSocketStream->getOutstream()->getTail();
 		afterSize = _pSocketStream->getOutstream()->getLength();

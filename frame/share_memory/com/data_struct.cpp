@@ -1,11 +1,11 @@
 #include "data_struct.h"
-#include "assert.h"
+#include "myassert.h"
 
 // 获得物品的固定属性
 bool	ItemData::serializeAttr(char* pOut, int& nOutLength, int nBuffLength) const
 {
 	__ENTER_FUNCTION
-	Assert(pOut);
+	MyAssert(pOut);
 	char* pBuff = pOut;
 	//serialize itemtableid
 	*((int*)pBuff)	=	_itemTableId;
@@ -50,11 +50,11 @@ bool	ItemData::serializeAttr(char* pOut, int& nOutLength, int nBuffLength) const
 		break;
 	default:
 		{
-			Assert(0);
+			MyAssert(0);
 		}
 	}
 	nOutLength = (int)(pBuff - pOut);
-	Assert(nBuffLength >= nOutLength);
+	MyAssert(nBuffLength >= nOutLength);
 	return true;
 	__LEAVE_FUNCTION
 	return false;
@@ -64,7 +64,7 @@ bool	ItemData::serializeAttr(char* pOut, int& nOutLength, int nBuffLength) const
 bool	ItemData::unserializeAttr(char* pIn, int nBuffLength)
 {
 	__ENTER_FUNCTION
-	Assert(pIn);
+	MyAssert(pIn);
 	char* pBuff = pIn;
 
 	//unserialize itemtableid
@@ -110,10 +110,10 @@ bool	ItemData::unserializeAttr(char* pIn, int nBuffLength)
 		break;
 	default:
 		{
-			Assert(0);
+			MyAssert(0);
 		}
 	}
-	Assert(nBuffLength >= (pBuff - pIn));
+	MyAssert(nBuffLength >= (pBuff - pIn));
 	return true;
 	__LEAVE_FUNCTION
 	return false;
@@ -140,7 +140,7 @@ bool  ItemData::isValid() const
 void	ItemData::setItemCount(int nCount)	
 {
 	__ENTER_FUNCTION
-	Assert(nCount > 0);
+	MyAssert(nCount > 0);
 	int itemClass = getItemClass();
 	switch(itemClass)
 	{
@@ -165,7 +165,7 @@ void	ItemData::setItemCount(int nCount)
 		break;
 	default:
 		{
-			Assert(0);
+			MyAssert(0);
 		}
 	}
 	__LEAVE_FUNCTION
@@ -175,7 +175,7 @@ void	ItemData::setItemCount(int nCount)
 bool	ItemData::incCount(int nCount /* =1 */)
 {
 	__ENTER_FUNCTION
-	Assert(nCount > 0);
+	MyAssert(nCount > 0);
 	int itemClass = getItemClass();
 	switch(itemClass)
 	{
@@ -200,7 +200,7 @@ bool	ItemData::incCount(int nCount /* =1 */)
 		break;
 	default:
 		{
-			Assert(0);
+			MyAssert(0);
 		}
 	}
 	return true;
@@ -212,7 +212,7 @@ bool	ItemData::incCount(int nCount /* =1 */)
 bool	ItemData::decCount(int nCount /* =1 */)
 {
 	__ENTER_FUNCTION
-	Assert(nCount > 0);
+	MyAssert(nCount > 0);
 	int itemClass = getItemClass();
 	switch(itemClass)
 	{
@@ -237,7 +237,7 @@ bool	ItemData::decCount(int nCount /* =1 */)
 		break;
 	default:
 		{
-			Assert(0);
+			MyAssert(0);
 		}
 	}
 	return true;
@@ -273,7 +273,7 @@ int		ItemData::getCount() const
 		break;
 	default:
 		{
-			Assert(0);
+			MyAssert(0);
 		}
 	}
 	__LEAVE_FUNCTION
