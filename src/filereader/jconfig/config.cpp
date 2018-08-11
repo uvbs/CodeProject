@@ -13,7 +13,7 @@
 #include <boost/lexical_cast.hpp>
 
 #include "config.h"
-#include "util.h"
+#include "../file_utils.h"
 
 namespace cloud_search {
 

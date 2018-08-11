@@ -9,7 +9,7 @@
 #include <boost/format.hpp>
 
 #include "config_engine.h"
-#include "util.h"
+#include "../file_utils.h"
 
 namespace cloud_search {
 

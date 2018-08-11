@@ -15,7 +15,9 @@ include_directories(
 ../../src/algorithm
 ../../src/common
 ../../src/container
+../../src/container/dictionary
 ../../src/demo
+../../src/filereader
 ../../src/filereader/ini
 ../../src/filereader/jconfig
 ../../src/filereader/json
@@ -56,7 +58,9 @@ file(GLOB ALL_HEADER_SRCS
 ../../src/algorithm/*.h
 ../../src/common/*.h
 ../../src/container/*.h
+../../src/container/dictionary/*.h
 ../../src/demo/*.h
+../../src/filereader/*.h
 ../../src/filereader/ini/*.h
 ../../src/filereader/jconfig/*.h
 ../../src/filereader/json/*.h
@@ -87,7 +91,9 @@ file(GLOB ALL_CXX_SRCS
 ../../src/algorithm/*.cpp
 ../../src/common/*.cpp
 ../../src/container/*.cpp
+../../src/container/dictionary/*.cpp
 ../../src/demo/*.cpp
+../../src/filereader/*.cpp
 ../../src/filereader/ini/*.cpp
 ../../src/filereader/jconfig/*.cpp
 ../../src/filereader/json/*.cpp

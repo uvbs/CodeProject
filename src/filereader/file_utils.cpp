@@ -13,7 +13,7 @@
 #include <sys/time.h>
 #include <math.h>
 
-#include "util.h"
+#include "file_utils.h"
 
 using namespace std;
 
@@ -113,6 +113,20 @@ ERROR:
     close (fd);
 
     return ret;
+}
+
+int check_file(const char *path)
+{
+    if (path[0] == 0)
+        return 0;
+
+    struct stat stat_buf;
+    if (stat(path, &stat_buf)/* || !(stat_buf.st_mode & S_IFREG)*/)
+    {
+        return 0;
+    }
+
+    return stat_buf.st_size;
 }
 
 /*

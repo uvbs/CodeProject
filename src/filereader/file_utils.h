@@ -1,5 +1,5 @@
-#ifndef __SEARCHER_UTIL_H__
-#define __SEARCHER_UTIL_H__
+#ifndef __FILE_UTILS_H__
+#define __FILE_UTILS_H__
 
 //#include <string>
 
@@ -17,5 +17,6 @@ double calc_square_sum(char *p, int n, short *freq);*/
 ssize_t writen (int fd, const void* vptr, size_t n);
 ssize_t readn (int fd, void* vptr, size_t n);
 int get_file_content(const char* filepath, char** content);
+int check_file(const char *path);
 
 #endif

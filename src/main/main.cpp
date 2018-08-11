@@ -15,6 +15,7 @@
 #include "test_conhash.h"
 #include "test_datastruct.h"
 #include "test_designpattern.h"
+#include "test_dictionary.h"
 #include "test_httpclient.h"
 #include "test_inireader.h"
 #include "test_jsonc.h"
@@ -84,6 +85,7 @@ int main()
         test_serializer_json();
         test_serializer_php();
         test_jconfig();
+        test_dictionary();
 
 		//wait
 		cin.get();
